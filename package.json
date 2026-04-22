@@ -1,12 +1,13 @@
 {
   "name": "sreading-student-functionality-test",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Playwright-based functional exploration tests for the SigmaReading student platform (sr.sigmareading.com).",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:exploration": "playwright test tests/exploration/",
+    "test:report": "playwright show-report"
   },
-  "keywords": [],
+  "keywords": ["playwright", "e2e", "sigmareading", "functional-testing"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
