@@ -3,14 +3,22 @@
   "version": "1.0.0",
   "description": "Playwright-based functional exploration tests for the SigmaReading student platform (sr.sigmareading.com).",
   "scripts": {
+    "explore": "tsx scripts/explore.ts",
     "test": "playwright test",
     "test:exploration": "playwright test tests/exploration/",
     "test:report": "playwright show-report"
   },
-  "keywords": ["playwright", "e2e", "sigmareading", "functional-testing"],
+  "keywords": [
+    "playwright",
+    "e2e",
+    "sigmareading",
+    "functional-testing",
+    "self-healing"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.59.1"
+    "@playwright/test": "^1.59.1",
+    "tsx": "^4.21.0"
   }
 }

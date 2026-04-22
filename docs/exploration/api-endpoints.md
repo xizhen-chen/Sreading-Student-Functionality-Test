@@ -1,7 +1,7 @@
 # SigmaReading API 端点列表
 
 > 通过 Playwright Network 监听自动捕获
-> 生成时间：2026/4/22 10:24:53
+> 生成时间：2026/4/22 10:39:46
 > 目标网站：https://sr.sigmareading.com
 
 ---
