@@ -3,3 +3,6 @@ dist/
 .cache/
 test-results/
 playwright-report/
+
+# Keep run history docs but exclude binary screenshots from git
+runs/*/screenshots/

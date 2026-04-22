@@ -4,6 +4,7 @@
   "description": "Playwright-based functional exploration tests for the SigmaReading student platform (sr.sigmareading.com).",
   "scripts": {
     "explore": "tsx scripts/explore.ts",
+    "explore:history": "ls -lt runs/ | head -20",
     "test": "playwright test",
     "test:exploration": "playwright test tests/exploration/",
     "test:report": "playwright show-report"

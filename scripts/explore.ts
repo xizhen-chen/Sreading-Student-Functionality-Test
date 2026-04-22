@@ -33,11 +33,22 @@ import * as path from 'path';
 
 const BASE_URL = 'https://sr.sigmareading.com';
 const ROOT = path.resolve(__dirname, '..');
-const SCREENSHOTS_DIR = path.join(ROOT, 'screenshots', 'exploration');
-const DOCS_DIR = path.join(ROOT, 'docs', 'exploration');
+
+// Generate a timestamp-based run ID so every execution is preserved
+const RUN_TIMESTAMP = new Date().toISOString().replace(/[:.]/g, '-').replace('T', '_').slice(0, 19);
+const RUNS_DIR = path.join(ROOT, 'runs');
+const RUN_DIR = path.join(RUNS_DIR, RUN_TIMESTAMP);
+const SCREENSHOTS_DIR = path.join(RUN_DIR, 'screenshots');
+const DOCS_DIR = path.join(RUN_DIR, 'docs');
+
+// Also keep a "latest" symlink / copy for convenience
+const LATEST_DOCS_DIR = path.join(ROOT, 'docs', 'exploration');
+const LATEST_SCREENSHOTS_DIR = path.join(ROOT, 'screenshots', 'exploration');
 
 fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
 fs.mkdirSync(DOCS_DIR, { recursive: true });
+fs.mkdirSync(LATEST_DOCS_DIR, { recursive: true });
+fs.mkdirSync(LATEST_SCREENSHOTS_DIR, { recursive: true });
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Correction log (records every self-healing action)
@@ -705,6 +716,55 @@ function buildCorrectionLog(): string {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
+// Run history index
+// ──────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Reads all subdirectories under runs/ and writes an index markdown file
+ * listing every past run with links to its docs.
+ */
+function updateRunIndex(): void {
+  if (!fs.existsSync(RUNS_DIR)) return;
+
+  const entries = fs.readdirSync(RUNS_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort()
+    .reverse(); // newest first
+
+  let md = `# 探索运行历史（Run History）\n\n`;
+  md += `> 共 **${entries.length}** 次运行\n\n`;
+  md += `| # | 运行时间 | 功能文档 | API 文档 | 修正日志 | 截图数 |\n`;
+  md += `|---|---------|---------|---------|---------|--------|\n`;
+
+  entries.forEach((name, i) => {
+    const runDir = path.join(RUNS_DIR, name);
+    const docsDir = path.join(runDir, 'docs');
+    const ssDir = path.join(runDir, 'screenshots');
+
+    const hasFeatures = fs.existsSync(path.join(docsDir, 'sigmareading-features.md'));
+    const hasApi = fs.existsSync(path.join(docsDir, 'api-endpoints.md'));
+    const hasCorrection = fs.existsSync(path.join(docsDir, 'correction-log.md'));
+
+    let screenshotCount = 0;
+    if (fs.existsSync(ssDir)) {
+      screenshotCount = fs.readdirSync(ssDir).filter((f) => f.endsWith('.png')).length;
+    }
+
+    // Convert dir name (YYYY-MM-DD_HH-MM-SS) back to readable timestamp (YYYY-MM-DDTHH:MM:SS)
+    const readable = name.replace('_', 'T').replace(/T(\d{2})-(\d{2})-(\d{2})$/, 'T$1:$2:$3');
+
+    md += `| ${entries.length - i} | ${readable} `;
+    md += `| ${hasFeatures ? `[✓](${name}/docs/sigmareading-features.md)` : '✗'} `;
+    md += `| ${hasApi ? `[✓](${name}/docs/api-endpoints.md)` : '✗'} `;
+    md += `| ${hasCorrection ? `[✓](${name}/docs/correction-log.md)` : '✗'} `;
+    md += `| ${screenshotCount} |\n`;
+  });
+
+  fs.writeFileSync(path.join(RUNS_DIR, 'README.md'), md, 'utf-8');
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
 // Main entry point
 // ──────────────────────────────────────────────────────────────────────────────
 
@@ -744,21 +804,44 @@ async function main(): Promise<void> {
   // Phase 5 – Always write docs regardless of network availability
   console.log('\n📌 Phase 5: Writing documentation');
 
+  const featureContent = buildFeatureMarkdown();
+  const apiContent = buildApiMarkdown();
+  const correctionContent = buildCorrectionLog();
+
+  // Write to timestamped run directory
   const featurePath = path.join(DOCS_DIR, 'sigmareading-features.md');
   const apiPath = path.join(DOCS_DIR, 'api-endpoints.md');
   const correctionPath = path.join(DOCS_DIR, 'correction-log.md');
 
-  fs.writeFileSync(featurePath, buildFeatureMarkdown(), 'utf-8');
-  fs.writeFileSync(apiPath, buildApiMarkdown(), 'utf-8');
-  fs.writeFileSync(correctionPath, buildCorrectionLog(), 'utf-8');
+  fs.writeFileSync(featurePath, featureContent, 'utf-8');
+  fs.writeFileSync(apiPath, apiContent, 'utf-8');
+  fs.writeFileSync(correctionPath, correctionContent, 'utf-8');
 
+  // Also copy to latest location for quick access
+  fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'sigmareading-features.md'), featureContent, 'utf-8');
+  fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'api-endpoints.md'), apiContent, 'utf-8');
+  fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'correction-log.md'), correctionContent, 'utf-8');
+
+  // Copy screenshots to latest
+  const screenshotFiles = fs.readdirSync(SCREENSHOTS_DIR).filter((f) => f.endsWith('.png'));
+  for (const file of screenshotFiles) {
+    fs.copyFileSync(path.join(SCREENSHOTS_DIR, file), path.join(LATEST_SCREENSHOTS_DIR, file));
+  }
+
+  // Write/update the run history index
+  updateRunIndex();
+
+  console.log(`  ✓ 运行结果保存到: ${RUN_DIR}`);
   console.log(`  ✓ ${featurePath}`);
   console.log(`  ✓ ${apiPath}`);
   console.log(`  ✓ ${correctionPath}`);
+  console.log(`  ✓ 最新结果同步到: ${LATEST_DOCS_DIR}`);
 
   console.log('\n╔═══════════════════════════════════════════════════════╗');
   console.log('║  探索完成摘要                                         ║');
   console.log('╠═══════════════════════════════════════════════════════╣');
+  console.log(`║  运行 ID        : ${RUN_TIMESTAMP}`);
+  console.log(`║  结果目录       : runs/${RUN_TIMESTAMP}/`);
   console.log(`║  网络可用       : ${report.networkAvailable ? '✅ 是' : '❌ 否（文档基于基准数据）'}`);
   console.log(`║  发现路由       : ${[...report.routes].length}`);
   console.log(`║  记录模块       : ${report.modules.length}`);

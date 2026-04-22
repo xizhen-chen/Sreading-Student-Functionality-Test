@@ -21,12 +21,24 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const BASE_URL = 'https://sr.sigmareading.com';
-const SCREENSHOTS_DIR = path.resolve(__dirname, '../../screenshots/exploration');
-const DOCS_DIR = path.resolve(__dirname, '../../docs/exploration');
+
+// Generate a timestamp-based run ID so every execution is preserved
+const RUN_TIMESTAMP = new Date().toISOString().replace(/[:.]/g, '-').replace('T', '_').slice(0, 19);
+const ROOT_DIR = path.resolve(__dirname, '../..');
+const RUNS_DIR = path.join(ROOT_DIR, 'runs');
+const RUN_DIR = path.join(RUNS_DIR, RUN_TIMESTAMP);
+const SCREENSHOTS_DIR = path.join(RUN_DIR, 'screenshots');
+const DOCS_DIR = path.join(RUN_DIR, 'docs');
+
+// Also keep latest copies for quick access
+const LATEST_SCREENSHOTS_DIR = path.resolve(__dirname, '../../screenshots/exploration');
+const LATEST_DOCS_DIR = path.resolve(__dirname, '../../docs/exploration');
 
 // Ensure directories exist at module load time
 fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
 fs.mkdirSync(DOCS_DIR, { recursive: true });
+fs.mkdirSync(LATEST_SCREENSHOTS_DIR, { recursive: true });
+fs.mkdirSync(LATEST_DOCS_DIR, { recursive: true });
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -55,7 +67,10 @@ async function screenshotPage(page: Page, name: string): Promise<string> {
   const filename = `${name}.png`;
   const filepath = path.join(SCREENSHOTS_DIR, filename);
   await page.screenshot({ path: filepath, fullPage: true });
-  return `screenshots/exploration/${filename}`;
+  // Also copy to latest location
+  const latestPath = path.join(LATEST_SCREENSHOTS_DIR, filename);
+  fs.copyFileSync(filepath, latestPath);
+  return `runs/${RUN_TIMESTAMP}/screenshots/${filename}`;
 }
 
 async function waitForPageLoad(page: Page): Promise<void> {
@@ -122,6 +137,46 @@ function startApiCapture(page: Page): ApiRequest[] {
     }
   });
   return captured;
+}
+
+/**
+ * Reads all subdirectories under runs/ and writes an index markdown file
+ * listing every past run with links to its docs.
+ */
+function updateRunIndex(runsDir: string): void {
+  if (!fs.existsSync(runsDir)) return;
+
+  const entries = fs.readdirSync(runsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort()
+    .reverse(); // newest first
+
+  let md = `# 探索运行历史（Run History）\n\n`;
+  md += `> 共 **${entries.length}** 次运行\n\n`;
+  md += `| # | 运行时间 | 功能文档 | API 文档 | 截图数 |\n`;
+  md += `|---|---------|---------|---------|--------|\n`;
+
+  entries.forEach((name, i) => {
+    const runDir = path.join(runsDir, name);
+    const docsDir = path.join(runDir, 'docs');
+    const ssDir = path.join(runDir, 'screenshots');
+
+    const hasFeatures = fs.existsSync(path.join(docsDir, 'sigmareading-features.md'));
+    const hasApi = fs.existsSync(path.join(docsDir, 'api-endpoints.md'));
+
+    let screenshotCount = 0;
+    if (fs.existsSync(ssDir)) {
+      screenshotCount = fs.readdirSync(ssDir).filter((f) => f.endsWith('.png')).length;
+    }
+
+    md += `| ${entries.length - i} | ${name} `;
+    md += `| ${hasFeatures ? `[✓](${name}/docs/sigmareading-features.md)` : '✗'} `;
+    md += `| ${hasApi ? `[✓](${name}/docs/api-endpoints.md)` : '✗'} `;
+    md += `| ${screenshotCount} |\n`;
+  });
+
+  fs.writeFileSync(path.join(runsDir, 'README.md'), md, 'utf-8');
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -823,6 +878,8 @@ ${notable
 
   const featurePath = path.join(DOCS_DIR, 'sigmareading-features.md');
   fs.writeFileSync(featurePath, featureMd, 'utf-8');
+  // Also write to latest
+  fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'sigmareading-features.md'), featureMd, 'utf-8');
   console.log(`[Phase 5] Feature doc written to: ${featurePath}`);
 
   // ── 5.2 Build API endpoints markdown ────────────────────────────────────────
@@ -937,12 +994,19 @@ ${notable
 
   const apiPath = path.join(DOCS_DIR, 'api-endpoints.md');
   fs.writeFileSync(apiPath, apiMd, 'utf-8');
+  // Also write to latest
+  fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'api-endpoints.md'), apiMd, 'utf-8');
   console.log(`[Phase 5] API endpoints doc written to: ${apiPath}`);
 
-  // ── 5.3 Summary ─────────────────────────────────────────────────────────────
+  // ── 5.3 Update run history index ────────────────────────────────────────────
+  updateRunIndex(RUNS_DIR);
+
+  // ── 5.4 Summary ─────────────────────────────────────────────────────────────
   console.log('\n════════════════════════════════════════');
   console.log('  EXPLORATION SUMMARY');
   console.log('════════════════════════════════════════');
+  console.log(`  Run ID             : ${RUN_TIMESTAMP}`);
+  console.log(`  Results saved to   : runs/${RUN_TIMESTAMP}/`);
   console.log(`  Network available  : ${reportData.networkAvailable}`);
   console.log(`  Routes discovered  : ${uniqueRoutes.length}`);
   console.log(`  Modules documented : ${reportData.modules.length}`);
