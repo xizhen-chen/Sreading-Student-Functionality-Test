@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/profile",
+  "iteration": 2,
+  "timestamp": "2026-04-22T10:33:12.169Z",
+  "analysis": {
+    "route": "/zh-hans/profile",
+    "timestamp": "2026-04-22T10:33:12.169Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 25,
+    "capabilityJudgments": 5,
+    "verifiedCapabilityJudgments": 5,
+    "workflowPasses": 1,
+    "workflowFailures": 0,
+    "scriptAdjustments": 0,
+    "openQuestions": 1,
+    "nextProbeSuggestions": 1,
+    "newFeatureHints": 12,
+    "markdownMentions": 5,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-route-zh-hans-profile"
+    ]
+  }
+}

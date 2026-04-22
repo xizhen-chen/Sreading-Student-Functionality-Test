@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/reading",
+  "iteration": 2,
+  "timestamp": "2026-04-22T10:30:39.616Z",
+  "analysis": {
+    "route": "/zh-hans/reading",
+    "timestamp": "2026-04-22T10:30:39.615Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 29,
+    "capabilityJudgments": 8,
+    "verifiedCapabilityJudgments": 7,
+    "workflowPasses": 3,
+    "workflowFailures": 0,
+    "scriptAdjustments": 0,
+    "openQuestions": 1,
+    "nextProbeSuggestions": 1,
+    "newFeatureHints": 13,
+    "markdownMentions": 33,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-reading-detailed"
+    ]
+  }
+}

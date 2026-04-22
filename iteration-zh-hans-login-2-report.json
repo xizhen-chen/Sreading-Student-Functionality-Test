@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/login",
+  "iteration": 2,
+  "timestamp": "2026-04-22T10:34:04.676Z",
+  "analysis": {
+    "route": "/zh-hans/login",
+    "timestamp": "2026-04-22T10:34:04.675Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 9,
+    "capabilityJudgments": 3,
+    "verifiedCapabilityJudgments": 3,
+    "workflowPasses": 1,
+    "workflowFailures": 0,
+    "scriptAdjustments": 0,
+    "openQuestions": 1,
+    "nextProbeSuggestions": 1,
+    "newFeatureHints": 4,
+    "markdownMentions": 2,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-route-zh-hans-login"
+    ]
+  }
+}

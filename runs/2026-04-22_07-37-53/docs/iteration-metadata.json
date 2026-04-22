@@ -1,0 +1,332 @@
+{
+  "runId": "2026-04-22_07-37-53",
+  "networkAvailable": true,
+  "iterativeMode": true,
+  "targetRoutes": [
+    "/zh-hans/home"
+  ],
+  "generatedAt": "2026-04-22T07:40:46.044Z",
+  "pages": [
+    {
+      "name": "主页（/zh-hans/home）",
+      "path": "/zh-hans/home",
+      "routeHint": "/zh-hans/home",
+      "pageKind": "home",
+      "scriptId": "page-home-overview",
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "教材 -> /zh-hans/textbook",
+            "作业练习 -> /zh-hans/homework",
+            "我的班级 -> /zh-hans/joined-classes",
+            "文章 -> /zh-hans/reading",
+            "书单 -> /zh-hans/playlist",
+            "收藏夹 -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [],
+      "iterationLogs": [
+        {
+          "scriptId": "page-home-overview",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 3 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: 教材 -> /zh-hans/textbook",
+                "操作按钮发现: button"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "warn",
+              "summary": "当前页面尚未配置专属工作流，先保留基础验证。",
+              "details": []
+            },
+            {
+              "stage": "refine-script",
+              "status": "warn",
+              "summary": "生成 1 条探索脚本调整建议。",
+              "details": [
+                "已发现多个功能入口但缺少专属验证脚本: 为 /zh-hans/home 拆分独立页面探索脚本，增加按钮点击、结果校验和接口观测步骤。"
+              ]
+            },
+            {
+              "stage": "reverify",
+              "status": "warn",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": []
+            },
+            {
+              "stage": "discover-more",
+              "status": "warn",
+              "summary": "本轮未捕获到新的选项或结果字段。",
+              "details": []
+            }
+          ],
+          "adjustments": [
+            {
+              "reason": "已发现多个功能入口但缺少专属验证脚本",
+              "adjustment": "为 /zh-hans/home 拆分独立页面探索脚本，增加按钮点击、结果校验和接口观测步骤。",
+              "expectedImpact": "把当前页面从“发现”提升到“详细验证 + 迭代发现新功能”。"
+            }
+          ],
+          "newlyDiscoveredFeatures": []
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/images/mascot-two.png",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=0&size=3&count=0&recs=true"
+      ]
+    },
+    {
+      "name": "导航页: homework (/zh-hans/homework)",
+      "path": "/zh-hans/homework",
+      "routeHint": "/zh-hans/homework",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-homework",
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading 作业练习 - 全方位智能在线学习：一站式解决阅读、识字、作业需求，个性化提升学生能力。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "教材 -> /zh-hans/textbook",
+            "作业练习 -> /zh-hans/homework",
+            "我的班级 -> /zh-hans/joined-classes",
+            "文章 -> /zh-hans/reading",
+            "书单 -> /zh-hans/playlist",
+            "收藏夹 -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-homework",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 3 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading 作业练习 - 全方位智能在线学习：一站式解决阅读、识字、作业需求，个性化提升学生能力。",
+                "导航入口发现: 教材 -> /zh-hans/textbook",
+                "操作按钮发现: button"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "warn",
+              "summary": "当前页面尚未配置专属工作流，先保留基础验证。",
+              "details": []
+            },
+            {
+              "stage": "refine-script",
+              "status": "warn",
+              "summary": "生成 1 条探索脚本调整建议。",
+              "details": [
+                "已发现多个功能入口但缺少专属验证脚本: 为 /zh-hans/homework 拆分独立页面探索脚本，增加按钮点击、结果校验和接口观测步骤。"
+              ]
+            },
+            {
+              "stage": "reverify",
+              "status": "warn",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": []
+            },
+            {
+              "stage": "discover-more",
+              "status": "warn",
+              "summary": "本轮未捕获到新的选项或结果字段。",
+              "details": []
+            }
+          ],
+          "adjustments": [
+            {
+              "reason": "已发现多个功能入口但缺少专属验证脚本",
+              "adjustment": "为 /zh-hans/homework 拆分独立页面探索脚本，增加按钮点击、结果校验和接口观测步骤。",
+              "expectedImpact": "把当前页面从“发现”提升到“详细验证 + 迭代发现新功能”。"
+            }
+          ],
+          "newlyDiscoveredFeatures": []
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-list-lesson?listType=TODOLIST",
+        "GET https://sr.sigmareading.com/zh-hans/homework"
+      ]
+    },
+    {
+      "name": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "path": "/zh-hans/joined-classes",
+      "routeHint": "/zh-hans/joined-classes",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-joined-classes",
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "教材 -> /zh-hans/textbook",
+            "作业练习 -> /zh-hans/homework",
+            "我的班级 -> /zh-hans/joined-classes",
+            "文章 -> /zh-hans/reading",
+            "书单 -> /zh-hans/playlist",
+            "收藏夹 -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-joined-classes",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 3 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: 教材 -> /zh-hans/textbook",
+                "操作按钮发现: button"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "warn",
+              "summary": "当前页面尚未配置专属工作流，先保留基础验证。",
+              "details": []
+            },
+            {
+              "stage": "refine-script",
+              "status": "warn",
+              "summary": "生成 1 条探索脚本调整建议。",
+              "details": [
+                "已发现多个功能入口但缺少专属验证脚本: 为 /zh-hans/joined-classes 拆分独立页面探索脚本，增加按钮点击、结果校验和接口观测步骤。"
+              ]
+            },
+            {
+              "stage": "reverify",
+              "status": "warn",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": []
+            },
+            {
+              "stage": "discover-more",
+              "status": "warn",
+              "summary": "本轮未捕获到新的选项或结果字段。",
+              "details": []
+            }
+          ],
+          "adjustments": [
+            {
+              "reason": "已发现多个功能入口但缺少专属验证脚本",
+              "adjustment": "为 /zh-hans/joined-classes 拆分独立页面探索脚本，增加按钮点击、结果校验和接口观测步骤。",
+              "expectedImpact": "把当前页面从“发现”提升到“详细验证 + 迭代发现新功能”。"
+            }
+          ],
+          "newlyDiscoveredFeatures": []
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=9999&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=ENROLLMENT_CONFIRMED,INVITATION_SENT,APPROVAL_AWAITING",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=admin%40localhost",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B1%40tonglec.org",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%40tonglec.org",
+        "GET https://sr.sigmareading.com/zh-hans/joined-classes"
+      ]
+    }
+  ]
+}

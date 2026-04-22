@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/favorites",
+  "iteration": 1,
+  "timestamp": "2026-04-22T10:24:57.620Z",
+  "analysis": {
+    "route": "/zh-hans/favorites",
+    "timestamp": "2026-04-22T10:24:57.619Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 26,
+    "capabilityJudgments": 5,
+    "verifiedCapabilityJudgments": 5,
+    "workflowPasses": 2,
+    "workflowFailures": 0,
+    "scriptAdjustments": 0,
+    "openQuestions": 0,
+    "nextProbeSuggestions": 1,
+    "newFeatureHints": 12,
+    "markdownMentions": 6,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-navigation-zh-hans-favorites"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/homework",
+  "iteration": 1,
+  "timestamp": "2026-04-22T10:25:49.554Z",
+  "analysis": {
+    "route": "/zh-hans/homework",
+    "timestamp": "2026-04-22T10:25:49.554Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 24,
+    "capabilityJudgments": 4,
+    "verifiedCapabilityJudgments": 4,
+    "workflowPasses": 2,
+    "workflowFailures": 0,
+    "scriptAdjustments": 0,
+    "openQuestions": 0,
+    "nextProbeSuggestions": 1,
+    "newFeatureHints": 11,
+    "markdownMentions": 6,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-navigation-zh-hans-homework"
+    ]
+  }
+}

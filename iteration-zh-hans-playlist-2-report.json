@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/playlist",
+  "iteration": 2,
+  "timestamp": "2026-04-22T09:34:23.010Z",
+  "analysis": {
+    "route": "/zh-hans/playlist",
+    "timestamp": "2026-04-22T09:34:23.010Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 23,
+    "capabilityJudgments": 4,
+    "verifiedCapabilityJudgments": 4,
+    "workflowPasses": 0,
+    "workflowFailures": 0,
+    "scriptAdjustments": 1,
+    "openQuestions": 1,
+    "nextProbeSuggestions": 2,
+    "newFeatureHints": 0,
+    "markdownMentions": 23,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-playlist-detailed"
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "mode": "iterate",
+  "maxIterations": 2,
+  "targetRoutes": [
+    "/zh-hans/joined-classes",
+    "/zh-hans/profile",
+    "/zh-hans/login"
+  ],
+  "reports": [
+    {
+      "route": "/zh-hans/joined-classes",
+      "iteration": 1,
+      "timestamp": "2026-04-22T10:39:28.642Z",
+      "analysis": {
+        "route": "/zh-hans/joined-classes",
+        "timestamp": "2026-04-22T10:39:28.641Z",
+        "pages": 1,
+        "aiReadyPages": 1,
+        "probeSignals": 27,
+        "capabilityJudgments": 4,
+        "verifiedCapabilityJudgments": 4,
+        "workflowPasses": 2,
+        "workflowFailures": 0,
+        "scriptAdjustments": 0,
+        "openQuestions": 0,
+        "nextProbeSuggestions": 1,
+        "newFeatureHints": 11,
+        "markdownMentions": 0,
+        "apiMentions": 45,
+        "scriptIds": [
+          "page-navigation-zh-hans-joined-classes"
+        ]
+      }
+    },
+    {
+      "route": "/zh-hans/profile",
+      "iteration": 1,
+      "timestamp": "2026-04-22T10:40:03.193Z",
+      "analysis": {
+        "route": "/zh-hans/profile",
+        "timestamp": "2026-04-22T10:40:03.193Z",
+        "pages": 1,
+        "aiReadyPages": 1,
+        "probeSignals": 25,
+        "capabilityJudgments": 5,
+        "verifiedCapabilityJudgments": 5,
+        "workflowPasses": 2,
+        "workflowFailures": 0,
+        "scriptAdjustments": 0,
+        "openQuestions": 0,
+        "nextProbeSuggestions": 1,
+        "newFeatureHints": 12,
+        "markdownMentions": 0,
+        "apiMentions": 45,
+        "scriptIds": [
+          "page-route-zh-hans-profile"
+        ]
+      }
+    },
+    {
+      "route": "/zh-hans/login",
+      "iteration": 1,
+      "timestamp": "2026-04-22T10:40:28.419Z",
+      "analysis": {
+        "route": "/zh-hans/login",
+        "timestamp": "2026-04-22T10:40:28.418Z",
+        "pages": 1,
+        "aiReadyPages": 1,
+        "probeSignals": 9,
+        "capabilityJudgments": 3,
+        "verifiedCapabilityJudgments": 3,
+        "workflowPasses": 2,
+        "workflowFailures": 0,
+        "scriptAdjustments": 0,
+        "openQuestions": 0,
+        "nextProbeSuggestions": 1,
+        "newFeatureHints": 4,
+        "markdownMentions": 5,
+        "apiMentions": 45,
+        "scriptIds": [
+          "page-route-zh-hans-login"
+        ]
+      }
+    }
+  ],
+  "completedAt": "2026-04-22T10:42:38.942Z"
+}

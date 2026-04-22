@@ -1,0 +1,25 @@
+{
+  "route": "/zh-hans/exam",
+  "iteration": 1,
+  "timestamp": "2026-04-22T10:24:21.257Z",
+  "analysis": {
+    "route": "/zh-hans/exam",
+    "timestamp": "2026-04-22T10:24:21.257Z",
+    "pages": 1,
+    "aiReadyPages": 1,
+    "probeSignals": 27,
+    "capabilityJudgments": 4,
+    "verifiedCapabilityJudgments": 4,
+    "workflowPasses": 2,
+    "workflowFailures": 0,
+    "scriptAdjustments": 0,
+    "openQuestions": 0,
+    "nextProbeSuggestions": 1,
+    "newFeatureHints": 11,
+    "markdownMentions": 5,
+    "apiMentions": 39,
+    "scriptIds": [
+      "page-navigation-zh-hans-exam"
+    ]
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "runId": "2026-04-22_10-25-50",
+  "networkAvailable": true,
+  "iterativeMode": true,
+  "targetRoutes": [
+    "/zh-hans/joined-classes"
+  ],
+  "generatedAt": "2026-04-22T10:27:18.110Z",
+  "pages": [
+    {
+      "name": "主页（/zh-hans/home）",
+      "path": "/zh-hans/home",
+      "routeHint": "/zh-hans/home",
+      "pageKind": "home",
+      "scriptId": "page-home-overview",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/home 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+          "标题区域: SReadingfor Student | ©2026 SReading v2.12.12",
+          "底部导航: ",
+          "功能卡片数量: 8",
+          "交互元素总计: 78",
+          "工作流验证: 首页主入口工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: 教材 -> /zh-hans/textbook",
+          "link: 文章 -> /zh-hans/reading",
+          "link: 书单 -> /zh-hans/playlist",
+          "link: 加入测试 -> /zh-hans/presentation/join",
+          "link: 识字快车 -> /zh-hans/word-express",
+          "link: 汉字地图 -> /zh-hans/character-map-create",
+          "link: 拼音捷径 -> /zh-hans/pinyin-pathway",
+          "link: 字帖字卡 -> /zh-hans/copybook",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+          "GET https://sr.sigmareading.com/zh-hans/textbook",
+          "GET https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=bb5hCEIotCvxLo3J&ver=2&cmt=0.012&fmt=134&fs=0&rt=6.784&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=6812&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48.381&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&rtn=17&afmt=251&size=323%3A226&inview=1&muted=1&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&plid=AAZQCfi4mbxfnhqi&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FhTMRb6YECEc%3Fsi%3DUd-M1QV3QJJjWCWS%26enablejsapi%3D1%26autoplay%3D1%26mute%3D1%26rel%3D0%26loop%3D1%26playlist%3DhTMRb6YECEc&list=TLGGN23J0PoR3YsyMjA0MjAyNg&of=wbAUJoLFDaeeOSJrHXH1sg&vm=CAEQABgEOjJBSHFpSlRJYVc2Wk0tNjZBUnV1aFl2eWMzLXYyQUM0c05raWlsVWpXWlRjUTJxMTFCQWJkQUxkcUFQSVlvb2MyanFJU2NzcC1SWXlnU09HZW1PNEloTVF3MU5SVlJNSTFDTnYtcERTZzVrQ2x0QkdVR014VC1fTWNZNV9JLVdLNmNENTFuSTJPeU1WOUEtRFBLQTFvTW5yMg",
+          "POST https://www.youtube.com/api/stats/atr?ns=yt&el=embedded&cpn=4tVtXrzezldB7yh9&ver=2&cmt=0&fmt=134&fs=0&rt=0.792&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=819&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&afmt=251&muted=1&docid=MQ5e0zb8MRo&ei=XqLoaZnKFuXgsfIP0abs2Qw&plid=AAZQCfeMxQ7nlEJo&vm=CAEQABgEOjJBSHFpSlRMdWQtYXMtcFpucVZER0x1MlRoNElLODJjMVNOWEN3MmdwMVVnakw0azhId2JkQUxkcUFQTEszSzltZmIyeFZ5YTVLbUdiN3JHa1pMZHl2cjVIZTZMaElYQUowSFhIZ1JzVlp4NmxrMEkxSlpnekhiSzU2M2tCX2pobzVjQWxDeFliUzNQRkhhUzJZS1M1b3VIRw",
+          "POST https://www.youtube.com/api/stats/atr?ns=yt&el=embedded&cpn=bb5hCEIotCvxLo3J&ver=2&cmt=3.009&fmt=134&fs=0&rt=9.8&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=9827&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48.381&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&afmt=251&muted=1&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&plid=AAZQCfi4mbxfnhqi&vm=CAEQABgEOjJBSHFpSlRJYVc2Wk0tNjZBUnV1aFl2eWMzLXYyQUM0c05raWlsVWpXWlRjUTJxMTFCQWJkQUxkcUFQSVlvb2MyanFJU2NzcC1SWXlnU09HZW1PNEloTVF3MU5SVlJNSTFDTnYtcERTZzVrQ2x0QkdVR014VC1fTWNZNV9JLVdLNmNENTFuSTJPeU1WOUEtRFBLQTFvTW5yMg",
+          "POST https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=4tVtXrzezldB7yh9&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=2&docid=MQ5e0zb8MRo&ei=XqLoaZnKFuXgsfIP0abs2Qw&event=streamingstats&plid=AAZQCfeMxQ7nlEJo&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&afs=0.317:251::i:fl.-17.31;vg.0;nm.4;sms.0&ctmp=atrkchg:t.318;id.und;m.0&vps=0.783:B,0.783:B&user_intent=0.008&bwe=0.783:655360&bat=0.783:1:1&cmt=0.783:0.000&bh=0.783:0.000&qclc=ChA0dFZ0WHJ6ZXpsZEI3eWg5EAI",
+          "POST https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=bb5hCEIotCvxLo3J&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=2&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&event=streamingstats&plid=AAZQCfi4mbxfnhqi&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&afs=0.472:251::i:fl.-17.74;vg.0;nm.4;sms.0&ctmp=atrkchg:t.473;id.und;m.0&bwm=4.870:4155:5.159,5.905:940:5.603,10.025:1969816:4.586&bwe=4.870:222058,5.905:221996,10.025:1193075&bat=4.870:1:1,5.905:1:1,10.025:1:1&cmt=4.870:0.000,5.905:0.000,6.783:0.012,7.550:0.758,10.025:3.234&bh=4.870:0.000,5.905:0.000,6.783:1.800,10.025:25.718&user_intent=0.009&vps=6.783:PL,10.025:PL&df=10.025:0&qclc=ChBiYjVoQ0VJb3RDdnhMbzNKEAI",
+          "POST https://www.youtube.com/api/stats/qoe?fmt=134&cpn=4tVtXrzezldB7yh9&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=1&docid=MQ5e0zb8MRo&ei=XqLoaZnKFuXgsfIP0abs2Qw&event=streamingstats&plid=AAZQCfeMxQ7nlEJo&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.019:B,0.312:B,0.312:B&ctmp=dttg:t.0;dtt.1;gl.0&cat=streaming&cmt=0.019:0.000,0.312:0.000&vfs=0.312:134:134::r:sms.0&view=0.312:270:224&bwe=0.312:655360&bat=0.312:1:1&vis=0.312:0&bh=0.312:0.000&qclc=ChA0dFZ0WHJ6ZXpsZEI3eWg5EAE",
+          "POST https://www.youtube.com/api/stats/qoe?fmt=134&cpn=bb5hCEIotCvxLo3J&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=1&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&event=streamingstats&plid=AAZQCfi4mbxfnhqi&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.019:B,0.468:B,0.468:B&ctmp=dttg:t.0;dtt.1;gl.0&cat=streaming&cmt=0.019:0.000,0.468:0.000&vfs=0.468:134:134::r:sms.0&view=0.468:323:226&bwe=0.468:655360&bat=0.468:1:1&vis=0.468:0&bh=0.468:0.000&qclc=ChBiYjVoQ0VJb3RDdnhMbzNKEAE"
+        ],
+        "rawSamples": [
+          "ion-item: 教材",
+          "a: 教材",
+          "button: button",
+          "ion-item: 文章",
+          "a: 文章",
+          "button: button",
+          "ion-item: 书单",
+          "a: 书单",
+          "button: button",
+          "ion-item: 加入测试",
+          "a: 加入测试",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 6 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/home 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "教材 -> /zh-hans/textbook",
+            "文章 -> /zh-hans/reading",
+            "书单 -> /zh-hans/playlist",
+            "加入测试 -> /zh-hans/presentation/join",
+            "识字快车 -> /zh-hans/word-express",
+            "汉字地图 -> /zh-hans/character-map-create"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "首页主入口工作流",
+          "category": "verify",
+          "purpose": "验证首页是否已展示主要功能卡片，并确认至少一个主入口可继续进入下一层页面。",
+          "expectedResult": "至少识别 3 个主入口；至少 1 个首页入口可以进入下一层页面并恢复首页上下文",
+          "evidence": [
+            "识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取首页主入口: 识别 8 个主入口：教材 -> /zh-hans/textbook；文章 -> /zh-hans/reading；书单 -> /zh-hans/playlist；加入测试 -> /zh-hans/presentation/join",
+            "验证首页主入口可达性: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "首页主入口工作流",
+          "summary": "识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-home-overview",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: 教材 -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "首页主入口工作流 / 读取首页主入口: PASS",
+                "首页主入口工作流 / 验证首页主入口可达性: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 10 条新选项/字段线索。",
+              "details": [
+                "首页主入口工作流: 教材 -> /zh-hans/textbook",
+                "首页主入口工作流: 文章 -> /zh-hans/reading",
+                "首页主入口工作流: 书单 -> /zh-hans/playlist",
+                "首页主入口工作流: 加入测试 -> /zh-hans/presentation/join",
+                "首页主入口工作流: 识字快车 -> /zh-hans/word-express",
+                "首页主入口工作流: 汉字地图 -> /zh-hans/character-map-create",
+                "首页主入口工作流: 拼音捷径 -> /zh-hans/pinyin-pathway",
+                "首页主入口工作流: 字帖字卡 -> /zh-hans/copybook",
+                "首页主入口工作流: 链接入口",
+                "首页主入口工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "首页主入口工作流: 教材 -> /zh-hans/textbook",
+            "首页主入口工作流: 文章 -> /zh-hans/reading",
+            "首页主入口工作流: 书单 -> /zh-hans/playlist",
+            "首页主入口工作流: 加入测试 -> /zh-hans/presentation/join",
+            "首页主入口工作流: 识字快车 -> /zh-hans/word-express",
+            "首页主入口工作流: 汉字地图 -> /zh-hans/character-map-create",
+            "首页主入口工作流: 拼音捷径 -> /zh-hans/pinyin-pathway",
+            "首页主入口工作流: 字帖字卡 -> /zh-hans/copybook",
+            "首页主入口工作流: 链接入口",
+            "首页主入口工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+        "GET https://sr.sigmareading.com/zh-hans/textbook",
+        "GET https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=bb5hCEIotCvxLo3J&ver=2&cmt=0.012&fmt=134&fs=0&rt=6.784&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=6812&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48.381&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&rtn=17&afmt=251&size=323%3A226&inview=1&muted=1&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&plid=AAZQCfi4mbxfnhqi&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FhTMRb6YECEc%3Fsi%3DUd-M1QV3QJJjWCWS%26enablejsapi%3D1%26autoplay%3D1%26mute%3D1%26rel%3D0%26loop%3D1%26playlist%3DhTMRb6YECEc&list=TLGGN23J0PoR3YsyMjA0MjAyNg&of=wbAUJoLFDaeeOSJrHXH1sg&vm=CAEQABgEOjJBSHFpSlRJYVc2Wk0tNjZBUnV1aFl2eWMzLXYyQUM0c05raWlsVWpXWlRjUTJxMTFCQWJkQUxkcUFQSVlvb2MyanFJU2NzcC1SWXlnU09HZW1PNEloTVF3MU5SVlJNSTFDTnYtcERTZzVrQ2x0QkdVR014VC1fTWNZNV9JLVdLNmNENTFuSTJPeU1WOUEtRFBLQTFvTW5yMg",
+        "POST https://www.youtube.com/api/stats/atr?ns=yt&el=embedded&cpn=4tVtXrzezldB7yh9&ver=2&cmt=0&fmt=134&fs=0&rt=0.792&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=819&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&afmt=251&muted=1&docid=MQ5e0zb8MRo&ei=XqLoaZnKFuXgsfIP0abs2Qw&plid=AAZQCfeMxQ7nlEJo&vm=CAEQABgEOjJBSHFpSlRMdWQtYXMtcFpucVZER0x1MlRoNElLODJjMVNOWEN3MmdwMVVnakw0azhId2JkQUxkcUFQTEszSzltZmIyeFZ5YTVLbUdiN3JHa1pMZHl2cjVIZTZMaElYQUowSFhIZ1JzVlp4NmxrMEkxSlpnekhiSzU2M2tCX2pobzVjQWxDeFliUzNQRkhhUzJZS1M1b3VIRw",
+        "POST https://www.youtube.com/api/stats/atr?ns=yt&el=embedded&cpn=bb5hCEIotCvxLo3J&ver=2&cmt=3.009&fmt=134&fs=0&rt=9.8&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=9827&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48.381&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&afmt=251&muted=1&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&plid=AAZQCfi4mbxfnhqi&vm=CAEQABgEOjJBSHFpSlRJYVc2Wk0tNjZBUnV1aFl2eWMzLXYyQUM0c05raWlsVWpXWlRjUTJxMTFCQWJkQUxkcUFQSVlvb2MyanFJU2NzcC1SWXlnU09HZW1PNEloTVF3MU5SVlJNSTFDTnYtcERTZzVrQ2x0QkdVR014VC1fTWNZNV9JLVdLNmNENTFuSTJPeU1WOUEtRFBLQTFvTW5yMg",
+        "POST https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=4tVtXrzezldB7yh9&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=2&docid=MQ5e0zb8MRo&ei=XqLoaZnKFuXgsfIP0abs2Qw&event=streamingstats&plid=AAZQCfeMxQ7nlEJo&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&afs=0.317:251::i:fl.-17.31;vg.0;nm.4;sms.0&ctmp=atrkchg:t.318;id.und;m.0&vps=0.783:B,0.783:B&user_intent=0.008&bwe=0.783:655360&bat=0.783:1:1&cmt=0.783:0.000&bh=0.783:0.000&qclc=ChA0dFZ0WHJ6ZXpsZEI3eWg5EAI",
+        "POST https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=bb5hCEIotCvxLo3J&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=2&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&event=streamingstats&plid=AAZQCfi4mbxfnhqi&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&afs=0.472:251::i:fl.-17.74;vg.0;nm.4;sms.0&ctmp=atrkchg:t.473;id.und;m.0&bwm=4.870:4155:5.159,5.905:940:5.603,10.025:1969816:4.586&bwe=4.870:222058,5.905:221996,10.025:1193075&bat=4.870:1:1,5.905:1:1,10.025:1:1&cmt=4.870:0.000,5.905:0.000,6.783:0.012,7.550:0.758,10.025:3.234&bh=4.870:0.000,5.905:0.000,6.783:1.800,10.025:25.718&user_intent=0.009&vps=6.783:PL,10.025:PL&df=10.025:0&qclc=ChBiYjVoQ0VJb3RDdnhMbzNKEAI",
+        "POST https://www.youtube.com/api/stats/qoe?fmt=134&cpn=4tVtXrzezldB7yh9&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=1&docid=MQ5e0zb8MRo&ei=XqLoaZnKFuXgsfIP0abs2Qw&event=streamingstats&plid=AAZQCfeMxQ7nlEJo&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.019:B,0.312:B,0.312:B&ctmp=dttg:t.0;dtt.1;gl.0&cat=streaming&cmt=0.019:0.000,0.312:0.000&vfs=0.312:134:134::r:sms.0&view=0.312:270:224&bwe=0.312:655360&bat=0.312:1:1&vis=0.312:0&bh=0.312:0.000&qclc=ChA0dFZ0WHJ6ZXpsZEI3eWg5EAE",
+        "POST https://www.youtube.com/api/stats/qoe?fmt=134&cpn=bb5hCEIotCvxLo3J&el=embedded&ns=yt&fexp=v1%2C24004644%2C27005591%2C53408%2C34656%2C47715%2C58315%2C18644%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35402%2C65300%2C15105%2C25059%2C4174%2C30447%2C13516%2C5189%2C21437%2C4571%2C9672%2C1366%2C1977%2C13110%2C2978%2C8861%2C543%2C23826%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C16831%2C4361%2C328%2C9420%2C11270%2C4961%2C9380%2C4271%2C388%2C952%2C2754%2C12770%2C4%2C9352%2C2197%2C8623%2C1032%2C3571%2C3472%2C3548%2C3426%2C1304%2C3879%2C3307%2C1259%2C1837%2C9156%2C358%2C5072%2C3882%2C3104%2C2070%2C45%2C1525&cl=901361096&seq=1&docid=hTMRb6YECEc&ei=cqLoaaOFAZiAsfIP2vjH6Qw&event=streamingstats&plid=AAZQCfi4mbxfnhqi&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.019:B,0.468:B,0.468:B&ctmp=dttg:t.0;dtt.1;gl.0&cat=streaming&cmt=0.019:0.000,0.468:0.000&vfs=0.468:134:134::r:sms.0&view=0.468:323:226&bwe=0.468:655360&bat=0.468:1:1&vis=0.468:0&bh=0.468:0.000&qclc=ChBiYjVoQ0VJb3RDdnhMbzNKEAE"
+      ]
+    }
+  ]
+}

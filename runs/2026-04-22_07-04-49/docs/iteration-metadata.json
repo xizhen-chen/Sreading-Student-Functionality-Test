@@ -1,0 +1,98 @@
+{
+  "runId": "2026-04-22_07-04-49",
+  "networkAvailable": true,
+  "iterativeMode": true,
+  "targetRoutes": [
+    "/zh-hans/home"
+  ],
+  "generatedAt": "2026-04-22T07:09:51.707Z",
+  "pages": [
+    {
+      "name": "主页（/zh-hans/home）",
+      "path": "/zh-hans/home",
+      "routeHint": "/zh-hans/home",
+      "pageKind": "home",
+      "scriptId": "page-home-overview",
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading | 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "首页 -> /zh-hans/",
+            "文章 -> /zh-hans/reading",
+            "书单 -> /zh-hans/playlist",
+            "识字快车 -> /zh-hans/word-express",
+            "字帖字卡 -> /zh-hans/copybook",
+            "拼音捷径 -> /zh-hans/pinyin-pathway"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [],
+      "iterationLogs": [
+        {
+          "scriptId": "page-home-overview",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 2 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading | 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: 首页 -> /zh-hans/"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "warn",
+              "summary": "当前页面尚未配置专属工作流，先保留基础验证。",
+              "details": []
+            },
+            {
+              "stage": "refine-script",
+              "status": "warn",
+              "summary": "生成 1 条探索脚本调整建议。",
+              "details": [
+                "页面缺少显式按钮/字段采样: 扩充该页面的交互元素选择器链，增加文本按钮、ion 组件和弹层选项的采集范围。"
+              ]
+            },
+            {
+              "stage": "reverify",
+              "status": "warn",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": []
+            },
+            {
+              "stage": "discover-more",
+              "status": "warn",
+              "summary": "本轮未捕获到新的选项或结果字段。",
+              "details": []
+            }
+          ],
+          "adjustments": [
+            {
+              "reason": "页面缺少显式按钮/字段采样",
+              "adjustment": "扩充该页面的交互元素选择器链，增加文本按钮、ion 组件和弹层选项的采集范围。",
+              "expectedImpact": "让“发现功能”阶段能识别更多真实可操作控件。"
+            }
+          ],
+          "newlyDiscoveredFeatures": []
+        }
+      ],
+      "apis": []
+    }
+  ]
+}

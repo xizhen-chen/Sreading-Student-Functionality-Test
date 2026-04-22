@@ -1,0 +1,34 @@
+# SigmaReading API 端点列表
+
+> 通过 Playwright Network 监听自动捕获
+> 生成时间：2026/4/22 17:32:19
+
+---
+
+## GET
+
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/account`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-list-lesson?listType=TODOLIST`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-number`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/learning-stats?type=ALL`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/profile`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/questionnaire`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=20&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=INVITATION_SENT`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=9999&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=ENROLLMENT_CONFIRMED,INVITATION_SENT,APPROVAL_AWAITING`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/playlists?sort=sortNum,desc&page=0&size=4&count=0`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/playlists?sort=sortNum,desc&page=0&size=6&count=0`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=1&size=3&count=0&recs=true`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=4&size=3&count=0&recs=true`
+- `GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=name.text,desc&page=0&size=8`
+- `GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=admin%40localhost`
+- `GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B1%40tonglec.org`
+- `GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B3%40tonglec.org`
+- `GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%40tonglec.org`
+- `GET https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=f5tdHSdSExXplxeZ&ver=2&cmt=0.011&fmt=134&fs=0&rt=1.334&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=1354&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48.301&fexp=v1%2C24004644%2C494888%2C26510703%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35401%2C65301%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C1978%2C16087%2C8860%2C544%2C6630%2C17196%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C21191%2C329%2C20690%2C14341%2C4271%2C387%2C953%2C2754%2C9842%2C11081%2C744%2C458%2C2197%2C1625%2C8031%2C3571%2C3472%2C3548%2C3426%2C1302%2C3881%2C4566%2C1837%2C2834%2C6680%2C8954%2C5219%2C1527%2C6764%2C174&rtn=5&afmt=251&size=270%3A224&inview=1&muted=1&docid=MQ5e0zb8MRo&ei=epXoaeneNvGZsfIP4ZKywAw&plid=AAZQCTLiz5c9Z0G9&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FMQ5e0zb8MRo%3Fsi%3D34ZL9TvcciKOXcDN%26enablejsapi%3D1%26autoplay%3D1%26mute%3D1%26rel%3D0%26loop%3D1%26playlist%3DMQ5e0zb8MRo&list=TLGGrCtcL_LOY8syMjA0MjAyNg&of=wbAUJoLFDaeeOSJrHXH1sg&vm=CAEQABgEOjJBSHFpSlRLbTJKelJHc25SREQwYU5JXzlWQmtCbU5LWUdXWXhFeUlnclM1WEdxYXJOUWJkQUxkcUFQTDd1SEZ6RVgtSGdGQlIwbHJEWjBUamx4a2JsSktLWWpFZzYwSXc3cG90dUVZQU1WeGNNU3VTOHNQWjlOa0NiTXNaUjAwWHc5QktPdTZ3Z01EM0NkSUM2dncwblNIZw`
+- `GET https://www.youtube.com/api/stats/watchtime?ns=yt&el=embedded&cpn=f5tdHSdSExXplxeZ&ver=2&cmt=3.644&fmt=134&fs=0&rt=5.006&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=5026&cl=901361096&state=playing&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&delay=4&hl=zh_CN&cr=US&len=48.301&rtn=15&afmt=251&idpj=-7&ldpj=-23&rti=5&size=270%3A224&inview=1&st=0&et=3.644&muted=1&docid=MQ5e0zb8MRo&ei=epXoaeneNvGZsfIP4ZKywAw&plid=AAZQCTLiz5c9Z0G9&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FMQ5e0zb8MRo%3Fsi%3D34ZL9TvcciKOXcDN%26enablejsapi%3D1%26autoplay%3D1%26mute%3D1%26rel%3D0%26loop%3D1%26playlist%3DMQ5e0zb8MRo&list=TLGGrCtcL_LOY8syMjA0MjAyNg&of=wbAUJoLFDaeeOSJrHXH1sg&vm=CAEQABgEOjJBSHFpSlRLbTJKelJHc25SREQwYU5JXzlWQmtCbU5LWUdXWXhFeUlnclM1WEdxYXJOUWJkQUxkcUFQTDd1SEZ6RVgtSGdGQlIwbHJEWjBUamx4a2JsSktLWWpFZzYwSXc3cG90dUVZQU1WeGNNU3VTOHNQWjlOa0NiTXNaUjAwWHc5QktPdTZ3Z01EM0NkSUM2dncwblNIZw`
+
+## POST
+
+- `POST https://www.youtube.com/api/stats/atr?ns=yt&el=embedded&cpn=f5tdHSdSExXplxeZ&ver=2&cmt=2.974&fmt=134&fs=0&rt=4.336&euri=https%3A%2F%2Fsr.sigmareading.com%2F&lact=4356&cl=901361096&mos=1&volume=100&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=zh_CN&cr=US&len=48.301&fexp=v1%2C24004644%2C494888%2C26510703%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35401%2C65301%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C1978%2C16087%2C8860%2C544%2C6630%2C17196%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C21191%2C329%2C20690%2C14341%2C4271%2C387%2C953%2C2754%2C9842%2C11081%2C744%2C458%2C2197%2C1625%2C8031%2C3571%2C3472%2C3548%2C3426%2C1302%2C3881%2C4566%2C1837%2C2834%2C6680%2C8954%2C5219%2C1527%2C6764%2C174&afmt=251&muted=1&docid=MQ5e0zb8MRo&ei=epXoaeneNvGZsfIP4ZKywAw&plid=AAZQCTLiz5c9Z0G9&vm=CAEQABgEOjJBSHFpSlRLbTJKelJHc25SREQwYU5JXzlWQmtCbU5LWUdXWXhFeUlnclM1WEdxYXJOUWJkQUxkcUFQTDd1SEZ6RVgtSGdGQlIwbHJEWjBUamx4a2JsSktLWWpFZzYwSXc3cG90dUVZQU1WeGNNU3VTOHNQWjlOa0NiTXNaUjAwWHc5QktPdTZ3Z01EM0NkSUM2dncwblNIZw`
+- `POST https://www.youtube.com/api/stats/qoe?fmt=134&cpn=f5tdHSdSExXplxeZ&el=embedded&ns=yt&fexp=v1%2C24004644%2C494888%2C26510703%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C35401%2C65301%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C1978%2C16087%2C8860%2C544%2C6630%2C17196%2C9500%2C1840%2C12605%2C5509%2C4360%2C11771%2C1364%2C10106%2C13160%2C21191%2C329%2C20690%2C14341%2C4271%2C387%2C953%2C2754%2C9842%2C11081%2C744%2C458%2C2197%2C1625%2C8031%2C3571%2C3472%2C3548%2C3426%2C1302%2C3881%2C4566%2C1837%2C2834%2C6680%2C8954%2C5219%2C1527%2C6764%2C174&cl=901361096&seq=1&docid=MQ5e0zb8MRo&ei=epXoaeneNvGZsfIP4ZKywAw&event=streamingstats&plid=AAZQCTLiz5c9Z0G9&cbr=HeadlessChrome&cbrver=147.0.7727.15&c=WEB_EMBEDDED_PLAYER&cver=2.20260421.01.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.017:B,0.314:B,0.314:B&ctmp=dttg:t.0;dtt.1;gl.0&cat=streaming&cmt=0.017:0.000,0.314:0.000&vfs=0.314:134:134::r:sms.0&view=0.314:270:224&bwe=0.314:655360&bat=0.314:1:1&vis=0.314:0&bh=0.314:0.000&qclc=ChBmNXRkSFNkU0V4WHBseGVaEAE`
+

@@ -4,10 +4,15 @@
   "description": "Playwright-based functional exploration tests for the SigmaReading student platform (sr.sigmareading.com).",
   "scripts": {
     "explore": "tsx scripts/explore.ts",
+    "explore:page": "tsx scripts/explore.ts --iterative",
     "explore:history": "ls -lt runs/ | head -20",
     "test": "playwright test",
     "test:exploration": "playwright test tests/exploration/",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "agent": "node scripts/agent-controller.js",
+    "agent:iterate": "MODE=iterate MAX_ITERATIONS=5 node scripts/agent-controller.js",
+    "agent:explore": "MODE=explore MAX_ITERATIONS=1 node scripts/agent-controller.js",
+    "agent:test": "MODE=test MAX_ITERATIONS=1 node scripts/agent-controller.js"
   },
   "keywords": [
     "playwright",
@@ -19,7 +24,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^24.0.1",
     "@playwright/test": "^1.59.1",
+    "typescript": "^5.8.3",
     "tsx": "^4.21.0"
   }
 }

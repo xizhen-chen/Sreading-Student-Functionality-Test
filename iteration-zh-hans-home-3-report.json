@@ -1,0 +1,19 @@
+{
+  "route": "/zh-hans/home",
+  "iteration": 3,
+  "timestamp": "2026-04-22T07:14:48.187Z",
+  "analysis": {
+    "route": "/zh-hans/home",
+    "timestamp": "2026-04-22T07:14:48.186Z",
+    "pages": 0,
+    "findings": 0,
+    "verifiedFindings": 0,
+    "workflowPasses": 0,
+    "workflowFailures": 0,
+    "adjustments": 0,
+    "newFeatureHints": 0,
+    "markdownMentions": 16,
+    "apiMentions": 27,
+    "scriptIds": []
+  }
+}
