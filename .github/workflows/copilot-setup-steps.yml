@@ -1,0 +1,38 @@
+name: "Copilot Setup Steps"
+
+# Automatically validate when changed; allow manual testing from Actions tab
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # MUST be called `copilot-setup-steps` to be picked up by Copilot cloud agent
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium browser + system deps
+        run: npx playwright install chromium --with-deps
+
+      - name: Verify exploration script is runnable
+        run: node --version && npx tsx --version
