@@ -26,6 +26,14 @@
 import { chromium, Browser, Page, Request } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
+import { analyzeModularPageWorkflows } from './explore/workflows/index.js';
+import type { WorkflowModuleDeps } from './explore/workflows/contracts.js';
+import {
+  collectBodyTextSnippets as collectWorkflowBodyTextSnippets,
+  inferObservedFieldsFromPage,
+  normalizeRoutePath,
+  resolveWorkflowPageLabel,
+} from './explore/workflows/shared.js';
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Configuration
@@ -395,6 +403,10 @@ function matchDeepRouteRule(route: string): { pattern: RegExp; label: string; li
   return null;
 }
 
+function resolveDeepRouteLabel(route: string): string | null {
+  return matchDeepRouteRule(route)?.label ?? null;
+}
+
 async function collectDeepLinks(page: Page): Promise<string[]> {
   const links = await page.$$eval(
     'a[href]',
@@ -664,6 +676,38 @@ interface PageModule {
   aiAnalysis: AIAnalysisDraft;
   featureFindings: FeatureFinding[];
   iterationLogs: PageIterationLog[];
+}
+
+type BusinessFlowClosureStatus = 'closed' | 'partial' | 'blocked';
+
+interface BusinessFlowRecord {
+  id: string;
+  name: string;
+  sourceRoute: string;
+  sourcePageName: string;
+  sourceDocFilename: string;
+  sourcePageConclusion: string;
+  sourcePageOpenQuestions: number;
+  targetRoute: string;
+  targetRoutePattern: string;
+  targetPageName: string;
+  targetDocFilename: string | null;
+  targetPageConclusion: string;
+  targetPageOpenQuestions: number | null;
+  workflowName: string;
+  workflowPurpose: string;
+  workflowSummary: string;
+  transitionAction: string;
+  transitionExpected: string;
+  transitionActual: string;
+  transitionStatus: WorkflowStatus;
+  transitionRequests: string[];
+  transitionSamples: string[];
+  candidateTargets: string[];
+  closureStatus: BusinessFlowClosureStatus;
+  closureSummary: string;
+  successCriteria: string[];
+  remainingRisks: string[];
 }
 
 const report = {
@@ -1530,335 +1574,99 @@ async function analyzeReadingWorkflows(page: Page, phase: string): Promise<PageW
   return workflows;
 }
 
-function normalizeRoutePath(value: string): string {
-  return getPathname(value).split('?')[0];
-}
-
 function uniqueTexts(values: Array<string | null | undefined>, limit = 20): string[] {
   return [...new Set(values.map((value) => (value ?? '').trim()).filter(Boolean))].slice(0, limit);
 }
 
-function resolveWorkflowPageLabel(routeHint: string, pageKind: PageKind): string {
-  const pathname = normalizeRoutePath(routeHint);
+function normalizeBusinessRoute(route: string): string {
+  const pathname = normalizeRoutePath(route);
+  const deepRule = matchDeepRouteRule(pathname);
 
-  switch (pathname) {
-    case '/zh-hans/home':
-      return '首页';
-    case '/zh-hans/playlist':
-      return '书单页';
-    case '/zh-hans/homework':
-      return '作业页';
-    case '/zh-hans/profile':
-      return '个人中心';
-    case '/zh-hans/exam':
-      return '试卷页';
-    case '/zh-hans/favorites':
-      return '收藏夹';
-    case '/zh-hans/joined-classes':
-      return '班级页';
-    case '/zh-hans/studio':
-      return '工作室';
-    case '/zh-hans/textbook':
-      return '教材页';
-    case '/zh-hans/login':
-      return '登录页';
+  if (!deepRule) return pathname;
+
+  switch (deepRule.label) {
+    case 'assignment':
+      return '/zh-hans/assignment/:id';
+    case 'reading-display':
+      return '/zh-hans/reading-display/:id';
+    case 'playlist-display':
+      return '/zh-hans/playlist-display/:id';
+    case 'personal-data':
+      return '/zh-hans/personal-data/:id';
+    case 'student-invite':
+      return '/zh-hans/student-invite';
+    default:
+      return pathname;
   }
-
-  const deepRule = matchDeepRouteRule(routeHint);
-  if (deepRule) {
-    switch (deepRule.label) {
-      case 'assignment':
-        return '作业详情';
-      case 'reading-display':
-        return '文章详情';
-      case 'playlist-display':
-        return '书单详情';
-      case 'student-invite':
-        return '班级邀请';
-      case 'personal-data':
-        return '个人数据详情';
-      default:
-        return deepRule.label;
-    }
-  }
-
-  if (pageKind === 'login') return '登录页';
-
-  const segment = pathname.split('/').filter(Boolean).pop() ?? routeHint;
-  return segment;
 }
 
-function inferObservedFieldsFromPage(elements: CollectedElement[], snippets: string[]): string[] {
-  const fields = new Set<string>();
+function resolveBusinessFlowLabel(route: string): string {
+  return resolveWorkflowPageLabel(
+    route,
+    matchDeepRouteRule(route) ? 'deep' : route === '/zh-hans/home' ? 'home' : 'route',
+    resolveDeepRouteLabel
+  );
+}
 
-  if (snippets.length > 0) fields.add('页面文本');
-  if (elements.some((element) => !!element.href)) fields.add('链接入口');
-  if (elements.some((element) => ['button', 'ion-button'].includes(element.tag) || element.type === 'submit')) {
-    fields.add('操作按钮');
-  }
-  if (elements.some((element) => ['input', 'select', 'textarea'].includes(element.tag))) {
-    fields.add('输入字段');
-  }
+function extractWorkflowRouteTargets(workflow: PageWorkflow): string[] {
+  const routes = workflow.observedOptions.flatMap((value) => value.match(/\/zh-hans\/[A-Za-z0-9/_-]+/g) ?? []);
+  return uniqueTexts(routes.map((route) => normalizeRoutePath(route)).filter((route) => isExplorableRoute(route)), 12);
+}
 
-  return [...fields];
+function findTargetModuleByRoute(route: string): PageModule | null {
+  const normalizedPath = normalizeRoutePath(route);
+  const businessPath = normalizeBusinessRoute(route);
+
+  return (
+    report.modules.find(
+      (mod) => normalizeRoutePath(mod.pathname) === normalizedPath || normalizeRoutePath(mod.routeHint) === normalizedPath
+    ) ??
+    report.modules.find(
+      (mod) => normalizeBusinessRoute(mod.pathname) === businessPath || normalizeBusinessRoute(mod.routeHint) === businessPath
+    ) ??
+    null
+  );
+}
+
+function getBusinessFlowClosureLabel(status: BusinessFlowClosureStatus): string {
+  if (status === 'closed') return '已闭环';
+  if (status === 'blocked') return '阻塞';
+  return '部分闭环';
+}
+
+function getPageClosureLabel(mod: PageModule | null): string {
+  if (!mod) return '未纳入本轮探针';
+  if (mod.aiAnalysis.openQuestions.length === 0) return '已收敛';
+  return `待确认 ${mod.aiAnalysis.openQuestions.length} 项`;
 }
 
 async function collectBodyTextSnippets(page: Page, maxItems = 8): Promise<string[]> {
-  const bodyText = await page.locator('body').innerText().catch(() => '');
-
-  return uniqueTexts(
-    bodyText
-      .split(/\n+/)
-      .map((line) => line.trim().replace(/\s+/g, ' '))
-      .filter((line) => line.length >= 2 && line.length <= 80),
-    maxItems
-  );
+  return collectWorkflowBodyTextSnippets(page, uniqueTexts, maxItems);
 }
 
-function preferredWorkflowLinks(routeHint: string): string[] {
-  switch (normalizeRoutePath(routeHint)) {
-    case '/zh-hans/home':
-      return ['/zh-hans/textbook', '/zh-hans/homework', '/zh-hans/reading', '/zh-hans/playlist'];
-    case '/zh-hans/homework':
-      return ['/zh-hans/assignment/'];
-    case '/zh-hans/playlist':
-      return ['/zh-hans/playlist-display/'];
-    case '/zh-hans/reading':
-      return ['/zh-hans/reading-display/', '/zh-hans/personal-data/'];
-    case '/zh-hans/joined-classes':
-      return ['/zh-hans/student-invite'];
-    case '/zh-hans/favorites':
-      return ['/zh-hans/reading-display/', '/zh-hans/playlist-display/', '/zh-hans/reading'];
-    case '/zh-hans/profile':
-      return ['/zh-hans/settings', '/zh-hans/profile'];
-    default:
-      return [];
-  }
+async function restoreExplorationPage(page: Page, routeHint: string, phase: string): Promise<void> {
+  await adaptiveNavigate(page, `${BASE_URL}${routeHint}`, phase);
+  await page.waitForTimeout(800);
 }
 
-function pickWorkflowTarget(routeHint: string, links: string[]): string | null {
-  const currentPath = normalizeRoutePath(routeHint);
-  const candidates = uniqueTexts(links).filter((link) => isExplorableRoute(link) && normalizeRoutePath(link) !== currentPath);
-
-  for (const prefix of preferredWorkflowLinks(routeHint)) {
-    const preferred = candidates.find((link) => link.startsWith(prefix));
-    if (preferred) return preferred;
-  }
-
-  return candidates[0] ?? null;
-}
-
-async function probeRouteReachability(
-  page: Page,
-  phase: string,
-  routeHint: string,
-  targetLink: string
-): Promise<{ status: WorkflowStatus; actual: string; requests: string[]; resultSamples: string[] }> {
-  const originUrl = page.url();
-  const originPath = normalizeRoutePath(originUrl);
-  let navOk = false;
-
-  const requests = await trackRequestsDuringAction(page, async () => {
-    navOk = await adaptiveNavigate(page, `${BASE_URL}${targetLink}`, `${phase} / ${routeHint} /workflow`);
-    if (navOk) {
-      await page.waitForTimeout(1200);
-    }
-  });
-
-  const reachedUrl = page.url();
-  const reachedPath = normalizeRoutePath(reachedUrl);
-  const targetPath = normalizeRoutePath(targetLink);
-  const resultSamples = navOk ? await collectBodyTextSnippets(page, 4) : [];
-
-  let restoreOk = true;
-  if (reachedPath !== originPath) {
-    restoreOk = await adaptiveNavigate(page, originUrl, `${phase} / ${routeHint} /restore`);
-    if (!restoreOk) {
-      restoreOk = await adaptiveNavigate(page, `${BASE_URL}${routeHint}`, `${phase} / ${routeHint} /restore-fallback`);
-    }
-    await page.waitForTimeout(800);
-  }
-
+function buildWorkflowModuleDeps(): WorkflowModuleDeps {
   return {
-    status: !navOk ? 'fail' : reachedPath === targetPath ? 'pass' : 'warn',
-    actual: !navOk
-      ? `未能进入 ${targetLink}`
-      : `已到达 ${reachedPath}${restoreOk ? '，并恢复当前页' : '，但恢复当前页失败'}`,
-    requests,
-    resultSamples,
+    baseUrl: BASE_URL,
+    adaptiveNavigate,
+    collectElements,
+    collectActionableTexts,
+    collectBodyTextSnippets,
+    formatElementLabel,
+    uniqueTexts,
+    trackRequestsDuringAction,
+    restorePage: restoreExplorationPage,
+    isExplorableRoute,
+    resolveDeepRouteLabel,
   };
 }
 
-async function analyzeHomeWorkflows(page: Page, phase: string): Promise<PageWorkflow[]> {
-  const elements = await collectElements(page);
-  const entryLinks = elements.filter((element) => !!element.href && element.href!.startsWith('/zh-hans/'));
-  const entrySummaries = uniqueTexts(entryLinks.map((element) => `${formatElementLabel(element)} -> ${element.href}`), 8);
-  const targetLink = pickWorkflowTarget('/zh-hans/home', entryLinks.map((element) => element.href));
-  const navProbe = targetLink ? await probeRouteReachability(page, phase, '/zh-hans/home', targetLink) : null;
-
-  return [
-    {
-      name: '首页主入口工作流',
-      purpose: '验证首页是否已展示主要功能卡片，并确认至少一个主入口可继续进入下一层页面。',
-      summary: `识别 ${entrySummaries.length} 个首页主入口${navProbe ? `；${navProbe.actual}` : ''}`,
-      observedOptions: entrySummaries,
-      observedFields: ['链接入口', '操作按钮'],
-      resultSamples: (navProbe?.resultSamples ?? []).slice(0, 3),
-      steps: [
-        {
-          action: '读取首页主入口',
-          target: '首页功能卡片',
-          expected: '至少识别 3 个主入口',
-          actual: `识别 ${entrySummaries.length} 个主入口：${entrySummaries.slice(0, 4).join('；') || '无'}`,
-          status: entrySummaries.length >= 3 ? 'pass' : 'warn',
-          requests: [],
-        },
-        {
-          action: '验证首页主入口可达性',
-          target: targetLink ?? '未找到可复验入口',
-          expected: '至少 1 个首页入口可以进入下一层页面并恢复首页上下文',
-          actual: navProbe?.actual ?? '未发现稳定的首页后续入口',
-          status: navProbe?.status ?? 'warn',
-          requests: navProbe?.requests ?? [],
-        },
-      ],
-    },
-  ];
-}
-
-async function analyzeNavigationPageWorkflows(page: Page, phase: string, routeHint: string): Promise<PageWorkflow[]> {
-  const label = resolveWorkflowPageLabel(routeHint, 'navigation');
-  const elements = await collectElements(page);
-  const snippets = await collectBodyTextSnippets(page, 8);
-  const routeLinks = uniqueTexts(
-    elements.map((element) => (element.href && element.href.startsWith('/zh-hans/') ? element.href : null)),
-    12
-  );
-  const controls = uniqueTexts(
-    elements
-      .filter((element) => ['button', 'ion-button', 'input', 'select', 'textarea'].includes(element.tag) || element.type === 'submit')
-      .map((element) => formatElementLabel(element)),
-    8
-  );
-  const targetLink = pickWorkflowTarget(routeHint, routeLinks);
-  const navProbe = targetLink ? await probeRouteReachability(page, phase, routeHint, targetLink) : null;
-  const fallbackPass = routeLinks.length > 0 || controls.length > 0;
-
-  return [
-    {
-      name: `${label}页面工作流`,
-      purpose: `验证 ${routeHint} 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。`,
-      summary: `识别 ${snippets.length} 条页面文本信号、${routeLinks.length} 个入口、${controls.length} 个控件${navProbe ? `；${navProbe.actual}` : ''}`,
-      observedOptions: uniqueTexts([...routeLinks, ...controls], 8),
-      observedFields: inferObservedFieldsFromPage(elements, snippets),
-      resultSamples: uniqueTexts([...snippets, ...(navProbe?.resultSamples ?? [])], 3),
-      steps: [
-        {
-          action: '读取页面核心内容',
-          target: routeHint,
-          expected: '至少识别 2 条页面内容信号或 1 个稳定入口',
-          actual: `页面文本 ${snippets.length} 条；入口 ${routeLinks.length} 个；控件 ${controls.length} 个`,
-          status: snippets.length >= 2 || routeLinks.length > 0 ? 'pass' : 'warn',
-          requests: [],
-        },
-        {
-          action: '验证后续入口或关键控件',
-          target: targetLink ?? controls[0] ?? '未发现可复验目标',
-          expected: '至少识别 1 个后续入口或关键控件，必要时验证其可达性',
-          actual: navProbe?.actual ?? `识别 ${routeLinks.length} 个入口、${controls.length} 个控件，本轮保留本页上下文验证`,
-          status: navProbe?.status ?? (fallbackPass ? 'pass' : 'warn'),
-          requests: navProbe?.requests ?? [],
-        },
-      ],
-    },
-  ];
-}
-
-async function analyzeDeepPageWorkflows(page: Page, routeHint: string): Promise<PageWorkflow[]> {
-  const label = resolveWorkflowPageLabel(routeHint, 'deep');
-  const elements = await collectElements(page);
-  const snippets = await collectBodyTextSnippets(page, 8);
-  const controls = uniqueTexts(
-    elements
-      .filter((element) => ['button', 'ion-button', 'input', 'select', 'textarea'].includes(element.tag) || element.type === 'submit')
-      .map((element) => formatElementLabel(element)),
-    8
-  );
-
-  return [
-    {
-      name: `${label}详情工作流`,
-      purpose: `验证 ${routeHint} 是否已展示详情内容，并暴露当前页可继续操作的控件。`,
-      summary: `识别 ${snippets.length} 条详情文本信号、${controls.length} 个控件信号。`,
-      observedOptions: controls,
-      observedFields: inferObservedFieldsFromPage(elements, snippets),
-      resultSamples: snippets.slice(0, 3),
-      steps: [
-        {
-          action: '读取详情内容',
-          target: routeHint,
-          expected: '至少识别 2 条可用于描述详情页的文本信号',
-          actual: `识别 ${snippets.length} 条详情文本：${snippets.slice(0, 3).join('；') || '无'}`,
-          status: snippets.length >= 2 ? 'pass' : 'warn',
-          requests: [],
-        },
-        {
-          action: '检查详情操作控件',
-          target: routeHint,
-          expected: '识别当前详情页是否存在按钮、输入框或其它后续操作控件',
-          actual: `识别 ${controls.length} 个控件：${controls.slice(0, 4).join('；') || '无'}`,
-          status: controls.length > 0 || snippets.length >= 2 ? 'pass' : 'warn',
-          requests: [],
-        },
-      ],
-    },
-  ];
-}
-
-async function analyzeProfileWorkflows(page: Page, phase: string): Promise<PageWorkflow[]> {
-  const elements = await collectElements(page);
-  const snippets = await collectBodyTextSnippets(page, 8);
-  const actionables = uniqueTexts(await collectActionableTexts(page), 12);
-  const settingsSignals = actionables.filter((text) => /(设置|账号|密码|邮箱|手机|个人|资料|退出)/.test(text));
-  const routeLinks = uniqueTexts(
-    elements.map((element) => (element.href && element.href.startsWith('/zh-hans/') ? element.href : null)),
-    8
-  );
-  const targetLink = pickWorkflowTarget('/zh-hans/profile', routeLinks);
-  const navProbe = targetLink ? await probeRouteReachability(page, phase, '/zh-hans/profile', targetLink) : null;
-
-  return [
-    {
-      name: '个人中心工作流',
-      purpose: '验证个人中心是否已展示设置项、账号信息或后续可操作控件。',
-      summary: `识别 ${settingsSignals.length} 条设置/账号信号${navProbe ? `；${navProbe.actual}` : ''}`,
-      observedOptions: uniqueTexts([...settingsSignals, ...routeLinks], 8),
-      observedFields: inferObservedFieldsFromPage(elements, snippets),
-      resultSamples: uniqueTexts([...snippets, ...(navProbe?.resultSamples ?? [])], 3),
-      steps: [
-        {
-          action: '读取个人中心设置项',
-          target: '/zh-hans/profile',
-          expected: '至少识别 1 项设置、账号或个人资料相关信号',
-          actual: `识别 ${settingsSignals.length} 条相关信号：${settingsSignals.slice(0, 4).join('；') || '无'}`,
-          status: settingsSignals.length > 0 || snippets.some((text) => text.includes('设置')) || actionables.length > 0 ? 'pass' : 'warn',
-          requests: [],
-        },
-        {
-          action: '验证个人中心后续入口或控件',
-          target: targetLink ?? actionables[0] ?? '未发现可复验目标',
-          expected: '至少识别 1 个可继续进入设置/账号相关流程的入口或控件',
-          actual: navProbe?.actual ?? `识别 ${routeLinks.length} 个入口、${actionables.length} 条可操作文本`,
-          status: navProbe?.status ?? (routeLinks.length > 0 || actionables.length > 0 ? 'pass' : 'warn'),
-          requests: navProbe?.requests ?? [],
-        },
-      ],
-    },
-  ];
-}
-
 async function analyzeRoutePageWorkflows(page: Page, routeHint: string, pageKind: PageKind): Promise<PageWorkflow[]> {
-  const label = resolveWorkflowPageLabel(routeHint, pageKind);
+  const label = resolveWorkflowPageLabel(routeHint, pageKind, resolveDeepRouteLabel);
   const elements = await collectElements(page);
   const snippets = await collectBodyTextSnippets(page, 8);
   const routeLinks = uniqueTexts(
@@ -1911,20 +1719,9 @@ async function analyzePageWorkflows(page: Page, pageKind: PageKind, routeHint: s
     return analyzeReadingWorkflows(page, phase);
   }
 
-  if (pageKind === 'home' || routeHint === '/zh-hans/home') {
-    return analyzeHomeWorkflows(page, phase);
-  }
-
-  if (routeHint === '/zh-hans/profile') {
-    return analyzeProfileWorkflows(page, phase);
-  }
-
-  if (pageKind === 'deep') {
-    return analyzeDeepPageWorkflows(page, routeHint);
-  }
-
-  if (pageKind === 'navigation') {
-    return analyzeNavigationPageWorkflows(page, phase, routeHint);
+  const modularWorkflows = await analyzeModularPageWorkflows(page, pageKind, routeHint, phase, buildWorkflowModuleDeps());
+  if (modularWorkflows) {
+    return modularWorkflows;
   }
 
   if (pageKind === 'route' || pageKind === 'login') {
@@ -2357,6 +2154,9 @@ function buildFeatureMarkdown(): string {
 
 - 逐页索引：\`page-details-index.md\`
 - 逐页明细目录：\`pages/\`
+- L2 业务流闭环：\`business-flow-closure.md\`
+- 黑盒测试过程：\`black-box-test-process.md\`
+- 用户使用文档：\`user-manual.md\`
 
 ---
 
@@ -2774,7 +2574,254 @@ function buildPageDetailIndexMarkdown(): string {
   return md;
 }
 
-function buildIterationMetadata() {
+function buildBusinessFlowRecords(): BusinessFlowRecord[] {
+  const flows: BusinessFlowRecord[] = [];
+  const seen = new Set<string>();
+  const closureRank: Record<BusinessFlowClosureStatus, number> = {
+    closed: 0,
+    partial: 1,
+    blocked: 2,
+  };
+
+  for (const mod of report.modules) {
+    if (!['home', 'navigation', 'profile'].includes(mod.pageKind)) continue;
+
+    const sourceRoute = normalizeRoutePath(mod.routeHint || mod.pathname);
+    const sourceClosed = mod.aiAnalysis.openQuestions.length === 0;
+
+    for (const workflow of mod.workflows) {
+      const discoveredTargets = extractWorkflowRouteTargets(workflow).filter((route) => route !== sourceRoute);
+
+      for (const step of workflow.steps) {
+        const targetRoute = normalizeRoutePath(step.target);
+        if (!isExplorableRoute(targetRoute) || targetRoute === sourceRoute) continue;
+
+        const targetModule = findTargetModuleByRoute(targetRoute);
+        const targetClosed = !!targetModule && targetModule.aiAnalysis.openQuestions.length === 0;
+        const candidateTargets = discoveredTargets.filter(
+          (route) => normalizeBusinessRoute(route) !== normalizeBusinessRoute(targetRoute)
+        );
+
+        let closureStatus: BusinessFlowClosureStatus = 'partial';
+        if (step.status === 'fail') {
+          closureStatus = 'blocked';
+        } else if (step.status === 'pass' && sourceClosed && targetClosed) {
+          closureStatus = 'closed';
+        }
+
+        const remainingRisks: string[] = [];
+        if (!sourceClosed) {
+          remainingRisks.push(`起点页仍有 ${mod.aiAnalysis.openQuestions.length} 个页面级待确认问题。`);
+        }
+        if (!targetModule) {
+          remainingRisks.push('目标页未纳入本轮页面级探针，无法确认转场后的页面级结论。');
+        } else if (!targetClosed) {
+          remainingRisks.push(`目标页仍有 ${targetModule.aiAnalysis.openQuestions.length} 个页面级待确认问题。`);
+        }
+        if (step.status === 'warn') {
+          remainingRisks.push('当前转场只有部分证据，仍需补稳定的跨页成功判定。');
+        }
+        if (step.status === 'fail') {
+          remainingRisks.push('当前转场验证失败，业务流仍被阻塞。');
+        }
+        if (candidateTargets.length > 0) {
+          remainingRisks.push(
+            `同一工作流还发现 ${candidateTargets.length} 个候选后续入口未单独复验：${candidateTargets.slice(0, 4).join('、')}`
+          );
+        }
+
+        const flowName = `${resolveWorkflowPageLabel(mod.routeHint, mod.pageKind, resolveDeepRouteLabel)} -> ${resolveBusinessFlowLabel(targetRoute)}`;
+        const key = `${normalizeBusinessRoute(sourceRoute)}|${normalizeBusinessRoute(targetRoute)}|${workflow.name}|${step.action}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+
+        flows.push({
+          id: sanitizeSlug(`${sourceRoute}-${workflow.name}-${targetRoute}-${step.action}`),
+          name: flowName,
+          sourceRoute,
+          sourcePageName: mod.name,
+          sourceDocFilename: mod.docFilename,
+          sourcePageConclusion: mod.aiAnalysis.conclusion,
+          sourcePageOpenQuestions: mod.aiAnalysis.openQuestions.length,
+          targetRoute,
+          targetRoutePattern: normalizeBusinessRoute(targetRoute),
+          targetPageName: targetModule?.name ?? resolveBusinessFlowLabel(targetRoute),
+          targetDocFilename: targetModule?.docFilename ?? null,
+          targetPageConclusion: targetModule?.aiAnalysis.conclusion ?? '',
+          targetPageOpenQuestions: targetModule ? targetModule.aiAnalysis.openQuestions.length : null,
+          workflowName: workflow.name,
+          workflowPurpose: workflow.purpose,
+          workflowSummary: workflow.summary,
+          transitionAction: step.action,
+          transitionExpected: step.expected,
+          transitionActual: step.actual,
+          transitionStatus: step.status,
+          transitionRequests: step.requests,
+          transitionSamples: workflow.resultSamples.slice(0, 3),
+          candidateTargets,
+          closureStatus,
+          closureSummary:
+            closureStatus === 'closed'
+              ? `已验证 ${flowName} 的跨页转场，且目标页已形成页面级结论。`
+              : closureStatus === 'blocked'
+                ? `尚未打通 ${flowName} 的跨页转场。`
+                : `已发现 ${flowName} 的跨页线索，但当前仍停留在部分闭环。`,
+          successCriteria: dedupeStrings([
+            step.expected,
+            '起点页已形成页面级结论。',
+            '目标页已纳入本轮探针并形成页面级结论。',
+          ]),
+          remainingRisks,
+        });
+      }
+    }
+  }
+
+  return flows.sort((left, right) => {
+    const statusDelta = closureRank[left.closureStatus] - closureRank[right.closureStatus];
+    if (statusDelta !== 0) return statusDelta;
+    return `${left.sourceRoute} ${left.targetRoute}`.localeCompare(`${right.sourceRoute} ${right.targetRoute}`, 'zh-CN');
+  });
+}
+
+function buildBusinessFlowClosureMarkdown(flows: BusinessFlowRecord[]): string {
+  const closedCount = flows.filter((flow) => flow.closureStatus === 'closed').length;
+  const partialCount = flows.filter((flow) => flow.closureStatus === 'partial').length;
+  const blockedCount = flows.filter((flow) => flow.closureStatus === 'blocked').length;
+  const sourceCoverage = new Set(flows.map((flow) => flow.sourceRoute)).size;
+  const targetCoverage = new Set(flows.map((flow) => flow.targetRoutePattern)).size;
+
+  let md = `# SigmaReading L2 业务流闭环报告\n\n`;
+  md += `> 生成时间：${new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}\n`;
+  md += `> 证据来源：页面级 workflow 聚合 + 目标页页面级结论复核\n`;
+  md += `> 说明：本报告只汇总跨页转场证据，不再要求通过逐页页面文档反推 L2。\n\n`;
+
+  if (report.targetRoutes.length > 0) {
+    md += `> 目标页面：${report.targetRoutes.join('、')}\n\n`;
+  }
+
+  if (flows.length === 0) {
+    md += `> 本轮尚未识别到可作为 L2 闭环依据的跨页业务流，请先补充可验证的跨页 workflow。\n`;
+    return md;
+  }
+
+  md += `## L2 总览\n\n`;
+  md += `- 已识别业务流：${flows.length}\n`;
+  md += `- 已闭环：${closedCount}\n`;
+  md += `- 部分闭环：${partialCount}\n`;
+  md += `- 阻塞：${blockedCount}\n`;
+  md += `- 起点页覆盖：${sourceCoverage}\n`;
+  md += `- 目标页覆盖：${targetCoverage}\n\n`;
+
+  md += `## 业务流索引\n\n`;
+  md += `| # | 业务流 | 起点页 | 目标页 | 转场验证 | 目标页 L1 | L2 状态 |\n`;
+  md += `|---|--------|--------|--------|----------|-----------|---------|\n`;
+  flows.forEach((flow, index) => {
+    const sourceDoc = `[${flow.sourcePageName}](pages/${flow.sourceDocFilename})`;
+    const targetDoc = flow.targetDocFilename
+      ? `[${flow.targetPageName}](pages/${flow.targetDocFilename})`
+      : `${flow.targetPageName}（${flow.targetRoutePattern}）`;
+    md += `| ${index + 1} | ${flow.name} | ${sourceDoc} | ${targetDoc} | ${getStatusLabel(flow.transitionStatus)} | ${getPageClosureLabel(
+      flow.targetDocFilename ? findTargetModuleByRoute(flow.targetRoute) : null
+    )} | ${getBusinessFlowClosureLabel(flow.closureStatus)} |\n`;
+  });
+  md += '\n';
+
+  flows.forEach((flow, index) => {
+    const sourceDoc = `[${flow.sourcePageName}](pages/${flow.sourceDocFilename})`;
+    const targetDoc = flow.targetDocFilename
+      ? `[${flow.targetPageName}](pages/${flow.targetDocFilename})`
+      : `${flow.targetPageName}（${flow.targetRoutePattern}）`;
+
+    md += `## ${index + 1}. ${flow.name}\n\n`;
+    md += `- 当前 L2 结论：${getBusinessFlowClosureLabel(flow.closureStatus)}\n`;
+    md += `- 闭环摘要：${flow.closureSummary}\n`;
+    md += `- 起点页：${sourceDoc}\n`;
+    md += `- 起点路由：${flow.sourceRoute}\n`;
+    md += `- 起点页 L1 状态：${flow.sourcePageOpenQuestions === 0 ? '已收敛' : `待确认 ${flow.sourcePageOpenQuestions} 项`}\n`;
+    md += `- 起点页结论：${flow.sourcePageConclusion}\n`;
+    md += `- 目标页：${targetDoc}\n`;
+    md += `- 目标路由模板：${flow.targetRoutePattern}\n`;
+    md += `- 目标页 L1 状态：${flow.targetPageOpenQuestions === null ? '未纳入本轮探针' : flow.targetPageOpenQuestions === 0 ? '已收敛' : `待确认 ${flow.targetPageOpenQuestions} 项`}\n`;
+    if (flow.targetPageConclusion) {
+      md += `- 目标页结论：${flow.targetPageConclusion}\n`;
+    }
+    md += `- 触发工作流：${flow.workflowName}\n`;
+    md += `- 工作流目的：${flow.workflowPurpose}\n`;
+    md += `- 工作流摘要：${flow.workflowSummary}\n`;
+    md += `- 转场动作：${flow.transitionAction}\n`;
+    md += `- 转场预期：${flow.transitionExpected}\n`;
+    md += `- 转场实际结果：${flow.transitionActual}\n`;
+    md += `- 转场验证结果：${getStatusLabel(flow.transitionStatus)}\n`;
+    if (flow.transitionRequests.length > 0) {
+      md += `- 触发请求：${flow.transitionRequests.slice(0, 3).join('；')}\n`;
+    }
+    if (flow.transitionSamples.length > 0) {
+      md += `- 结果样本：${flow.transitionSamples.join('；')}\n`;
+    }
+    flow.successCriteria.forEach((criterion, criterionIndex) => {
+      md += `- 业务成功判定 ${criterionIndex + 1}：${criterion}\n`;
+    });
+    if (flow.remainingRisks.length > 0) {
+      flow.remainingRisks.forEach((risk, riskIndex) => {
+        md += `- 剩余风险 ${riskIndex + 1}：${risk}\n`;
+      });
+    } else {
+      md += `- 剩余风险：无\n`;
+    }
+    md += '\n';
+  });
+
+  return md;
+}
+
+function buildBusinessFlowClosureReport(flows: BusinessFlowRecord[]) {
+  return {
+    runId: RUN_TIMESTAMP,
+    generatedAt: new Date().toISOString(),
+    summary: {
+      totalFlows: flows.length,
+      closedFlows: flows.filter((flow) => flow.closureStatus === 'closed').length,
+      partialFlows: flows.filter((flow) => flow.closureStatus === 'partial').length,
+      blockedFlows: flows.filter((flow) => flow.closureStatus === 'blocked').length,
+      sourceCoverage: new Set(flows.map((flow) => flow.sourceRoute)).size,
+      targetCoverage: new Set(flows.map((flow) => flow.targetRoutePattern)).size,
+    },
+    flows: flows.map((flow) => ({
+      id: flow.id,
+      name: flow.name,
+      sourceRoute: flow.sourceRoute,
+      sourcePageName: flow.sourcePageName,
+      sourceDocFilename: flow.sourceDocFilename,
+      sourcePageOpenQuestions: flow.sourcePageOpenQuestions,
+      sourcePageConclusion: flow.sourcePageConclusion,
+      targetRoute: flow.targetRoute,
+      targetRoutePattern: flow.targetRoutePattern,
+      targetPageName: flow.targetPageName,
+      targetDocFilename: flow.targetDocFilename,
+      targetPageOpenQuestions: flow.targetPageOpenQuestions,
+      targetPageConclusion: flow.targetPageConclusion,
+      workflowName: flow.workflowName,
+      workflowPurpose: flow.workflowPurpose,
+      workflowSummary: flow.workflowSummary,
+      transition: {
+        action: flow.transitionAction,
+        expected: flow.transitionExpected,
+        actual: flow.transitionActual,
+        status: flow.transitionStatus,
+        requests: flow.transitionRequests,
+        resultSamples: flow.transitionSamples,
+      },
+      candidateTargets: flow.candidateTargets,
+      closureStatus: flow.closureStatus,
+      closureSummary: flow.closureSummary,
+      successCriteria: flow.successCriteria,
+      remainingRisks: flow.remainingRisks,
+    })),
+  };
+}
+
+function buildIterationMetadata(flows: BusinessFlowRecord[]) {
   return {
     runId: RUN_TIMESTAMP,
     networkAvailable: report.networkAvailable,
@@ -2804,7 +2851,340 @@ function buildIterationMetadata() {
       iterationLogs: mod.iterationLogs,
       apis: mod.apis,
     })),
+    businessFlows: flows.map((flow) => ({
+      id: flow.id,
+      name: flow.name,
+      sourceRoute: flow.sourceRoute,
+      targetRoute: flow.targetRoute,
+      targetRoutePattern: flow.targetRoutePattern,
+      transitionStatus: flow.transitionStatus,
+      closureStatus: flow.closureStatus,
+      targetPageOpenQuestions: flow.targetPageOpenQuestions,
+      remainingRisks: flow.remainingRisks,
+    })),
   };
+}
+
+function countWorkflowStepStatuses(modules: PageModule[]) {
+  const steps = modules.flatMap((mod) => mod.workflows.flatMap((workflow) => workflow.steps));
+  return {
+    total: steps.length,
+    pass: steps.filter((step) => step.status === 'pass').length,
+    warn: steps.filter((step) => step.status === 'warn').length,
+    fail: steps.filter((step) => step.status === 'fail').length,
+  };
+}
+
+function getPhasePurposeLabel(phase: string): string {
+  switch (phase) {
+    case 'Phase 2':
+      return '首页与主入口采样';
+    case 'Phase 3':
+      return '深层页与详情态探索';
+    case 'Phase 4':
+      return 'AI 决策的下一轮补探';
+    case 'Phase 5':
+      return '已知路由补充探针';
+    default:
+      return '页面证据采样';
+  }
+}
+
+function buildStateCoverageSignals(flows: BusinessFlowRecord[]): string[] {
+  const signals: string[] = [];
+
+  if (report.modules.some((mod) => mod.pathname === '/zh-hans/unauthorized')) {
+    signals.push('权限态：已覆盖未授权跳转到 /zh-hans/unauthorized 的场景。');
+  }
+  if (report.modules.some((mod) => getFormFields(mod).length > 0)) {
+    signals.push('表单态：已覆盖输入字段填写与提交后的结果观察。');
+  }
+  if (
+    report.modules.some((mod) =>
+      mod.workflows.some((workflow) => /(搜索|筛选|排序|表单填写|按钮使用|弹层确认)/.test(workflow.name))
+    )
+  ) {
+    signals.push('交互态：已覆盖按钮点击、表单填写、搜索/筛选/排序或弹层确认等主动操作。');
+  }
+  if (flows.some((flow) => flow.closureStatus !== 'closed')) {
+    signals.push('跨页态：已覆盖部分闭环与阻塞的业务转场，能够识别未打通链路。');
+  }
+  if (corrections.length > 0) {
+    signals.push(`自愈态：本轮触发 ${corrections.length} 次自动修正，已记录故障恢复轨迹。`);
+  } else {
+    signals.push('自愈态：本轮无需自动修正，主选择器与导航链路保持稳定。');
+  }
+
+  return dedupeStrings(signals);
+}
+
+function describeAccessCondition(mod: PageModule): string {
+  if (mod.pageKind === 'login') {
+    return '需先完成登录，再进入站内功能。';
+  }
+
+  if (mod.pathname === '/zh-hans/unauthorized') {
+    return '当前路径落到未授权页，说明使用该功能前需要登录或满足权限条件。';
+  }
+
+  if (normalizeRoutePath(mod.routeHint) !== normalizeRoutePath(mod.pathname)) {
+    return `访问 ${mod.routeHint} 时会跳转到 ${mod.pathname}，存在重定向或权限分流。`;
+  }
+
+  return '当前页面可直接访问。';
+}
+
+function describeEntryPaths(mod: PageModule, flows: BusinessFlowRecord[]): string[] {
+  const currentPattern = normalizeBusinessRoute(mod.routeHint || mod.pathname);
+  const incoming = flows.filter(
+    (flow) =>
+      flow.targetDocFilename === mod.docFilename ||
+      flow.targetRoutePattern === currentPattern ||
+      normalizeBusinessRoute(flow.targetRoute) === currentPattern
+  );
+
+  const entries: string[] = [];
+  if (mod.pageKind === 'home') {
+    entries.push('登录后默认进入首页。');
+  }
+  incoming.forEach((flow) => {
+    entries.push(`可从 ${flow.sourcePageName} 的已验证入口进入。`);
+  });
+  if (entries.length === 0) {
+    entries.push(`可尝试直接访问 ${mod.routeHint}。`);
+  }
+
+  return dedupeStrings(entries).slice(0, 3);
+}
+
+function summarizeUserCapabilities(mod: PageModule): string[] {
+  const workflowCapabilities = mod.workflows.map((workflow) => `${workflow.name}：${workflow.summary}`);
+  const linkCapabilities = getPrimaryLinks(mod).slice(0, 4).map((item) => {
+    const looksTechnicalLabel = item.text.startsWith('/zh-hans/') || /^[a-z0-9-]+$/i.test(item.text);
+    const label = looksTechnicalLabel ? resolveBusinessFlowLabel(item.href) : item.text;
+    return /[\u4e00-\u9fff]/.test(label) ? `可进入 ${label}` : '';
+  }).filter(Boolean);
+  const buttonCapabilities = getPrimaryButtons(mod)
+    .filter((label) => /[\u4e00-\u9fff]/.test(label))
+    .slice(0, 4)
+    .map((label) => `可执行 ${label}`);
+  const fieldCapabilities = getFormFields(mod)
+    .slice(0, 2)
+    .map((field) => `可填写 ${field}`);
+  const capabilities = [...workflowCapabilities, ...linkCapabilities, ...buttonCapabilities, ...fieldCapabilities];
+
+  return dedupeStrings(capabilities).slice(0, 6);
+}
+
+function summarizeUserFeedback(mod: PageModule): string[] {
+  return dedupeStrings([
+    ...mod.workflows.flatMap((workflow) => workflow.resultSamples),
+    ...mod.probeEvidence.observedSignals.slice(0, 4),
+  ]).slice(0, 6);
+}
+
+function summarizeModuleRisks(mod: PageModule): string[] {
+  const workflowWarnings = mod.workflows.flatMap((workflow) =>
+    workflow.steps
+      .filter((step) => step.status !== 'pass')
+      .map((step) => `${workflow.name} / ${step.action}：${step.actual}`)
+  );
+
+  return dedupeStrings([...mod.aiAnalysis.openQuestions, ...workflowWarnings]).slice(0, 6);
+}
+
+function buildBlackBoxTestProcessMarkdown(flows: BusinessFlowRecord[]): string {
+  const workflowSummary = countWorkflowStepStatuses(report.modules);
+  const totalApis = report.modules.reduce((sum, mod) => sum + mod.apis.length, 0);
+  const openQuestionPages = report.modules.filter((mod) => mod.aiAnalysis.openQuestions.length > 0);
+  const pageKindSummary = Object.entries(
+    report.modules.reduce<Record<string, number>>((acc, mod) => {
+      acc[mod.pageKind] = (acc[mod.pageKind] ?? 0) + 1;
+      return acc;
+    }, {})
+  )
+    .map(([kind, count]) => `${kind}=${count}`)
+    .join('；');
+  const phaseGroups = Object.entries(
+    report.modules.reduce<Record<string, PageModule[]>>((acc, mod) => {
+      acc[mod.phase] = acc[mod.phase] ?? [];
+      acc[mod.phase].push(mod);
+      return acc;
+    }, {})
+  ).sort(([left], [right]) => left.localeCompare(right, 'zh-CN'));
+
+  let md = `# SigmaReading 黑盒测试过程报告\n\n`;
+  md += `> 生成时间：${new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}\n`;
+  md += `> 运行 ID：${RUN_TIMESTAMP}\n`;
+  md += `> 测试方式：Playwright 实际操作 + 页面证据采样 + 工作流验证 + AI 结论归纳\n`;
+  md += `> 网络状态：${report.networkAvailable ? '可实时采样' : '网络受限，仅保留基准文档'}\n`;
+  md += `> 登录条件：${HAS_LOGIN_CREDENTIALS ? '已提供登录凭据，可尝试受限功能' : '未提供登录凭据，仅能覆盖公开页或未授权态'}\n\n`;
+
+  if (report.targetRoutes.length > 0) {
+    md += `> 目标页面：${report.targetRoutes.join('、')}\n\n`;
+  }
+
+  if (report.modules.length === 0) {
+    md += `> 本轮未生成页面级探针结果，无法输出完整黑盒测试过程。\n`;
+    return md;
+  }
+
+  md += `## 覆盖总览\n\n`;
+  md += `- 覆盖页面：${report.modules.length} 个\n`;
+  md += `- 覆盖路由：${[...report.routes].length} 个\n`;
+  md += `- 页面分类分布：${pageKindSummary || '无'}\n`;
+  md += `- 工作流步骤：${workflowSummary.total} 个（PASS ${workflowSummary.pass} / WARN ${workflowSummary.warn} / FAIL ${workflowSummary.fail}）\n`;
+  md += `- 跨页业务流：${flows.length} 条（已闭环 ${flows.filter((flow) => flow.closureStatus === 'closed').length} / 部分闭环 ${flows.filter((flow) => flow.closureStatus === 'partial').length} / 阻塞 ${flows.filter((flow) => flow.closureStatus === 'blocked').length}）\n`;
+  md += `- 采样到的页面请求：${totalApis} 条\n`;
+  md += `- 自动修正次数：${corrections.length} 次\n`;
+  md += `- 仍有页面级待确认问题的页面：${openQuestionPages.length} 个\n\n`;
+
+  md += `## 状态空间信号\n\n`;
+  md += `${buildStateCoverageSignals(flows).map((item) => `- ${item}`).join('\n')}\n\n`;
+
+  md += `## 阶段推进\n\n`;
+  md += `| 阶段 | 目的 | 页面数 | 页面示例 |\n`;
+  md += `|------|------|--------|----------|\n`;
+  phaseGroups.forEach(([phase, modules]) => {
+    md += `| ${phase} | ${getPhasePurposeLabel(phase)} | ${modules.length} | ${modules.slice(0, 3).map((mod) => mod.name).join('；')} |\n`;
+  });
+  md += `\n`;
+
+  md += `## 页面测试过程\n\n`;
+  report.modules.forEach((mod, index) => {
+    md += `### ${index + 1}. [${mod.name}](pages/${mod.docFilename})\n\n`;
+    md += `- 执行阶段：${mod.phase}\n`;
+    md += `- 页面脚本：${mod.scriptId}\n`;
+    md += `- 入口与落点：${mod.routeHint} -> ${mod.pathname}\n`;
+    md += `- 访问条件：${describeAccessCondition(mod)}\n`;
+    if (mod.probeEvidence.observedSignals.length > 0) {
+      md += `- 关键页面信号：${mod.probeEvidence.observedSignals.slice(0, 4).join('；')}\n`;
+    }
+    if (mod.probeEvidence.interactionSignals.length > 0) {
+      md += `- 关键交互信号：${mod.probeEvidence.interactionSignals.slice(0, 6).join('；')}\n`;
+    }
+    md += `- AI 结论：${mod.aiAnalysis.conclusion}\n`;
+    if (mod.aiAnalysis.openQuestions.length > 0) {
+      md += `- 待确认问题：${mod.aiAnalysis.openQuestions.join('；')}\n`;
+    }
+    md += `\n`;
+
+    if (mod.iterationLogs.length > 0) {
+      mod.iterationLogs.forEach((log) => {
+        md += `#### 迭代 ${log.iteration}（${log.scriptId}）\n\n`;
+        md += `| 阶段 | 结果 | 摘要 |\n`;
+        md += `|------|------|------|\n`;
+        log.stages.forEach((stage) => {
+          md += `| ${getIterationStageLabel(stage.stage)} | ${getStatusLabel(stage.status)} | ${stage.summary} |\n`;
+        });
+        md += `\n`;
+      });
+    }
+
+    if (mod.workflows.length > 0) {
+      md += `#### 工作流执行\n\n`;
+      md += `| 工作流 | 步骤状态 | 摘要 |\n`;
+      md += `|--------|----------|------|\n`;
+      mod.workflows.forEach((workflow) => {
+        md += `| ${workflow.name} | ${workflow.steps.map((step) => getStatusLabel(step.status)).join('/')} | ${workflow.summary} |\n`;
+      });
+      md += `\n`;
+    }
+  });
+
+  md += `## 跨页业务流结果\n\n`;
+  if (flows.length === 0) {
+    md += `- 本轮未识别到可稳定复用的跨页业务流。\n\n`;
+  } else {
+    md += `| 业务流 | 转场状态 | L2 状态 | 风险摘要 |\n`;
+    md += `|--------|----------|---------|----------|\n`;
+    flows.forEach((flow) => {
+      md += `| ${flow.name} | ${getStatusLabel(flow.transitionStatus)} | ${getBusinessFlowClosureLabel(flow.closureStatus)} | ${(flow.remainingRisks[0] ?? '无').slice(0, 120)} |\n`;
+    });
+    md += `\n`;
+  }
+
+  md += `## 未闭环项与后续建议\n\n`;
+  if (openQuestionPages.length === 0 && flows.every((flow) => flow.remainingRisks.length === 0)) {
+    md += `- 本轮页面级与业务流级证据未发现额外待跟进问题。\n`;
+  } else {
+    openQuestionPages.forEach((mod) => {
+      md += `- 页面 ${mod.name}：${mod.aiAnalysis.openQuestions.join('；')}\n`;
+    });
+    flows
+      .filter((flow) => flow.remainingRisks.length > 0)
+      .forEach((flow) => {
+        md += `- 业务流 ${flow.name}：${flow.remainingRisks.slice(0, 2).join('；')}\n`;
+      });
+  }
+  md += '\n';
+
+  return md;
+}
+
+function buildUserGuideMarkdown(flows: BusinessFlowRecord[]): string {
+  const homeModule = report.modules.find((mod) => mod.pageKind === 'home' || mod.pathname === '/zh-hans/home');
+  const homeEntries = homeModule ? getPrimaryLinks(homeModule).slice(0, 8).map((item) => `${item.text}（${item.href}）`) : [];
+
+  let md = `# SigmaReading 用户使用文档\n\n`;
+  md += `> 生成时间：${new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}\n`;
+  md += `> 依据：本轮黑盒测试中真实进入页面、触发操作、观察反馈后的证据自动整理\n`;
+  md += `> 说明：本文档只覆盖本轮已实际验证的功能页面；未纳入探针的功能不在本文中承诺行为\n\n`;
+
+  md += `## 快速开始\n\n`;
+  md += `1. 打开 ${BASE_URL}/zh-hans/home，作为学生端主入口。\n`;
+  md += `2. 如果页面跳转到 /zh-hans/unauthorized，请先登录，再继续访问目标功能。\n`;
+  md += `3. 已在首页识别到的主入口包括：${homeEntries.length > 0 ? homeEntries.join('、') : '本轮未采到首页主入口，请参考逐页文档。'}\n`;
+  md += `4. 进入具体功能页后，可结合本文的“已验证功能”和“可见反馈”判断操作是否符合预期。\n\n`;
+
+  md += `## 功能总览\n\n`;
+  md += `| 模块 | 页面路径 | 进入方式 | 已验证能力 | 注意事项 |\n`;
+  md += `|------|----------|----------|------------|----------|\n`;
+  report.modules.forEach((mod) => {
+    const entry = describeEntryPaths(mod, flows).join('<br>');
+    const capabilities = summarizeUserCapabilities(mod).slice(0, 3).join('；') || summarizeVisibleFeatures(mod).slice(0, 2).join('；');
+    const risks = summarizeModuleRisks(mod).slice(0, 2).join('；') || describeAccessCondition(mod);
+    md += `| [${mod.name}](pages/${mod.docFilename}) | ${mod.pathname} | ${entry} | ${capabilities || '待补'} | ${risks} |\n`;
+  });
+  md += `\n`;
+
+  md += `## 逐模块使用说明\n\n`;
+  report.modules.forEach((mod, index) => {
+    const entryPaths = describeEntryPaths(mod, flows);
+    const capabilities = summarizeUserCapabilities(mod);
+    const feedback = summarizeUserFeedback(mod);
+    const risks = summarizeModuleRisks(mod);
+
+    md += `### ${index + 1}. [${mod.name}](pages/${mod.docFilename})\n\n`;
+    md += `- 页面路径：${mod.pathname}\n`;
+    md += `- 进入方式：${entryPaths.join('；')}\n`;
+    md += `- 访问条件：${describeAccessCondition(mod)}\n`;
+    if (capabilities.length > 0) {
+      md += `- 已验证功能：${capabilities.join('；')}\n`;
+    }
+    if (feedback.length > 0) {
+      md += `- 可见反馈：${feedback.join('；')}\n`;
+    }
+    if (risks.length > 0) {
+      md += `- 注意事项：${risks.join('；')}\n`;
+    }
+    md += '\n';
+  });
+
+  md += `## 权限与限制说明\n\n`;
+  const permissionNotes = dedupeStrings(
+    report.modules
+      .map((mod) => describeAccessCondition(mod))
+      .filter((note) => note.includes('登录') || note.includes('权限') || note.includes('重定向'))
+  );
+  if (permissionNotes.length === 0) {
+    md += `- 本轮未观测到额外的权限限制说明。\n`;
+  } else {
+    md += `${permissionNotes.map((note) => `- ${note}`).join('\n')}\n`;
+  }
+  md += '\n';
+
+  return md;
 }
 
 function buildApiMarkdown(): string {
@@ -2918,8 +3298,8 @@ function updateRunIndex(): void {
 
   let md = `# 探索运行历史（Run History）\n\n`;
   md += `> 共 **${entries.length}** 次运行\n\n`;
-  md += `| # | 运行时间 | 功能文档 | 逐页文档 | API 文档 | 修正日志 | 截图数 |\n`;
-  md += `|---|---------|---------|---------|---------|---------|--------|\n`;
+  md += `| # | 运行时间 | 功能文档 | 过程文档 | 用户文档 | 逐页文档 | 业务流文档 | API 文档 | 修正日志 | 截图数 |\n`;
+  md += `|---|---------|---------|---------|---------|---------|-----------|---------|---------|--------|\n`;
 
   entries.forEach((name, i) => {
     const runDir = path.join(RUNS_DIR, name);
@@ -2927,7 +3307,10 @@ function updateRunIndex(): void {
     const ssDir = path.join(runDir, 'screenshots');
 
     const hasFeatures = fs.existsSync(path.join(docsDir, 'sigmareading-features.md'));
+    const hasProcess = fs.existsSync(path.join(docsDir, 'black-box-test-process.md'));
+    const hasUserManual = fs.existsSync(path.join(docsDir, 'user-manual.md'));
     const hasPageDetails = fs.existsSync(path.join(docsDir, 'page-details-index.md'));
+    const hasBusinessFlows = fs.existsSync(path.join(docsDir, 'business-flow-closure.md'));
     const hasApi = fs.existsSync(path.join(docsDir, 'api-endpoints.md'));
     const hasCorrection = fs.existsSync(path.join(docsDir, 'correction-log.md'));
 
@@ -2941,7 +3324,10 @@ function updateRunIndex(): void {
 
     md += `| ${entries.length - i} | ${readable} `;
     md += `| ${hasFeatures ? `[✓](${name}/docs/sigmareading-features.md)` : '✗'} `;
+    md += `| ${hasProcess ? `[✓](${name}/docs/black-box-test-process.md)` : '✗'} `;
+    md += `| ${hasUserManual ? `[✓](${name}/docs/user-manual.md)` : '✗'} `;
     md += `| ${hasPageDetails ? `[✓](${name}/docs/page-details-index.md)` : '✗'} `;
+    md += `| ${hasBusinessFlows ? `[✓](${name}/docs/business-flow-closure.md)` : '✗'} `;
     md += `| ${hasApi ? `[✓](${name}/docs/api-endpoints.md)` : '✗'} `;
     md += `| ${hasCorrection ? `[✓](${name}/docs/correction-log.md)` : '✗'} `;
     md += `| ${screenshotCount} |\n`;
@@ -3001,15 +3387,24 @@ async function main(): Promise<void> {
   // Phase 6 – Always write docs regardless of network availability
   console.log('\n📌 Step 2 + Step 3 / AI 识别功能与形成结论: 写出证据包与 AI 草案');
 
+  const businessFlows = buildBusinessFlowRecords();
   const featureContent = buildFeatureMarkdown();
   const pageIndexContent = buildPageDetailIndexMarkdown();
+  const businessFlowContent = buildBusinessFlowClosureMarkdown(businessFlows);
+  const businessFlowReport = buildBusinessFlowClosureReport(businessFlows);
+  const blackBoxProcessContent = buildBlackBoxTestProcessMarkdown(businessFlows);
+  const userGuideContent = buildUserGuideMarkdown(businessFlows);
   const apiContent = buildApiMarkdown();
   const correctionContent = buildCorrectionLog();
-  const iterationMetadata = buildIterationMetadata();
+  const iterationMetadata = buildIterationMetadata(businessFlows);
 
   // Write to timestamped run directory
   const featurePath = path.join(DOCS_DIR, 'sigmareading-features.md');
   const pageIndexPath = path.join(DOCS_DIR, 'page-details-index.md');
+  const businessFlowPath = path.join(DOCS_DIR, 'business-flow-closure.md');
+  const businessFlowReportPath = path.join(DOCS_DIR, 'business-flow-closure.json');
+  const blackBoxProcessPath = path.join(DOCS_DIR, 'black-box-test-process.md');
+  const userGuidePath = path.join(DOCS_DIR, 'user-manual.md');
   const apiPath = path.join(DOCS_DIR, 'api-endpoints.md');
   const correctionPath = path.join(DOCS_DIR, 'correction-log.md');
   const iterationMetadataPath = path.join(DOCS_DIR, 'iteration-metadata.json');
@@ -3018,6 +3413,10 @@ async function main(): Promise<void> {
 
   fs.writeFileSync(featurePath, featureContent, 'utf-8');
   fs.writeFileSync(pageIndexPath, pageIndexContent, 'utf-8');
+  fs.writeFileSync(businessFlowPath, businessFlowContent, 'utf-8');
+  fs.writeFileSync(businessFlowReportPath, JSON.stringify(businessFlowReport, null, 2), 'utf-8');
+  fs.writeFileSync(blackBoxProcessPath, blackBoxProcessContent, 'utf-8');
+  fs.writeFileSync(userGuidePath, userGuideContent, 'utf-8');
   fs.writeFileSync(apiPath, apiContent, 'utf-8');
   fs.writeFileSync(correctionPath, correctionContent, 'utf-8');
   fs.writeFileSync(iterationMetadataPath, JSON.stringify(iterationMetadata, null, 2), 'utf-8');
@@ -3031,6 +3430,10 @@ async function main(): Promise<void> {
     // Also copy to latest location for quick access
     fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'sigmareading-features.md'), featureContent, 'utf-8');
     fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'page-details-index.md'), pageIndexContent, 'utf-8');
+    fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'business-flow-closure.md'), businessFlowContent, 'utf-8');
+    fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'business-flow-closure.json'), JSON.stringify(businessFlowReport, null, 2), 'utf-8');
+    fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'black-box-test-process.md'), blackBoxProcessContent, 'utf-8');
+    fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'user-manual.md'), userGuideContent, 'utf-8');
     fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'api-endpoints.md'), apiContent, 'utf-8');
     fs.writeFileSync(path.join(LATEST_DOCS_DIR, 'correction-log.md'), correctionContent, 'utf-8');
     fs.writeFileSync(latestIterationMetadataPath, JSON.stringify(iterationMetadata, null, 2), 'utf-8');
@@ -3052,6 +3455,9 @@ async function main(): Promise<void> {
 
   console.log(`  ✓ Skill 运行结果保存到: ${RUN_DIR}`);
   console.log(`  ✓ AI 总览文档: ${featurePath}`);
+  console.log(`  ✓ 黑盒测试过程文档: ${blackBoxProcessPath}`);
+  console.log(`  ✓ 用户使用文档: ${userGuidePath}`);
+  console.log(`  ✓ L2 业务流闭环文档: ${businessFlowPath}`);
   console.log(`  ✓ 探针网络证据: ${apiPath}`);
   console.log(`  ✓ 探针自愈日志: ${correctionPath}`);
   console.log(`  ✓ 页面级证据包: ${iterationMetadataPath}`);

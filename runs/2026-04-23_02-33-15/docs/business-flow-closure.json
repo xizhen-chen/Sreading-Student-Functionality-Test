@@ -1,0 +1,183 @@
+{
+  "runId": "2026-04-23_02-33-15",
+  "generatedAt": "2026-04-23T02:34:30.533Z",
+  "summary": {
+    "totalFlows": 3,
+    "closedFlows": 0,
+    "partialFlows": 3,
+    "blockedFlows": 0,
+    "sourceCoverage": 3,
+    "targetCoverage": 1
+  },
+  "flows": [
+    {
+      "id": "zh-hans-home-zh-hans-textbook",
+      "name": "首页 -> 教材页",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "sourcePageConclusion": "AI 判定 /zh-hans/home 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "targetPageName": "教材页",
+      "targetDocFilename": null,
+      "targetPageOpenQuestions": null,
+      "targetPageConclusion": "",
+      "workflowName": "首页主入口工作流",
+      "workflowPurpose": "验证首页是否已展示主要功能卡片，并确认至少一个主入口可继续进入下一层页面。",
+      "workflowSummary": "识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页",
+      "transition": {
+        "action": "验证首页主入口可达性",
+        "expected": "至少 1 个首页入口可以进入下一层页面并恢复首页上下文",
+        "actual": "已到达 /zh-hans/textbook，并恢复当前页",
+        "status": "pass",
+        "requests": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/account",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/profile",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B3%40tonglec.org",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=20&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=INVITATION_SENT",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/my-account/tl-orders?realm.equals=sr&sort=orderDate,desc&status.in=PAYING&page=0&size=5"
+        ],
+        "resultSamples": [
+          "©2026 SReading v2.12.12",
+          "教材",
+          "购买"
+        ]
+      },
+      "candidateTargets": [
+        "/zh-hans/homework",
+        "/zh-hans/joined-classes",
+        "/zh-hans/reading",
+        "/zh-hans/playlist",
+        "/zh-hans/favorites",
+        "/zh-hans/studio",
+        "/zh-hans/exam"
+      ],
+      "closureStatus": "partial",
+      "closureSummary": "已发现 首页 -> 教材页 的跨页线索，但当前仍停留在部分闭环。",
+      "successCriteria": [
+        "至少 1 个首页入口可以进入下一层页面并恢复首页上下文",
+        "起点页已形成页面级结论。",
+        "目标页已纳入本轮探针并形成页面级结论。"
+      ],
+      "remainingRisks": [
+        "目标页未纳入本轮页面级探针，无法确认转场后的页面级结论。",
+        "同一工作流还发现 7 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist"
+      ]
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-textbook",
+      "name": "作业页 -> 教材页",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "sourcePageConclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "targetPageName": "教材页",
+      "targetDocFilename": null,
+      "targetPageOpenQuestions": null,
+      "targetPageConclusion": "",
+      "workflowName": "作业页页面工作流",
+      "workflowPurpose": "验证 /zh-hans/homework 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+      "workflowSummary": "识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+      "transition": {
+        "action": "验证后续入口或关键控件",
+        "expected": "至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+        "actual": "已到达 /zh-hans/textbook，并恢复当前页",
+        "status": "pass",
+        "requests": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/account",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/profile",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B3%40tonglec.org",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=20&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=INVITATION_SENT",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/my-account/tl-orders?realm.equals=sr&sort=orderDate,desc&status.in=PAYING&page=0&size=5"
+        ],
+        "resultSamples": [
+          "©2026 SReading v2.12.12",
+          "作业练习",
+          "待做"
+        ]
+      },
+      "candidateTargets": [
+        "/zh-hans/joined-classes",
+        "/zh-hans/reading",
+        "/zh-hans/playlist",
+        "/zh-hans/favorites",
+        "/zh-hans/studio",
+        "/zh-hans/exam"
+      ],
+      "closureStatus": "partial",
+      "closureSummary": "已发现 作业页 -> 教材页 的跨页线索，但当前仍停留在部分闭环。",
+      "successCriteria": [
+        "至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+        "起点页已形成页面级结论。",
+        "目标页已纳入本轮探针并形成页面级结论。"
+      ],
+      "remainingRisks": [
+        "目标页未纳入本轮页面级探针，无法确认转场后的页面级结论。",
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist、/zh-hans/favorites"
+      ]
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-textbook",
+      "name": "班级页 -> 教材页",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "sourcePageConclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "targetPageName": "教材页",
+      "targetDocFilename": null,
+      "targetPageOpenQuestions": null,
+      "targetPageConclusion": "",
+      "workflowName": "班级页页面工作流",
+      "workflowPurpose": "验证 /zh-hans/joined-classes 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+      "workflowSummary": "识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+      "transition": {
+        "action": "验证后续入口或关键控件",
+        "expected": "至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+        "actual": "已到达 /zh-hans/textbook，并恢复当前页",
+        "status": "pass",
+        "requests": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/account",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/profile",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B3%40tonglec.org",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=20&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=INVITATION_SENT",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/my-account/tl-orders?realm.equals=sr&sort=orderDate,desc&status.in=PAYING&page=0&size=5"
+        ],
+        "resultSamples": [
+          "©2026 SReading v2.12.12",
+          "我的班级",
+          "当前班级"
+        ]
+      },
+      "candidateTargets": [
+        "/zh-hans/homework",
+        "/zh-hans/reading",
+        "/zh-hans/playlist",
+        "/zh-hans/favorites",
+        "/zh-hans/studio",
+        "/zh-hans/exam"
+      ],
+      "closureStatus": "partial",
+      "closureSummary": "已发现 班级页 -> 教材页 的跨页线索，但当前仍停留在部分闭环。",
+      "successCriteria": [
+        "至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+        "起点页已形成页面级结论。",
+        "目标页已纳入本轮探针并形成页面级结论。"
+      ],
+      "remainingRisks": [
+        "目标页未纳入本轮页面级探针，无法确认转场后的页面级结论。",
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/reading、/zh-hans/playlist、/zh-hans/favorites"
+      ]
+    }
+  ]
+}

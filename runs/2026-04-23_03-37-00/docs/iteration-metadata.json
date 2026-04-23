@@ -1,0 +1,4445 @@
+{
+  "runId": "2026-04-23_03-37-00",
+  "networkAvailable": true,
+  "iterativeMode": false,
+  "targetRoutes": [],
+  "generatedAt": "2026-04-23T03:45:01.909Z",
+  "pages": [
+    {
+      "name": "主页（/zh-hans/home）",
+      "path": "/zh-hans/home",
+      "routeHint": "/zh-hans/home",
+      "pageKind": "home",
+      "scriptId": "page-home-overview",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/home 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+          "标题区域: SReadingfor Student学生账户 | ©2026 SReading v2.12.12",
+          "底部导航: ",
+          "功能卡片数量: 11",
+          "交互元素总计: 95",
+          "工作流验证: 首页主入口工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: 教材 -> /zh-hans/textbook",
+          "link: 作业练习 -> /zh-hans/homework",
+          "link: 我的班级 -> /zh-hans/joined-classes",
+          "link: 文章 -> /zh-hans/reading",
+          "link: 书单 -> /zh-hans/playlist",
+          "link: 收藏夹 -> /zh-hans/favorites",
+          "link: 工作室 -> /zh-hans/studio",
+          "link: 试卷 -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/images/mascot-two.png",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=1&size=3&count=0&recs=true",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=3&size=3&count=0&recs=true",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=4&size=3&count=0&recs=true",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/my-account/tl-orders?realm.equals=sr&sort=orderDate,desc&status.in=PAYING&page=0&size=5",
+          "GET https://sr.sigmareading.com/zh-hans/textbook"
+        ],
+        "rawSamples": [
+          "ion-item: 教材",
+          "a: 教材",
+          "button: button",
+          "ion-item: 作业练习",
+          "a: 作业练习",
+          "button: button",
+          "ion-item: 我的班级",
+          "a: 我的班级",
+          "button: button",
+          "ion-item: 文章",
+          "a: 文章",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 6 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/home 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "教材 -> /zh-hans/textbook",
+            "作业练习 -> /zh-hans/homework",
+            "我的班级 -> /zh-hans/joined-classes",
+            "文章 -> /zh-hans/reading",
+            "书单 -> /zh-hans/playlist",
+            "收藏夹 -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "首页主入口工作流",
+          "category": "verify",
+          "purpose": "验证首页是否已展示主要功能卡片，并确认至少一个主入口可继续进入下一层页面。",
+          "expectedResult": "至少识别 3 个主入口；至少 1 个首页入口可以进入下一层页面并恢复首页上下文",
+          "evidence": [
+            "识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取首页主入口: 识别 8 个主入口：教材 -> /zh-hans/textbook；作业练习 -> /zh-hans/homework；我的班级 -> /zh-hans/joined-classes；文章 -> /zh-hans/reading",
+            "验证首页主入口可达性: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "首页主入口工作流",
+          "summary": "识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-home-overview",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: 教材 -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "首页主入口工作流 / 读取首页主入口: PASS",
+                "首页主入口工作流 / 验证首页主入口可达性: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 10 条新选项/字段线索。",
+              "details": [
+                "首页主入口工作流: 教材 -> /zh-hans/textbook",
+                "首页主入口工作流: 作业练习 -> /zh-hans/homework",
+                "首页主入口工作流: 我的班级 -> /zh-hans/joined-classes",
+                "首页主入口工作流: 文章 -> /zh-hans/reading",
+                "首页主入口工作流: 书单 -> /zh-hans/playlist",
+                "首页主入口工作流: 收藏夹 -> /zh-hans/favorites",
+                "首页主入口工作流: 工作室 -> /zh-hans/studio",
+                "首页主入口工作流: 试卷 -> /zh-hans/exam",
+                "首页主入口工作流: 链接入口",
+                "首页主入口工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "首页主入口工作流: 教材 -> /zh-hans/textbook",
+            "首页主入口工作流: 作业练习 -> /zh-hans/homework",
+            "首页主入口工作流: 我的班级 -> /zh-hans/joined-classes",
+            "首页主入口工作流: 文章 -> /zh-hans/reading",
+            "首页主入口工作流: 书单 -> /zh-hans/playlist",
+            "首页主入口工作流: 收藏夹 -> /zh-hans/favorites",
+            "首页主入口工作流: 工作室 -> /zh-hans/studio",
+            "首页主入口工作流: 试卷 -> /zh-hans/exam",
+            "首页主入口工作流: 链接入口",
+            "首页主入口工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/images/mascot-two.png",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=1&size=3&count=0&recs=true",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=3&size=3&count=0&recs=true",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=4&size=3&count=0&recs=true",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/my-account/tl-orders?realm.equals=sr&sort=orderDate,desc&status.in=PAYING&page=0&size=5",
+        "GET https://sr.sigmareading.com/zh-hans/textbook"
+      ]
+    },
+    {
+      "name": "导航页: exam (/zh-hans/exam)",
+      "path": "/zh-hans/exam",
+      "routeHint": "/zh-hans/exam",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-exam",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/exam 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/exam",
+          "标题: ©2026 SReading v2.12.12 | 测试",
+          "交互元素: 58 个",
+          "工作流验证: 试卷页页面工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/user-assignment-exams?history=false",
+          "GET https://sr.sigmareading.com/zh-hans/exam"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/exam 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "试卷页页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/exam 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取页面核心内容: 页面文本 7 条；入口 12 个；控件 5 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "试卷页页面工作流",
+          "summary": "识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-exam",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "试卷页页面工作流 / 读取页面核心内容: PASS",
+                "试卷页页面工作流 / 验证后续入口或关键控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 11 条新选项/字段线索。",
+              "details": [
+                "试卷页页面工作流: /zh-hans/textbook",
+                "试卷页页面工作流: /zh-hans/homework",
+                "试卷页页面工作流: /zh-hans/joined-classes",
+                "试卷页页面工作流: /zh-hans/reading",
+                "试卷页页面工作流: /zh-hans/playlist",
+                "试卷页页面工作流: /zh-hans/favorites",
+                "试卷页页面工作流: /zh-hans/studio",
+                "试卷页页面工作流: /zh-hans/exam",
+                "试卷页页面工作流: 页面文本",
+                "试卷页页面工作流: 链接入口",
+                "试卷页页面工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "试卷页页面工作流: /zh-hans/textbook",
+            "试卷页页面工作流: /zh-hans/homework",
+            "试卷页页面工作流: /zh-hans/joined-classes",
+            "试卷页页面工作流: /zh-hans/reading",
+            "试卷页页面工作流: /zh-hans/playlist",
+            "试卷页页面工作流: /zh-hans/favorites",
+            "试卷页页面工作流: /zh-hans/studio",
+            "试卷页页面工作流: /zh-hans/exam",
+            "试卷页页面工作流: 页面文本",
+            "试卷页页面工作流: 链接入口",
+            "试卷页页面工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/user-assignment-exams?history=false",
+        "GET https://sr.sigmareading.com/zh-hans/exam"
+      ]
+    },
+    {
+      "name": "导航页: favorites (/zh-hans/favorites)",
+      "path": "/zh-hans/favorites",
+      "routeHint": "/zh-hans/favorites",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-favorites",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/favorites 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading 我喜爱 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/favorites",
+          "标题: ©2026 SReading v2.12.12 | 收藏夹",
+          "交互元素: 63 个",
+          "工作流验证: 收藏夹页面工作流=PASS/PASS | 收藏夹表单填写验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页",
+          "收藏夹表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=0&size=8&currentUser=true&status=ACTIVE&status=PENDING&myFavorite=true",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=0&size=8&currentUser=true&status=ACTIVE&status=PENDING&myFavorite=true&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=name.text,desc&page=0&size=20",
+          "GET https://sr.sigmareading.com/zh-hans/favorites",
+          "GET https://sr.sigmareading.com/zh-hans/reading"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/favorites 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading 我喜爱 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "搜索"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "收藏夹页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/favorites 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页",
+            "读取页面核心内容: 页面文本 6 条；入口 12 个；控件 8 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/reading，并恢复当前页"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "收藏夹表单填写验证",
+          "category": "verify",
+          "purpose": "发现 收藏夹 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，观察到真实反馈。",
+            "填写已发现字段并观察结果: 已填写 搜索=中文测试；请求 1 个；新增结果样本 0 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "收藏夹页面工作流",
+          "summary": "识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "收藏夹表单填写验证",
+          "summary": "已填写 1 个字段，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-favorites",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 6 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading 我喜爱 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: 搜索",
+                "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页",
+                "收藏夹表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页",
+                "收藏夹表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "收藏夹页面工作流 / 读取页面核心内容: PASS",
+                "收藏夹页面工作流 / 验证后续入口或关键控件: PASS",
+                "收藏夹表单填写验证 / 填写已发现字段并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 14 条新选项/字段线索。",
+              "details": [
+                "收藏夹页面工作流: /zh-hans/textbook",
+                "收藏夹页面工作流: /zh-hans/homework",
+                "收藏夹页面工作流: /zh-hans/joined-classes",
+                "收藏夹页面工作流: /zh-hans/reading",
+                "收藏夹页面工作流: /zh-hans/playlist",
+                "收藏夹页面工作流: /zh-hans/favorites",
+                "收藏夹页面工作流: /zh-hans/studio",
+                "收藏夹页面工作流: /zh-hans/exam",
+                "收藏夹表单填写验证: 搜索",
+                "收藏夹页面工作流: 页面文本",
+                "收藏夹页面工作流: 链接入口",
+                "收藏夹页面工作流: 操作按钮",
+                "收藏夹页面工作流: 输入字段",
+                "收藏夹表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "收藏夹页面工作流: /zh-hans/textbook",
+            "收藏夹页面工作流: /zh-hans/homework",
+            "收藏夹页面工作流: /zh-hans/joined-classes",
+            "收藏夹页面工作流: /zh-hans/reading",
+            "收藏夹页面工作流: /zh-hans/playlist",
+            "收藏夹页面工作流: /zh-hans/favorites",
+            "收藏夹页面工作流: /zh-hans/studio",
+            "收藏夹页面工作流: /zh-hans/exam",
+            "收藏夹表单填写验证: 搜索",
+            "收藏夹页面工作流: 页面文本",
+            "收藏夹页面工作流: 链接入口",
+            "收藏夹页面工作流: 操作按钮",
+            "收藏夹页面工作流: 输入字段",
+            "收藏夹表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=0&size=8&currentUser=true&status=ACTIVE&status=PENDING&myFavorite=true",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?page=0&size=8&currentUser=true&status=ACTIVE&status=PENDING&myFavorite=true&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=name.text,desc&page=0&size=20",
+        "GET https://sr.sigmareading.com/zh-hans/favorites",
+        "GET https://sr.sigmareading.com/zh-hans/reading"
+      ]
+    },
+    {
+      "name": "导航页: homework (/zh-hans/homework)",
+      "path": "/zh-hans/homework",
+      "routeHint": "/zh-hans/homework",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-homework",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/homework 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading 作业练习 - 全方位智能在线学习：一站式解决阅读、识字、作业需求，个性化提升学生能力。",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/homework",
+          "标题: ©2026 SReading v2.12.12 | 作业练习",
+          "交互元素: 74 个",
+          "工作流验证: 作业页页面工作流=PASS/PASS | 作业页按钮使用验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "作业页按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/assets/cnchar.min.BUf9VBj1.js",
+          "GET https://sr.sigmareading.com/assets/md.transition.DyxwwHJN.js",
+          "GET https://sr.sigmareading.com/assets/mp3-engine.BuGLhA19.js",
+          "GET https://sr.sigmareading.com/assets/mp3.CdF3o4Ql.js",
+          "GET https://sr.sigmareading.com/assets/recorder-core.D1k2YVFH.js",
+          "GET https://sr.sigmareading.com/assets/wavesurfer.CqIcgkfl.js",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-detail/69e458ad85faa905f1218d2d",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-list-lesson?listType=TODOLIST",
+          "GET https://sr.sigmareading.com/zh-hans/homework"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading 作业练习 - 全方位智能在线学习：一站式解决阅读、识字、作业需求，个性化提升学生能力。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "作业页页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/homework 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取页面核心内容: 页面文本 8 条；入口 12 个；控件 8 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "作业页按钮使用验证",
+          "category": "verify",
+          "purpose": "发现 作业页 的按钮后，实际点击安全按钮并观察页面、请求或结果样本是否变化。",
+          "expectedResult": "按钮点击后应触发页面反馈、请求变化或结果样本变化",
+          "evidence": [
+            "已尝试点击“开始”，观察到真实反馈。",
+            "点击已发现按钮并观察结果: 点击后 URL=https://sr.sigmareading.com/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list；请求 1 个；新增结果样本 2 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "作业页页面工作流",
+          "summary": "识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "作业页按钮使用验证",
+          "summary": "已尝试点击“开始”，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-homework",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 5 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading 作业练习 - 全方位智能在线学习：一站式解决阅读、识字、作业需求，个性化提升学生能力。",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+                "作业页按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+                "作业页按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "作业页页面工作流 / 读取页面核心内容: PASS",
+                "作业页页面工作流 / 验证后续入口或关键控件: PASS",
+                "作业页按钮使用验证 / 点击已发现按钮并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 13 条新选项/字段线索。",
+              "details": [
+                "作业页页面工作流: /zh-hans/textbook",
+                "作业页页面工作流: /zh-hans/homework",
+                "作业页页面工作流: /zh-hans/joined-classes",
+                "作业页页面工作流: /zh-hans/reading",
+                "作业页页面工作流: /zh-hans/playlist",
+                "作业页页面工作流: /zh-hans/favorites",
+                "作业页页面工作流: /zh-hans/studio",
+                "作业页页面工作流: /zh-hans/exam",
+                "作业页按钮使用验证: 开始",
+                "作业页页面工作流: 页面文本",
+                "作业页页面工作流: 链接入口",
+                "作业页页面工作流: 操作按钮",
+                "作业页按钮使用验证: 按钮使用结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "作业页页面工作流: /zh-hans/textbook",
+            "作业页页面工作流: /zh-hans/homework",
+            "作业页页面工作流: /zh-hans/joined-classes",
+            "作业页页面工作流: /zh-hans/reading",
+            "作业页页面工作流: /zh-hans/playlist",
+            "作业页页面工作流: /zh-hans/favorites",
+            "作业页页面工作流: /zh-hans/studio",
+            "作业页页面工作流: /zh-hans/exam",
+            "作业页按钮使用验证: 开始",
+            "作业页页面工作流: 页面文本",
+            "作业页页面工作流: 链接入口",
+            "作业页页面工作流: 操作按钮",
+            "作业页按钮使用验证: 按钮使用结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/assets/cnchar.min.BUf9VBj1.js",
+        "GET https://sr.sigmareading.com/assets/md.transition.DyxwwHJN.js",
+        "GET https://sr.sigmareading.com/assets/mp3-engine.BuGLhA19.js",
+        "GET https://sr.sigmareading.com/assets/mp3.CdF3o4Ql.js",
+        "GET https://sr.sigmareading.com/assets/recorder-core.D1k2YVFH.js",
+        "GET https://sr.sigmareading.com/assets/wavesurfer.CqIcgkfl.js",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-detail/69e458ad85faa905f1218d2d",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-list-lesson?listType=TODOLIST",
+        "GET https://sr.sigmareading.com/zh-hans/homework"
+      ]
+    },
+    {
+      "name": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "path": "/zh-hans/joined-classes",
+      "routeHint": "/zh-hans/joined-classes",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-joined-classes",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/joined-classes 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/joined-classes",
+          "标题: ©2026 SReading v2.12.12 | 我的班级",
+          "交互元素: 57 个",
+          "工作流验证: 班级页页面工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=9999&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=ENROLLMENT_CONFIRMED,INVITATION_SENT,APPROVAL_AWAITING",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=admin%40localhost",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B1%40tonglec.org",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%40tonglec.org",
+          "GET https://sr.sigmareading.com/zh-hans/joined-classes"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "班级页页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/joined-classes 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取页面核心内容: 页面文本 8 条；入口 12 个；控件 5 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "班级页页面工作流",
+          "summary": "识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-joined-classes",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "班级页页面工作流 / 读取页面核心内容: PASS",
+                "班级页页面工作流 / 验证后续入口或关键控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 11 条新选项/字段线索。",
+              "details": [
+                "班级页页面工作流: /zh-hans/textbook",
+                "班级页页面工作流: /zh-hans/homework",
+                "班级页页面工作流: /zh-hans/joined-classes",
+                "班级页页面工作流: /zh-hans/reading",
+                "班级页页面工作流: /zh-hans/playlist",
+                "班级页页面工作流: /zh-hans/favorites",
+                "班级页页面工作流: /zh-hans/studio",
+                "班级页页面工作流: /zh-hans/exam",
+                "班级页页面工作流: 页面文本",
+                "班级页页面工作流: 链接入口",
+                "班级页页面工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "班级页页面工作流: /zh-hans/textbook",
+            "班级页页面工作流: /zh-hans/homework",
+            "班级页页面工作流: /zh-hans/joined-classes",
+            "班级页页面工作流: /zh-hans/reading",
+            "班级页页面工作流: /zh-hans/playlist",
+            "班级页页面工作流: /zh-hans/favorites",
+            "班级页页面工作流: /zh-hans/studio",
+            "班级页页面工作流: /zh-hans/exam",
+            "班级页页面工作流: 页面文本",
+            "班级页页面工作流: 链接入口",
+            "班级页页面工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/student-class-orders?page=0&size=9999&classStatus.in=NOT_STARTED,STARTED,OPEN_ENDED&enrollmentStatus.in=ENROLLMENT_CONFIRMED,INVITATION_SENT,APPROVAL_AWAITING",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=admin%40localhost",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%2B1%40tonglec.org",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xizhen.chen%40tonglec.org",
+        "GET https://sr.sigmareading.com/zh-hans/joined-classes"
+      ]
+    },
+    {
+      "name": "导航页: playlist (/zh-hans/playlist)",
+      "path": "/zh-hans/playlist",
+      "routeHint": "/zh-hans/playlist",
+      "pageKind": "navigation",
+      "scriptId": "page-playlist-detailed",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/playlist 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading 书单 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/playlist",
+          "标题: ©2026 SReading v2.12.12 | 书单",
+          "交互元素: 103 个",
+          "工作流验证: 书单页页面工作流=PASS/PASS | 书单页表单填写验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "书单页表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlists?sort=sortNum,desc&page=0&size=20&currentUser=false",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlists?sort=sortNum,desc&page=0&size=20&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95&currentUser=false",
+          "GET https://sr.sigmareading.com/zh-hans/playlist"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/playlist 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading 书单 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "搜索"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "书单页页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/playlist 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取页面核心内容: 页面文本 8 条；入口 12 个；控件 8 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "书单页表单填写验证",
+          "category": "verify",
+          "purpose": "发现 书单页 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，观察到真实反馈。",
+            "填写已发现字段并观察结果: 已填写 搜索=中文测试；请求 1 个；新增结果样本 1 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "书单页页面工作流",
+          "summary": "识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "书单页表单填写验证",
+          "summary": "已填写 1 个字段，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-playlist-detailed",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 6 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading 书单 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: 搜索",
+                "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+                "书单页表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+                "书单页表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "书单页页面工作流 / 读取页面核心内容: PASS",
+                "书单页页面工作流 / 验证后续入口或关键控件: PASS",
+                "书单页表单填写验证 / 填写已发现字段并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 14 条新选项/字段线索。",
+              "details": [
+                "书单页页面工作流: /zh-hans/textbook",
+                "书单页页面工作流: /zh-hans/homework",
+                "书单页页面工作流: /zh-hans/joined-classes",
+                "书单页页面工作流: /zh-hans/reading",
+                "书单页页面工作流: /zh-hans/playlist",
+                "书单页页面工作流: /zh-hans/favorites",
+                "书单页页面工作流: /zh-hans/studio",
+                "书单页页面工作流: /zh-hans/exam",
+                "书单页表单填写验证: 搜索",
+                "书单页页面工作流: 页面文本",
+                "书单页页面工作流: 链接入口",
+                "书单页页面工作流: 操作按钮",
+                "书单页页面工作流: 输入字段",
+                "书单页表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "书单页页面工作流: /zh-hans/textbook",
+            "书单页页面工作流: /zh-hans/homework",
+            "书单页页面工作流: /zh-hans/joined-classes",
+            "书单页页面工作流: /zh-hans/reading",
+            "书单页页面工作流: /zh-hans/playlist",
+            "书单页页面工作流: /zh-hans/favorites",
+            "书单页页面工作流: /zh-hans/studio",
+            "书单页页面工作流: /zh-hans/exam",
+            "书单页表单填写验证: 搜索",
+            "书单页页面工作流: 页面文本",
+            "书单页页面工作流: 链接入口",
+            "书单页页面工作流: 操作按钮",
+            "书单页页面工作流: 输入字段",
+            "书单页表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlists?sort=sortNum,desc&page=0&size=20&currentUser=false",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlists?sort=sortNum,desc&page=0&size=20&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95&currentUser=false",
+        "GET https://sr.sigmareading.com/zh-hans/playlist"
+      ]
+    },
+    {
+      "name": "导航页: reading (/zh-hans/reading)",
+      "path": "/zh-hans/reading",
+      "routeHint": "/zh-hans/reading",
+      "pageKind": "navigation",
+      "scriptId": "page-reading-detailed",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/reading 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading 文章 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/reading",
+          "标题: ©2026 SReading v2.12.12 | 文章",
+          "交互元素: 103 个",
+          "工作流验证: 文章列表基线识别=PASS | 搜索功能验证=PASS | 排序功能验证=PASS | 筛选功能验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "文章列表基线识别: 识别到 8 条文章结果样本，字段候选：标题、提供者、日期、阅读量",
+          "搜索功能验证: 使用关键字“鲤鱼跳龙门同”执行搜索，未在样本结果中命中关键字。",
+          "排序功能验证: 发现排序候选项 8 个；本次尝试应用：发布日期",
+          "筛选功能验证: 未识别到独立筛选项，但已验证筛选边界控件 筛选 与结果列表共存。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=created_date,desc&page=0&size=20&search=%E9%B2%A4%E9%B1%BC%E8%B7%B3%E9%BE%99%E9%97%A8%E5%90%8C",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=name.text,desc&page=0&size=20&search=%E9%B2%A4%E9%B1%BC%E8%B7%B3%E9%BE%99%E9%97%A8%E5%90%8C"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 4 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/reading 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading 文章 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "搜索"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "文章列表基线识别",
+          "category": "verify",
+          "purpose": "确认页面是否展示文章列表，以及列表中可识别哪些核心结果字段。",
+          "expectedResult": "至少识别 1 条文章结果，并能归纳标题/作者/日期/提供者/阅读量等字段",
+          "evidence": [
+            "识别到 8 条文章结果样本，字段候选：标题、提供者、日期、阅读量",
+            "读取当前文章列表: 识别到 8 条结果样本；字段候选：标题、提供者、日期、阅读量"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "搜索功能验证",
+          "category": "verify",
+          "purpose": "验证文章页是否支持关键字搜索，以及搜索后结果是否收敛到相关文章。",
+          "expectedResult": "触发文章查询，并返回与关键字相关的结果列表",
+          "evidence": [
+            "使用关键字“鲤鱼跳龙门同”执行搜索，未在样本结果中命中关键字。",
+            "输入关键字并提交搜索: 已提交关键字“鲤鱼跳龙门同”，返回 0 条结果样本"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "排序功能验证",
+          "category": "verify",
+          "purpose": "验证文章页是否提供排序选项，并确认选择某个排序后页面请求或结果会发生响应。",
+          "expectedResult": "出现排序选项；选择后触发列表重新查询或结果顺序变化",
+          "evidence": [
+            "发现排序候选项 8 个；本次尝试应用：发布日期",
+            "打开排序面板并选择排序项: 排序项：发布日期、名称、作者、提供者、阅读数量、喜爱数量、长度、更新时间；已尝试应用：发布日期"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "筛选功能验证",
+          "category": "verify",
+          "purpose": "验证文章页是否提供筛选条件，并确认选择条件后列表可被重新约束。",
+          "expectedResult": "出现筛选条件；选择后触发结果集收敛或重新查询",
+          "evidence": [
+            "未识别到独立筛选项，但已验证筛选边界控件 筛选 与结果列表共存。",
+            "打开筛选面板并选择筛选项: 未识别到独立筛选项；已识别边界控件：筛选；结果列表仍可读取 8 条样本"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "文章列表基线识别",
+          "summary": "识别到 8 条文章结果样本，字段候选：标题、提供者、日期、阅读量",
+          "statuses": [
+            "pass"
+          ]
+        },
+        {
+          "name": "搜索功能验证",
+          "summary": "使用关键字“鲤鱼跳龙门同”执行搜索，未在样本结果中命中关键字。",
+          "statuses": [
+            "pass"
+          ]
+        },
+        {
+          "name": "排序功能验证",
+          "summary": "发现排序候选项 8 个；本次尝试应用：发布日期",
+          "statuses": [
+            "pass"
+          ]
+        },
+        {
+          "name": "筛选功能验证",
+          "summary": "未识别到独立筛选项，但已验证筛选边界控件 筛选 与结果列表共存。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-reading-detailed",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 8 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading 文章 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: 搜索",
+                "文章列表基线识别: 识别到 8 条文章结果样本，字段候选：标题、提供者、日期、阅读量",
+                "搜索功能验证: 使用关键字“鲤鱼跳龙门同”执行搜索，未在样本结果中命中关键字。",
+                "排序功能验证: 发现排序候选项 8 个；本次尝试应用：发布日期",
+                "筛选功能验证: 未识别到独立筛选项，但已验证筛选边界控件 筛选 与结果列表共存。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 4 个页面工作流验证。",
+              "details": [
+                "文章列表基线识别: 识别到 8 条文章结果样本，字段候选：标题、提供者、日期、阅读量",
+                "搜索功能验证: 使用关键字“鲤鱼跳龙门同”执行搜索，未在样本结果中命中关键字。",
+                "排序功能验证: 发现排序候选项 8 个；本次尝试应用：发布日期",
+                "筛选功能验证: 未识别到独立筛选项，但已验证筛选边界控件 筛选 与结果列表共存。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "文章列表基线识别 / 读取当前文章列表: PASS",
+                "搜索功能验证 / 输入关键字并提交搜索: PASS",
+                "排序功能验证 / 打开排序面板并选择排序项: PASS",
+                "筛选功能验证 / 打开筛选面板并选择筛选项: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 18 条新选项/字段线索。",
+              "details": [
+                "搜索功能验证: 鲤鱼跳龙门同",
+                "排序功能验证: 发布日期",
+                "排序功能验证: 名称",
+                "排序功能验证: 作者",
+                "排序功能验证: 提供者",
+                "排序功能验证: 阅读数量",
+                "排序功能验证: 喜爱数量",
+                "排序功能验证: 长度",
+                "排序功能验证: 更新时间",
+                "筛选功能验证: 筛选",
+                "文章列表基线识别: 标题",
+                "文章列表基线识别: 提供者",
+                "文章列表基线识别: 日期",
+                "文章列表基线识别: 阅读量",
+                "筛选功能验证: 标题",
+                "筛选功能验证: 提供者",
+                "筛选功能验证: 日期",
+                "筛选功能验证: 阅读量"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "搜索功能验证: 鲤鱼跳龙门同",
+            "排序功能验证: 发布日期",
+            "排序功能验证: 名称",
+            "排序功能验证: 作者",
+            "排序功能验证: 提供者",
+            "排序功能验证: 阅读数量",
+            "排序功能验证: 喜爱数量",
+            "排序功能验证: 长度",
+            "排序功能验证: 更新时间",
+            "筛选功能验证: 筛选",
+            "文章列表基线识别: 标题",
+            "文章列表基线识别: 提供者",
+            "文章列表基线识别: 日期",
+            "文章列表基线识别: 阅读量",
+            "筛选功能验证: 标题",
+            "筛选功能验证: 提供者",
+            "筛选功能验证: 日期",
+            "筛选功能验证: 阅读量"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=created_date,desc&page=0&size=20&search=%E9%B2%A4%E9%B1%BC%E8%B7%B3%E9%BE%99%E9%97%A8%E5%90%8C",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=name.text,desc&page=0&size=20&search=%E9%B2%A4%E9%B1%BC%E8%B7%B3%E9%BE%99%E9%97%A8%E5%90%8C"
+      ]
+    },
+    {
+      "name": "导航页: studio (/zh-hans/studio)",
+      "path": "/zh-hans/studio",
+      "routeHint": "/zh-hans/studio",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-studio",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/studio 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading 工作室 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/studio",
+          "标题: ©2026 SReading v2.12.12 | 工作室",
+          "交互元素: 66 个",
+          "工作流验证: 工作室页面工作流=PASS/PASS | 工作室表单填写验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "工作室页面工作流: 识别 7 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "工作室表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=last_modified_date,desc&page=0&size=20&currentUser=true&status=ACTIVE&status=PENDING",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=last_modified_date,desc&page=0&size=20&currentUser=true&status=ACTIVE&status=PENDING&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+          "GET https://sr.sigmareading.com/zh-hans/studio"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/studio 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading 工作室 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "搜索"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "工作室页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/studio 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 7 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取页面核心内容: 页面文本 7 条；入口 12 个；控件 8 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "工作室表单填写验证",
+          "category": "verify",
+          "purpose": "发现 工作室 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，观察到真实反馈。",
+            "填写已发现字段并观察结果: 已填写 搜索=中文测试；请求 1 个；新增结果样本 0 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "工作室页面工作流",
+          "summary": "识别 7 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "工作室表单填写验证",
+          "summary": "已填写 1 个字段，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-studio",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 6 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading 工作室 - 最智能的免费中文阅读、识字、作业工具 -- 传播人类经典，构建文化与知识的桥梁。",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: 搜索",
+                "工作室页面工作流: 识别 7 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+                "工作室表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "工作室页面工作流: 识别 7 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+                "工作室表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "工作室页面工作流 / 读取页面核心内容: PASS",
+                "工作室页面工作流 / 验证后续入口或关键控件: PASS",
+                "工作室表单填写验证 / 填写已发现字段并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 14 条新选项/字段线索。",
+              "details": [
+                "工作室页面工作流: /zh-hans/textbook",
+                "工作室页面工作流: /zh-hans/homework",
+                "工作室页面工作流: /zh-hans/joined-classes",
+                "工作室页面工作流: /zh-hans/reading",
+                "工作室页面工作流: /zh-hans/playlist",
+                "工作室页面工作流: /zh-hans/favorites",
+                "工作室页面工作流: /zh-hans/studio",
+                "工作室页面工作流: /zh-hans/exam",
+                "工作室表单填写验证: 搜索",
+                "工作室页面工作流: 页面文本",
+                "工作室页面工作流: 链接入口",
+                "工作室页面工作流: 操作按钮",
+                "工作室页面工作流: 输入字段",
+                "工作室表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "工作室页面工作流: /zh-hans/textbook",
+            "工作室页面工作流: /zh-hans/homework",
+            "工作室页面工作流: /zh-hans/joined-classes",
+            "工作室页面工作流: /zh-hans/reading",
+            "工作室页面工作流: /zh-hans/playlist",
+            "工作室页面工作流: /zh-hans/favorites",
+            "工作室页面工作流: /zh-hans/studio",
+            "工作室页面工作流: /zh-hans/exam",
+            "工作室表单填写验证: 搜索",
+            "工作室页面工作流: 页面文本",
+            "工作室页面工作流: 链接入口",
+            "工作室页面工作流: 操作按钮",
+            "工作室页面工作流: 输入字段",
+            "工作室表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=last_modified_date,desc&page=0&size=20&currentUser=true&status=ACTIVE&status=PENDING",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings?sort=last_modified_date,desc&page=0&size=20&currentUser=true&status=ACTIVE&status=PENDING&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+        "GET https://sr.sigmareading.com/zh-hans/studio"
+      ]
+    },
+    {
+      "name": "导航页: textbook (/zh-hans/textbook)",
+      "path": "/zh-hans/textbook",
+      "routeHint": "/zh-hans/textbook",
+      "pageKind": "navigation",
+      "scriptId": "page-navigation-zh-hans-textbook",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/textbook 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/textbook",
+          "标题: ©2026 SReading v2.12.12 | 教材",
+          "交互元素: 56 个",
+          "工作流验证: 教材页页面工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "教材页页面工作流: 识别 8 条页面文本信号、12 个入口、7 个控件；已到达 /zh-hans/homework，并恢复当前页"
+        ],
+        "networkSignals": [],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/textbook 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "教材页页面工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/textbook 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+          "expectedResult": "至少识别 2 条页面内容信号或 1 个稳定入口；至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+          "evidence": [
+            "识别 8 条页面文本信号、12 个入口、7 个控件；已到达 /zh-hans/homework，并恢复当前页",
+            "读取页面核心内容: 页面文本 8 条；入口 12 个；控件 7 个",
+            "验证后续入口或关键控件: 已到达 /zh-hans/homework，并恢复当前页"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "教材页页面工作流",
+          "summary": "识别 8 条页面文本信号、12 个入口、7 个控件；已到达 /zh-hans/homework，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-navigation-zh-hans-textbook",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "教材页页面工作流: 识别 8 条页面文本信号、12 个入口、7 个控件；已到达 /zh-hans/homework，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "教材页页面工作流: 识别 8 条页面文本信号、12 个入口、7 个控件；已到达 /zh-hans/homework，并恢复当前页"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "教材页页面工作流 / 读取页面核心内容: PASS",
+                "教材页页面工作流 / 验证后续入口或关键控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 11 条新选项/字段线索。",
+              "details": [
+                "教材页页面工作流: /zh-hans/textbook",
+                "教材页页面工作流: /zh-hans/homework",
+                "教材页页面工作流: /zh-hans/joined-classes",
+                "教材页页面工作流: /zh-hans/reading",
+                "教材页页面工作流: /zh-hans/playlist",
+                "教材页页面工作流: /zh-hans/favorites",
+                "教材页页面工作流: /zh-hans/studio",
+                "教材页页面工作流: /zh-hans/exam",
+                "教材页页面工作流: 页面文本",
+                "教材页页面工作流: 链接入口",
+                "教材页页面工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "教材页页面工作流: /zh-hans/textbook",
+            "教材页页面工作流: /zh-hans/homework",
+            "教材页页面工作流: /zh-hans/joined-classes",
+            "教材页页面工作流: /zh-hans/reading",
+            "教材页页面工作流: /zh-hans/playlist",
+            "教材页页面工作流: /zh-hans/favorites",
+            "教材页页面工作流: /zh-hans/studio",
+            "教材页页面工作流: /zh-hans/exam",
+            "教材页页面工作流: 页面文本",
+            "教材页页面工作流: 链接入口",
+            "教材页页面工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": []
+    },
+    {
+      "name": "深层页: assignment (/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list)",
+      "path": "/zh-hans/assignment/69e458ad85faa905f1218d2d",
+      "routeHint": "/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list",
+      "pageKind": "deep",
+      "scriptId": "page-deep-assignment",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list",
+          "标题: ©2026 SReading v2.12.12 | 新代中文：致远版 L1_T1 第2课.a1: 汉字",
+          "交互元素: 52 个",
+          "工作流验证: 作业详情详情工作流=PASS/PASS | 作业详情按钮使用验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "作业详情详情工作流: 识别 3 条详情文本信号、4 个控件信号。",
+          "作业详情按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/assets/cnchar.draw.min.DFAQbo7U.js",
+          "GET https://sr.sigmareading.com/audio/alert_error.mp3",
+          "GET https://sr.sigmareading.com/audio/correct.mp3",
+          "GET https://sr.sigmareading.com/images/panda-tip-3.png",
+          "GET https://sr.sigmareading.com/pinyin/b%C7%8Eo.mp3",
+          "GET https://sr.sigmareading.com/pinyin/q%C3%AD.mp3",
+          "GET https://sr.sigmareading.com/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "作业详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 3 条详情文本信号、4 个控件信号。",
+            "读取详情内容: 识别 3 条详情文本：©2026 SReading v2.12.12；新代中文：致远版 L1_T1 第2课.a1: 汉字；开始",
+            "检查详情操作控件: 识别 4 个控件：button；ion-button；back；开始"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "作业详情按钮使用验证",
+          "category": "verify",
+          "purpose": "发现 作业详情 的按钮后，实际点击安全按钮并观察页面、请求或结果样本是否变化。",
+          "expectedResult": "按钮点击后应触发页面反馈、请求变化或结果样本变化",
+          "evidence": [
+            "已尝试点击“开始”，观察到真实反馈。",
+            "点击已发现按钮并观察结果: 点击后 URL=https://sr.sigmareading.com/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list；请求 0 个；新增结果样本 4 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "作业详情详情工作流",
+          "summary": "识别 3 条详情文本信号、4 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "作业详情按钮使用验证",
+          "summary": "已尝试点击“开始”，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-assignment",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 5 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "作业详情详情工作流: 识别 3 条详情文本信号、4 个控件信号。",
+                "作业详情按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "作业详情详情工作流: 识别 3 条详情文本信号、4 个控件信号。",
+                "作业详情按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "作业详情详情工作流 / 读取详情内容: PASS",
+                "作业详情详情工作流 / 检查详情操作控件: PASS",
+                "作业详情按钮使用验证 / 点击已发现按钮并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 9 条新选项/字段线索。",
+              "details": [
+                "作业详情详情工作流: button",
+                "作业详情详情工作流: ion-button",
+                "作业详情详情工作流: back",
+                "作业详情详情工作流: 开始",
+                "作业详情按钮使用验证: 开始",
+                "作业详情详情工作流: 页面文本",
+                "作业详情详情工作流: 链接入口",
+                "作业详情详情工作流: 操作按钮",
+                "作业详情按钮使用验证: 按钮使用结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "作业详情详情工作流: button",
+            "作业详情详情工作流: ion-button",
+            "作业详情详情工作流: back",
+            "作业详情详情工作流: 开始",
+            "作业详情按钮使用验证: 开始",
+            "作业详情详情工作流: 页面文本",
+            "作业详情详情工作流: 链接入口",
+            "作业详情详情工作流: 操作按钮",
+            "作业详情按钮使用验证: 按钮使用结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/assets/cnchar.draw.min.DFAQbo7U.js",
+        "GET https://sr.sigmareading.com/audio/alert_error.mp3",
+        "GET https://sr.sigmareading.com/audio/correct.mp3",
+        "GET https://sr.sigmareading.com/images/panda-tip-3.png",
+        "GET https://sr.sigmareading.com/pinyin/b%C7%8Eo.mp3",
+        "GET https://sr.sigmareading.com/pinyin/q%C3%AD.mp3",
+        "GET https://sr.sigmareading.com/zh-hans/assignment/69e458ad85faa905f1218d2d?from=homework&homeworkTab=list&homeworkName=list"
+      ]
+    },
+    {
+      "name": "深层页: assignment (/zh-hans/assignment/69e458ae85faa905f1218d2f)",
+      "path": "/zh-hans/assignment/69e458ae85faa905f1218d2f",
+      "routeHint": "/zh-hans/assignment/69e458ae85faa905f1218d2f",
+      "pageKind": "deep",
+      "scriptId": "page-deep-assignment",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/assignment/69e458ae85faa905f1218d2f 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/assignment/69e458ae85faa905f1218d2f",
+          "标题: ©2026 SReading v2.12.12 | 新代中文：致远版 L1_T1 第2课.r1:汉字",
+          "交互元素: 52 个",
+          "工作流验证: 作业详情详情工作流=PASS/PASS | 作业详情按钮使用验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "作业详情详情工作流: 识别 3 条详情文本信号、4 个控件信号。",
+          "作业详情按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-detail/69e458ae85faa905f1218d2f",
+          "GET https://sr.sigmareading.com/zh-hans/assignment/69e458ae85faa905f1218d2f"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/assignment/69e458ae85faa905f1218d2f 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "作业详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/assignment/69e458ae85faa905f1218d2f 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 3 条详情文本信号、4 个控件信号。",
+            "读取详情内容: 识别 3 条详情文本：©2026 SReading v2.12.12；新代中文：致远版 L1_T1 第2课.r1:汉字；开始",
+            "检查详情操作控件: 识别 4 个控件：button；ion-button；back；开始"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "作业详情按钮使用验证",
+          "category": "verify",
+          "purpose": "发现 作业详情 的按钮后，实际点击安全按钮并观察页面、请求或结果样本是否变化。",
+          "expectedResult": "按钮点击后应触发页面反馈、请求变化或结果样本变化",
+          "evidence": [
+            "已尝试点击“开始”，观察到真实反馈。",
+            "点击已发现按钮并观察结果: 点击后 URL=https://sr.sigmareading.com/zh-hans/assignment/69e458ae85faa905f1218d2f；请求 0 个；新增结果样本 4 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "作业详情详情工作流",
+          "summary": "识别 3 条详情文本信号、4 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "作业详情按钮使用验证",
+          "summary": "已尝试点击“开始”，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-assignment",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 5 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "作业详情详情工作流: 识别 3 条详情文本信号、4 个控件信号。",
+                "作业详情按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "作业详情详情工作流: 识别 3 条详情文本信号、4 个控件信号。",
+                "作业详情按钮使用验证: 已尝试点击“开始”，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "作业详情详情工作流 / 读取详情内容: PASS",
+                "作业详情详情工作流 / 检查详情操作控件: PASS",
+                "作业详情按钮使用验证 / 点击已发现按钮并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 9 条新选项/字段线索。",
+              "details": [
+                "作业详情详情工作流: button",
+                "作业详情详情工作流: ion-button",
+                "作业详情详情工作流: back",
+                "作业详情详情工作流: 开始",
+                "作业详情按钮使用验证: 开始",
+                "作业详情详情工作流: 页面文本",
+                "作业详情详情工作流: 链接入口",
+                "作业详情详情工作流: 操作按钮",
+                "作业详情按钮使用验证: 按钮使用结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "作业详情详情工作流: button",
+            "作业详情详情工作流: ion-button",
+            "作业详情详情工作流: back",
+            "作业详情详情工作流: 开始",
+            "作业详情按钮使用验证: 开始",
+            "作业详情详情工作流: 页面文本",
+            "作业详情详情工作流: 链接入口",
+            "作业详情详情工作流: 操作按钮",
+            "作业详情按钮使用验证: 按钮使用结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/my-account/assignment-detail/69e458ae85faa905f1218d2f",
+        "GET https://sr.sigmareading.com/zh-hans/assignment/69e458ae85faa905f1218d2f"
+      ]
+    },
+    {
+      "name": "深层页: reading-display (/zh-hans/reading-display/63ec90d4e328e6231bb8b4a2)",
+      "path": "/zh-hans/reading-display/63ec90d4e328e6231bb8b4a2",
+      "routeHint": "/zh-hans/reading-display/63ec90d4e328e6231bb8b4a2",
+      "pageKind": "deep",
+      "scriptId": "page-deep-reading-display",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/reading-display/63ec90d4e328e6231bb8b4a2 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "鲤鱼跳龙门 - SReading",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/reading-display/63ec90d4e328e6231bb8b4a2",
+          "标题: ©2026 SReading v2.12.12 | 鲤鱼跳龙门",
+          "交互元素: 69 个",
+          "工作流验证: 文章详情详情工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "文章详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/63ec90d4e328e6231bb8b4a2",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/recs/explain/63ec90d4e328e6231bb8b4a2",
+          "GET https://sr.sigmareading.com/zh-hans/reading-display/63ec90d4e328e6231bb8b4a2"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/reading-display/63ec90d4e328e6231bb8b4a2 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "鲤鱼跳龙门 - SReading"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "文章详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/reading-display/63ec90d4e328e6231bb8b4a2 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 8 条详情文本信号、8 个控件信号。",
+            "读取详情内容: 识别 8 条详情文本：©2026 SReading v2.12.12；鲤鱼跳龙门；同乐中文",
+            "检查详情操作控件: 识别 8 个控件：button；ion-button；back；addBtn"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "文章详情详情工作流",
+          "summary": "识别 8 条详情文本信号、8 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-reading-display",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: 鲤鱼跳龙门 - SReading",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "文章详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "文章详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "文章详情详情工作流 / 读取详情内容: PASS",
+                "文章详情详情工作流 / 检查详情操作控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 11 条新选项/字段线索。",
+              "details": [
+                "文章详情详情工作流: button",
+                "文章详情详情工作流: ion-button",
+                "文章详情详情工作流: back",
+                "文章详情详情工作流: addBtn",
+                "文章详情详情工作流: multilingual-list",
+                "文章详情详情工作流: reading-display-all-play",
+                "文章详情详情工作流: reading-font-size",
+                "文章详情详情工作流: reading-display-language",
+                "文章详情详情工作流: 页面文本",
+                "文章详情详情工作流: 链接入口",
+                "文章详情详情工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "文章详情详情工作流: button",
+            "文章详情详情工作流: ion-button",
+            "文章详情详情工作流: back",
+            "文章详情详情工作流: addBtn",
+            "文章详情详情工作流: multilingual-list",
+            "文章详情详情工作流: reading-display-all-play",
+            "文章详情详情工作流: reading-font-size",
+            "文章详情详情工作流: reading-display-language",
+            "文章详情详情工作流: 页面文本",
+            "文章详情详情工作流: 链接入口",
+            "文章详情详情工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/63ec90d4e328e6231bb8b4a2",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/recs/explain/63ec90d4e328e6231bb8b4a2",
+        "GET https://sr.sigmareading.com/zh-hans/reading-display/63ec90d4e328e6231bb8b4a2"
+      ]
+    },
+    {
+      "name": "深层页: personal-data (/zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa)",
+      "path": "/zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa",
+      "routeHint": "/zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa",
+      "pageKind": "deep",
+      "scriptId": "page-deep-personal-data",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa",
+          "标题: ©2026 SReading v2.12.12 | 个人资料",
+          "交互元素: 56 个",
+          "工作流验证: 个人数据详情详情工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "个人数据详情详情工作流: 识别 8 条详情文本信号、5 个控件信号。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/profile/590ea45f-04ee-4f24-b1d9-f3fd38e472aa",
+          "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xuexi.yang%40tonglec.org",
+          "GET https://sr.sigmareading.com/zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "个人数据详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 8 条详情文本信号、5 个控件信号。",
+            "读取详情内容: 识别 8 条详情文本：©2026 SReading v2.12.12；个人资料；xuexi.yang@tonglec.org",
+            "检查详情操作控件: 识别 5 个控件：button；ion-button；back；multilingual-list"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "个人数据详情详情工作流",
+          "summary": "识别 8 条详情文本信号、5 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-personal-data",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "个人数据详情详情工作流: 识别 8 条详情文本信号、5 个控件信号。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "个人数据详情详情工作流: 识别 8 条详情文本信号、5 个控件信号。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "个人数据详情详情工作流 / 读取详情内容: PASS",
+                "个人数据详情详情工作流 / 检查详情操作控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 8 条新选项/字段线索。",
+              "details": [
+                "个人数据详情详情工作流: button",
+                "个人数据详情详情工作流: ion-button",
+                "个人数据详情详情工作流: back",
+                "个人数据详情详情工作流: multilingual-list",
+                "个人数据详情详情工作流: 1x",
+                "个人数据详情详情工作流: 页面文本",
+                "个人数据详情详情工作流: 链接入口",
+                "个人数据详情详情工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "个人数据详情详情工作流: button",
+            "个人数据详情详情工作流: ion-button",
+            "个人数据详情详情工作流: back",
+            "个人数据详情详情工作流: multilingual-list",
+            "个人数据详情详情工作流: 1x",
+            "个人数据详情详情工作流: 页面文本",
+            "个人数据详情详情工作流: 链接入口",
+            "个人数据详情详情工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/profile/590ea45f-04ee-4f24-b1d9-f3fd38e472aa",
+        "GET https://sr.sigmareading.com/services/tlc-ms-core/api/user-docs/public?login=xuexi.yang%40tonglec.org",
+        "GET https://sr.sigmareading.com/zh-hans/personal-data/590ea45f-04ee-4f24-b1d9-f3fd38e472aa"
+      ]
+    },
+    {
+      "name": "深层页: reading-display (/zh-hans/reading-display/672b0940b829737eb3f6b047)",
+      "path": "/zh-hans/reading-display/672b0940b829737eb3f6b047",
+      "routeHint": "/zh-hans/reading-display/672b0940b829737eb3f6b047",
+      "pageKind": "deep",
+      "scriptId": "page-deep-reading-display",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/reading-display/672b0940b829737eb3f6b047 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "鲊蓣碴哕变崴蒸强鹮申蜒铷熠汝 - SReading",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/reading-display/672b0940b829737eb3f6b047",
+          "标题: ©2026 SReading v2.12.12 | 鲊蓣碴哕变崴蒸强鹮申蜒铷熠汝",
+          "交互元素: 67 个",
+          "工作流验证: 文章详情详情工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "文章详情详情工作流: 识别 5 条详情文本信号、8 个控件信号。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/672b0940b829737eb3f6b047",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/recs/explain/672b0940b829737eb3f6b047",
+          "GET https://sr.sigmareading.com/zh-hans/reading-display/672b0940b829737eb3f6b047"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/reading-display/672b0940b829737eb3f6b047 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "鲊蓣碴哕变崴蒸强鹮申蜒铷熠汝 - SReading"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "文章详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/reading-display/672b0940b829737eb3f6b047 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 5 条详情文本信号、8 个控件信号。",
+            "读取详情内容: 识别 5 条详情文本：©2026 SReading v2.12.12；鲊蓣碴哕变崴蒸强鹮申蜒铷熠汝；43",
+            "检查详情操作控件: 识别 8 个控件：button；ion-button；back；addBtn"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "文章详情详情工作流",
+          "summary": "识别 5 条详情文本信号、8 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-reading-display",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 4 个候选功能点。",
+              "details": [
+                "页面上下文识别: 鲊蓣碴哕变崴蒸强鹮申蜒铷熠汝 - SReading",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "文章详情详情工作流: 识别 5 条详情文本信号、8 个控件信号。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "文章详情详情工作流: 识别 5 条详情文本信号、8 个控件信号。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "文章详情详情工作流 / 读取详情内容: PASS",
+                "文章详情详情工作流 / 检查详情操作控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 11 条新选项/字段线索。",
+              "details": [
+                "文章详情详情工作流: button",
+                "文章详情详情工作流: ion-button",
+                "文章详情详情工作流: back",
+                "文章详情详情工作流: addBtn",
+                "文章详情详情工作流: multilingual-list",
+                "文章详情详情工作流: reading-font-size",
+                "文章详情详情工作流: reading-display-language",
+                "文章详情详情工作流: reading-display-show-pinyin",
+                "文章详情详情工作流: 页面文本",
+                "文章详情详情工作流: 链接入口",
+                "文章详情详情工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "文章详情详情工作流: button",
+            "文章详情详情工作流: ion-button",
+            "文章详情详情工作流: back",
+            "文章详情详情工作流: addBtn",
+            "文章详情详情工作流: multilingual-list",
+            "文章详情详情工作流: reading-font-size",
+            "文章详情详情工作流: reading-display-language",
+            "文章详情详情工作流: reading-display-show-pinyin",
+            "文章详情详情工作流: 页面文本",
+            "文章详情详情工作流: 链接入口",
+            "文章详情详情工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/672b0940b829737eb3f6b047",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/readings/recs/explain/672b0940b829737eb3f6b047",
+        "GET https://sr.sigmareading.com/zh-hans/reading-display/672b0940b829737eb3f6b047"
+      ]
+    },
+    {
+      "name": "深层页: playlist-display (/zh-hans/playlist-display/6539da63ca06cb10e16f58ef)",
+      "path": "/zh-hans/playlist-display/6539da63ca06cb10e16f58ef",
+      "routeHint": "/zh-hans/playlist-display/6539da63ca06cb10e16f58ef",
+      "pageKind": "deep",
+      "scriptId": "page-deep-playlist-display",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/playlist-display/6539da63ca06cb10e16f58ef 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "《三国演义》青少版 - SReading",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/playlist-display/6539da63ca06cb10e16f58ef",
+          "标题: ©2026 SReading v2.12.12",
+          "交互元素: 104 个",
+          "工作流验证: 书单详情详情工作流=PASS/PASS | 书单详情表单填写验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "书单详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。",
+          "书单详情表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/images/playlist-cover.png",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/6539da63ca06cb10e16f58ef?page=0&size=20",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/6539da63ca06cb10e16f58ef?page=0&size=20&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+          "GET https://sr.sigmareading.com/zh-hans/playlist-display/6539da63ca06cb10e16f58ef"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/playlist-display/6539da63ca06cb10e16f58ef 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "《三国演义》青少版 - SReading"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "搜索"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "书单详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/playlist-display/6539da63ca06cb10e16f58ef 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 8 条详情文本信号、8 个控件信号。",
+            "读取详情内容: 识别 8 条详情文本：©2026 SReading v2.12.12；《三国演义》青少版；创建人 晴天 小猪🐷",
+            "检查详情操作控件: 识别 8 个控件：button；ion-button；back；addBtn"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "书单详情表单填写验证",
+          "category": "verify",
+          "purpose": "发现 书单详情 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，观察到真实反馈。",
+            "填写已发现字段并观察结果: 已填写 搜索=中文测试；请求 1 个；新增结果样本 0 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "书单详情详情工作流",
+          "summary": "识别 8 条详情文本信号、8 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "书单详情表单填写验证",
+          "summary": "已填写 1 个字段，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-playlist-display",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 6 个候选功能点。",
+              "details": [
+                "页面上下文识别: 《三国演义》青少版 - SReading",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: 搜索",
+                "书单详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。",
+                "书单详情表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "书单详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。",
+                "书单详情表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "书单详情详情工作流 / 读取详情内容: PASS",
+                "书单详情详情工作流 / 检查详情操作控件: PASS",
+                "书单详情表单填写验证 / 填写已发现字段并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 14 条新选项/字段线索。",
+              "details": [
+                "书单详情详情工作流: button",
+                "书单详情详情工作流: ion-button",
+                "书单详情详情工作流: back",
+                "书单详情详情工作流: addBtn",
+                "书单详情详情工作流: multilingual-list",
+                "书单详情详情工作流: reading-display-favorites",
+                "书单详情详情工作流: 搜索",
+                "书单详情详情工作流: reset",
+                "书单详情表单填写验证: 搜索",
+                "书单详情详情工作流: 页面文本",
+                "书单详情详情工作流: 链接入口",
+                "书单详情详情工作流: 操作按钮",
+                "书单详情详情工作流: 输入字段",
+                "书单详情表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "书单详情详情工作流: button",
+            "书单详情详情工作流: ion-button",
+            "书单详情详情工作流: back",
+            "书单详情详情工作流: addBtn",
+            "书单详情详情工作流: multilingual-list",
+            "书单详情详情工作流: reading-display-favorites",
+            "书单详情详情工作流: 搜索",
+            "书单详情详情工作流: reset",
+            "书单详情表单填写验证: 搜索",
+            "书单详情详情工作流: 页面文本",
+            "书单详情详情工作流: 链接入口",
+            "书单详情详情工作流: 操作按钮",
+            "书单详情详情工作流: 输入字段",
+            "书单详情表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/images/playlist-cover.png",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/6539da63ca06cb10e16f58ef?page=0&size=20",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/6539da63ca06cb10e16f58ef?page=0&size=20&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+        "GET https://sr.sigmareading.com/zh-hans/playlist-display/6539da63ca06cb10e16f58ef"
+      ]
+    },
+    {
+      "name": "深层页: playlist-display (/zh-hans/playlist-display/653a1734d448f0607b7aa574)",
+      "path": "/zh-hans/playlist-display/653a1734d448f0607b7aa574",
+      "routeHint": "/zh-hans/playlist-display/653a1734d448f0607b7aa574",
+      "pageKind": "deep",
+      "scriptId": "page-deep-playlist-display",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/playlist-display/653a1734d448f0607b7aa574 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "《秘密花园》 - SReading",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/playlist-display/653a1734d448f0607b7aa574",
+          "标题: ©2026 SReading v2.12.12",
+          "交互元素: 104 个",
+          "工作流验证: 书单详情详情工作流=PASS/PASS | 书单详情表单填写验证=PASS"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "书单详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。",
+          "书单详情表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/653a1734d448f0607b7aa574?page=0&size=20",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/653a1734d448f0607b7aa574?page=0&size=20&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+          "GET https://sr.sigmareading.com/zh-hans/playlist-display/653a1734d448f0607b7aa574"
+        ],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/playlist-display/653a1734d448f0607b7aa574 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "《秘密花园》 - SReading"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "搜索"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "书单详情详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/playlist-display/653a1734d448f0607b7aa574 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 8 条详情文本信号、8 个控件信号。",
+            "读取详情内容: 识别 8 条详情文本：©2026 SReading v2.12.12；《秘密花园》；创建人 晴天 小猪🐷",
+            "检查详情操作控件: 识别 8 个控件：button；ion-button；back；addBtn"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "书单详情表单填写验证",
+          "category": "verify",
+          "purpose": "发现 书单详情 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，观察到真实反馈。",
+            "填写已发现字段并观察结果: 已填写 搜索=中文测试；请求 1 个；新增结果样本 0 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "书单详情详情工作流",
+          "summary": "识别 8 条详情文本信号、8 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "书单详情表单填写验证",
+          "summary": "已填写 1 个字段，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-playlist-display",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 6 个候选功能点。",
+              "details": [
+                "页面上下文识别: 《秘密花园》 - SReading",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: 搜索",
+                "书单详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。",
+                "书单详情表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "书单详情详情工作流: 识别 8 条详情文本信号、8 个控件信号。",
+                "书单详情表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "书单详情详情工作流 / 读取详情内容: PASS",
+                "书单详情详情工作流 / 检查详情操作控件: PASS",
+                "书单详情表单填写验证 / 填写已发现字段并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 14 条新选项/字段线索。",
+              "details": [
+                "书单详情详情工作流: button",
+                "书单详情详情工作流: ion-button",
+                "书单详情详情工作流: back",
+                "书单详情详情工作流: addBtn",
+                "书单详情详情工作流: multilingual-list",
+                "书单详情详情工作流: reading-display-favorites",
+                "书单详情详情工作流: 搜索",
+                "书单详情详情工作流: reset",
+                "书单详情表单填写验证: 搜索",
+                "书单详情详情工作流: 页面文本",
+                "书单详情详情工作流: 链接入口",
+                "书单详情详情工作流: 操作按钮",
+                "书单详情详情工作流: 输入字段",
+                "书单详情表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "书单详情详情工作流: button",
+            "书单详情详情工作流: ion-button",
+            "书单详情详情工作流: back",
+            "书单详情详情工作流: addBtn",
+            "书单详情详情工作流: multilingual-list",
+            "书单详情详情工作流: reading-display-favorites",
+            "书单详情详情工作流: 搜索",
+            "书单详情详情工作流: reset",
+            "书单详情表单填写验证: 搜索",
+            "书单详情详情工作流: 页面文本",
+            "书单详情详情工作流: 链接入口",
+            "书单详情详情工作流: 操作按钮",
+            "书单详情详情工作流: 输入字段",
+            "书单详情表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/653a1734d448f0607b7aa574?page=0&size=20",
+        "GET https://sr.sigmareading.com/services/sr-ms-core/api/playlistsPage/653a1734d448f0607b7aa574?page=0&size=20&search=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95",
+        "GET https://sr.sigmareading.com/zh-hans/playlist-display/653a1734d448f0607b7aa574"
+      ]
+    },
+    {
+      "name": "深层页: student-invite (/zh-hans/student-invite)",
+      "path": "/zh-hans/student-invite",
+      "routeHint": "/zh-hans/student-invite",
+      "pageKind": "deep",
+      "scriptId": "page-deep-student-invite",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/student-invite 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/student-invite",
+          "标题: （无标题）",
+          "交互元素: 6 个",
+          "工作流验证: 班级邀请详情工作流=PASS/PASS | 班级邀请表单填写验证=PASS"
+        ],
+        "interactionSignals": [
+          "button: back",
+          "button: multilingual-list",
+          "button: button",
+          "button: 加入",
+          "button: 返回",
+          "field: text"
+        ],
+        "workflowSignals": [
+          "班级邀请详情工作流: 识别 4 条详情文本信号、6 个控件信号。",
+          "班级邀请表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/images/student-left.jpg",
+          "GET https://sr.sigmareading.com/images/student-right.png",
+          "GET https://sr.sigmareading.com/zh-hans/student-invite"
+        ],
+        "rawSamples": [
+          "button: back",
+          "ion-button: multilingual-list",
+          "button: button",
+          "input: text",
+          "button: 加入",
+          "button: 返回"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、6 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/student-invite 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "back",
+            "multilingual-list",
+            "button",
+            "加入",
+            "返回"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "text"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "班级邀请详情工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/student-invite 是否已展示详情内容，并暴露当前页可继续操作的控件。",
+          "expectedResult": "至少识别 2 条可用于描述详情页的文本信号；识别当前详情页是否存在按钮、输入框或其它后续操作控件",
+          "evidence": [
+            "识别 4 条详情文本信号、6 个控件信号。",
+            "读取详情内容: 识别 4 条详情文本：SReading；请输入班级码。；加入",
+            "检查详情操作控件: 识别 6 个控件：back；multilingual-list；button；text"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "班级邀请表单填写验证",
+          "category": "verify",
+          "purpose": "发现 班级邀请 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，观察到真实反馈。",
+            "填写已发现字段并观察结果: 已填写 text=测试输入；请求 0 个；新增结果样本 1 条"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "班级邀请详情工作流",
+          "summary": "识别 4 条详情文本信号、6 个控件信号。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "班级邀请表单填写验证",
+          "summary": "已填写 1 个字段，观察到真实反馈。",
+          "statuses": [
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-deep-student-invite",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 5 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "操作按钮发现: back",
+                "输入字段发现: text",
+                "班级邀请详情工作流: 识别 4 条详情文本信号、6 个控件信号。",
+                "班级邀请表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "班级邀请详情工作流: 识别 4 条详情文本信号、6 个控件信号。",
+                "班级邀请表单填写验证: 已填写 1 个字段，观察到真实反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "班级邀请详情工作流 / 读取详情内容: PASS",
+                "班级邀请详情工作流 / 检查详情操作控件: PASS",
+                "班级邀请表单填写验证 / 填写已发现字段并观察结果: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 11 条新选项/字段线索。",
+              "details": [
+                "班级邀请详情工作流: back",
+                "班级邀请详情工作流: multilingual-list",
+                "班级邀请详情工作流: button",
+                "班级邀请详情工作流: text",
+                "班级邀请详情工作流: 加入",
+                "班级邀请详情工作流: 返回",
+                "班级邀请表单填写验证: text",
+                "班级邀请详情工作流: 页面文本",
+                "班级邀请详情工作流: 操作按钮",
+                "班级邀请详情工作流: 输入字段",
+                "班级邀请表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "班级邀请详情工作流: back",
+            "班级邀请详情工作流: multilingual-list",
+            "班级邀请详情工作流: button",
+            "班级邀请详情工作流: text",
+            "班级邀请详情工作流: 加入",
+            "班级邀请详情工作流: 返回",
+            "班级邀请表单填写验证: text",
+            "班级邀请详情工作流: 页面文本",
+            "班级邀请详情工作流: 操作按钮",
+            "班级邀请详情工作流: 输入字段",
+            "班级邀请表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/images/student-left.jpg",
+        "GET https://sr.sigmareading.com/images/student-right.png",
+        "GET https://sr.sigmareading.com/zh-hans/student-invite"
+      ]
+    },
+    {
+      "name": "路由探索: /zh-hans/login",
+      "path": "/zh-hans/notfound",
+      "routeHint": "/zh-hans/login",
+      "pageKind": "route",
+      "scriptId": "page-route-zh-hans-login",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/login 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/notfound",
+          "标题: 404",
+          "交互元素: 2 个",
+          "工作流验证: 登录页路由工作流=PASS/PASS"
+        ],
+        "interactionSignals": [
+          "button: back",
+          "button: 首页"
+        ],
+        "workflowSignals": [
+          "登录页路由工作流: 当前最终路径为 /zh-hans/notfound，识别 3 条页面信号、0 个入口、2 个控件。"
+        ],
+        "networkSignals": [
+          "GET https://sr.sigmareading.com/zh-hans/login"
+        ],
+        "rawSamples": [
+          "button: back",
+          "button: 首页"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、2 条交互信号和 1 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/login 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "back",
+            "首页"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "登录页路由工作流",
+          "category": "verify",
+          "purpose": "验证 /zh-hans/login 是否能解析到稳定页面，并识别当前页面的基础控件。",
+          "expectedResult": "路由应落到可识别页面，并产出可供 AI 归纳的文本信号；至少识别 1 个基础入口、按钮或输入控件",
+          "evidence": [
+            "当前最终路径为 /zh-hans/notfound，识别 3 条页面信号、0 个入口、2 个控件。",
+            "验证路由解析结果: 最终路径 /zh-hans/notfound；页面信号 3 条",
+            "检查页面基础控件: 入口 0 个；控件 2 个"
+          ],
+          "status": "pass"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "登录页路由工作流",
+          "summary": "当前最终路径为 /zh-hans/notfound，识别 3 条页面信号、0 个入口、2 个控件。",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-route-zh-hans-login",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 3 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "操作按钮发现: back",
+                "登录页路由工作流: 当前最终路径为 /zh-hans/notfound，识别 3 条页面信号、0 个入口、2 个控件。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 1 个页面工作流验证。",
+              "details": [
+                "登录页路由工作流: 当前最终路径为 /zh-hans/notfound，识别 3 条页面信号、0 个入口、2 个控件。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "登录页路由工作流 / 验证路由解析结果: PASS",
+                "登录页路由工作流 / 检查页面基础控件: PASS"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 4 条新选项/字段线索。",
+              "details": [
+                "登录页路由工作流: back",
+                "登录页路由工作流: 首页",
+                "登录页路由工作流: 页面文本",
+                "登录页路由工作流: 操作按钮"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "登录页路由工作流: back",
+            "登录页路由工作流: 首页",
+            "登录页路由工作流: 页面文本",
+            "登录页路由工作流: 操作按钮"
+          ]
+        }
+      ],
+      "apis": [
+        "GET https://sr.sigmareading.com/zh-hans/login"
+      ]
+    },
+    {
+      "name": "路由探索: /zh-hans/profile",
+      "path": "/zh-hans/profile",
+      "routeHint": "/zh-hans/profile",
+      "pageKind": "route",
+      "scriptId": "page-route-zh-hans-profile",
+      "probeEvidence": {
+        "probeRole": "Playwright 仅负责进入页面、触发动作、采样 DOM/网络/结果，不负责下结论。",
+        "pageObjective": "为 /zh-hans/profile 收集可供 AI 判断功能、预期结果与下一轮验证目标的证据。",
+        "observedSignals": [
+          "SReading-最智能的免费中文阅读辅助工具",
+          "最终 URL: https://sr.sigmareading.com/zh-hans/profile",
+          "标题: ©2026 SReading v2.12.12 | 设置",
+          "交互元素: 86 个",
+          "工作流验证: 个人中心工作流=PASS/PASS | 个人中心表单填写验证=WARN"
+        ],
+        "interactionSignals": [
+          "link: /zh-hans/textbook -> /zh-hans/textbook",
+          "link: /zh-hans/homework -> /zh-hans/homework",
+          "link: /zh-hans/joined-classes -> /zh-hans/joined-classes",
+          "link: /zh-hans/reading -> /zh-hans/reading",
+          "link: /zh-hans/playlist -> /zh-hans/playlist",
+          "link: /zh-hans/favorites -> /zh-hans/favorites",
+          "link: /zh-hans/studio -> /zh-hans/studio",
+          "link: /zh-hans/exam -> /zh-hans/exam",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button",
+          "button: button"
+        ],
+        "workflowSignals": [
+          "个人中心工作流: 识别 3 条设置/账号信号；已到达 /zh-hans/textbook，并恢复当前页",
+          "个人中心表单填写验证: 已填写 1 个字段，未观察到明确反馈。"
+        ],
+        "networkSignals": [],
+        "rawSamples": [
+          "ion-item: ion-item",
+          "a: /zh-hans/textbook",
+          "button: button",
+          "ion-item: homework",
+          "a: /zh-hans/homework",
+          "button: button",
+          "ion-item: joined-classes",
+          "a: /zh-hans/joined-classes",
+          "button: button",
+          "ion-item: reading-list",
+          "a: /zh-hans/reading",
+          "button: button"
+        ]
+      },
+      "aiAnalysis": {
+        "analystRole": "AI 负责基于探针证据识别功能、判断预期结果、总结结论，并决定下一轮探针重点。",
+        "summary": "AI 基于 5 条页面信号、16 条交互信号和 2 个工作流结果形成当前判断。",
+        "conclusion": "AI 判定 /zh-hans/profile 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+        "openQuestions": [
+          "个人中心表单填写验证 只得到部分结果，AI 需要决定下一轮应优先补采哪些条件或弹层选项。"
+        ],
+        "nextProbeSuggestions": [
+          "沿着已验证的入口继续向详情页、筛选态、空结果态扩展探针。"
+        ]
+      },
+      "featureFindings": [
+        {
+          "name": "页面上下文识别",
+          "category": "discover",
+          "purpose": "识别当前页面的主要功能语义和访问上下文。",
+          "expectedResult": "页面标题或主要标题能说明该页用途。",
+          "evidence": [
+            "SReading-最智能的免费中文阅读辅助工具"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "导航入口发现",
+          "category": "discover",
+          "purpose": "识别当前页面可继续访问的功能入口。",
+          "expectedResult": "至少发现 1 个可点击跳转入口。",
+          "evidence": [
+            "/zh-hans/textbook -> /zh-hans/textbook",
+            "/zh-hans/homework -> /zh-hans/homework",
+            "/zh-hans/joined-classes -> /zh-hans/joined-classes",
+            "/zh-hans/reading -> /zh-hans/reading",
+            "/zh-hans/playlist -> /zh-hans/playlist",
+            "/zh-hans/favorites -> /zh-hans/favorites"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "操作按钮发现",
+          "category": "discover",
+          "purpose": "识别当前页面提供的直接操作按钮。",
+          "expectedResult": "至少发现 1 个按钮或提交动作。",
+          "evidence": [
+            "button",
+            "button",
+            "button",
+            "button",
+            "button",
+            "button"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "输入字段发现",
+          "category": "discover",
+          "purpose": "识别页面中的可输入字段，便于后续验证。",
+          "expectedResult": "至少发现 1 个输入字段。",
+          "evidence": [
+            "file",
+            "Enter text",
+            "您的名字",
+            "您的姓氏",
+            "请输入个人网址",
+            "请输入个人简介"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "个人中心工作流",
+          "category": "verify",
+          "purpose": "验证个人中心是否已展示设置项、账号信息或后续可操作控件。",
+          "expectedResult": "至少识别 1 项设置、账号或个人资料相关信号；至少识别 1 个可继续进入设置/账号相关流程的入口或控件",
+          "evidence": [
+            "识别 3 条设置/账号信号；已到达 /zh-hans/textbook，并恢复当前页",
+            "读取个人中心设置项: 识别 3 条相关信号：个人网址；个人简介；私人账户 您的个人资料只有您可以看到",
+            "验证个人中心后续入口或控件: 已到达 /zh-hans/textbook，并恢复当前页"
+          ],
+          "status": "pass"
+        },
+        {
+          "name": "个人中心表单填写验证",
+          "category": "verify",
+          "purpose": "发现 个人中心 的表单字段后，实际填写并观察提交后的请求、页面或结果变化。",
+          "expectedResult": "填写并触发后应出现请求变化、页面变化或结果样本变化",
+          "evidence": [
+            "已填写 1 个字段，未观察到明确反馈。",
+            "填写已发现字段并观察结果: 已填写 您的名字=测试输入，但未观测到 URL、请求或结果样本的明确变化"
+          ],
+          "status": "warn"
+        }
+      ],
+      "workflows": [
+        {
+          "name": "个人中心工作流",
+          "summary": "识别 3 条设置/账号信号；已到达 /zh-hans/textbook，并恢复当前页",
+          "statuses": [
+            "pass",
+            "pass"
+          ]
+        },
+        {
+          "name": "个人中心表单填写验证",
+          "summary": "已填写 1 个字段，未观察到明确反馈。",
+          "statuses": [
+            "warn"
+          ]
+        }
+      ],
+      "iterationLogs": [
+        {
+          "scriptId": "page-route-zh-hans-profile",
+          "iteration": 1,
+          "stages": [
+            {
+              "stage": "discover",
+              "status": "pass",
+              "summary": "发现 6 个候选功能点。",
+              "details": [
+                "页面上下文识别: SReading-最智能的免费中文阅读辅助工具",
+                "导航入口发现: /zh-hans/textbook -> /zh-hans/textbook",
+                "操作按钮发现: button",
+                "输入字段发现: file",
+                "个人中心工作流: 识别 3 条设置/账号信号；已到达 /zh-hans/textbook，并恢复当前页",
+                "个人中心表单填写验证: 已填写 1 个字段，未观察到明确反馈。"
+              ]
+            },
+            {
+              "stage": "verify",
+              "status": "pass",
+              "summary": "执行 2 个页面工作流验证。",
+              "details": [
+                "个人中心工作流: 识别 3 条设置/账号信号；已到达 /zh-hans/textbook，并恢复当前页",
+                "个人中心表单填写验证: 已填写 1 个字段，未观察到明确反馈。"
+              ]
+            },
+            {
+              "stage": "refine-script",
+              "status": "pass",
+              "summary": "本轮未发现必须调整的页面探索脚本。",
+              "details": []
+            },
+            {
+              "stage": "reverify",
+              "status": "pass",
+              "summary": "当前页的已配置工作流在本轮内完成了再次验证。",
+              "details": [
+                "个人中心工作流 / 读取个人中心设置项: PASS",
+                "个人中心工作流 / 验证个人中心后续入口或控件: PASS",
+                "个人中心表单填写验证 / 填写已发现字段并观察结果: WARN"
+              ]
+            },
+            {
+              "stage": "discover-more",
+              "status": "pass",
+              "summary": "再次发现 15 条新选项/字段线索。",
+              "details": [
+                "个人中心工作流: 个人网址",
+                "个人中心工作流: 个人简介",
+                "个人中心工作流: 私人账户 您的个人资料只有您可以看到",
+                "个人中心工作流: /zh-hans/textbook",
+                "个人中心工作流: /zh-hans/homework",
+                "个人中心工作流: /zh-hans/joined-classes",
+                "个人中心工作流: /zh-hans/reading",
+                "个人中心工作流: /zh-hans/playlist",
+                "个人中心表单填写验证: Enter text",
+                "个人中心表单填写验证: 您的名字",
+                "个人中心工作流: 页面文本",
+                "个人中心工作流: 链接入口",
+                "个人中心工作流: 操作按钮",
+                "个人中心工作流: 输入字段",
+                "个人中心表单填写验证: 表单填写结果"
+              ]
+            }
+          ],
+          "adjustments": [],
+          "newlyDiscoveredFeatures": [
+            "个人中心工作流: 个人网址",
+            "个人中心工作流: 个人简介",
+            "个人中心工作流: 私人账户 您的个人资料只有您可以看到",
+            "个人中心工作流: /zh-hans/textbook",
+            "个人中心工作流: /zh-hans/homework",
+            "个人中心工作流: /zh-hans/joined-classes",
+            "个人中心工作流: /zh-hans/reading",
+            "个人中心工作流: /zh-hans/playlist",
+            "个人中心表单填写验证: Enter text",
+            "个人中心表单填写验证: 您的名字",
+            "个人中心工作流: 页面文本",
+            "个人中心工作流: 链接入口",
+            "个人中心工作流: 操作按钮",
+            "个人中心工作流: 输入字段",
+            "个人中心表单填写验证: 表单填写结果"
+          ]
+        }
+      ],
+      "apis": []
+    }
+  ],
+  "businessFlows": [
+    {
+      "id": "zh-hans-exam-zh-hans-textbook",
+      "name": "试卷页 -> 教材页",
+      "sourceRoute": "/zh-hans/exam",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist"
+      ]
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-reading",
+      "name": "收藏夹 -> reading",
+      "sourceRoute": "/zh-hans/favorites",
+      "targetRoute": "/zh-hans/reading",
+      "targetRoutePattern": "/zh-hans/reading",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/textbook、/zh-hans/homework、/zh-hans/joined-classes、/zh-hans/playlist"
+      ]
+    },
+    {
+      "id": "zh-hans-home-zh-hans-textbook",
+      "name": "首页 -> 教材页",
+      "sourceRoute": "/zh-hans/home",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 7 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist"
+      ]
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-textbook",
+      "name": "作业页 -> 教材页",
+      "sourceRoute": "/zh-hans/homework",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist、/zh-hans/favorites"
+      ]
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-textbook",
+      "name": "班级页 -> 教材页",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/reading、/zh-hans/playlist、/zh-hans/favorites"
+      ]
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-textbook",
+      "name": "书单页 -> 教材页",
+      "sourceRoute": "/zh-hans/playlist",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/favorites"
+      ]
+    },
+    {
+      "id": "zh-hans-studio-zh-hans-textbook",
+      "name": "工作室 -> 教材页",
+      "sourceRoute": "/zh-hans/studio",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/homework、/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist"
+      ]
+    },
+    {
+      "id": "zh-hans-textbook-zh-hans-homework",
+      "name": "教材页 -> 作业页",
+      "sourceRoute": "/zh-hans/textbook",
+      "targetRoute": "/zh-hans/homework",
+      "targetRoutePattern": "/zh-hans/homework",
+      "transitionStatus": "pass",
+      "closureStatus": "closed",
+      "targetPageOpenQuestions": 0,
+      "remainingRisks": [
+        "同一工作流还发现 6 个候选后续入口未单独复验：/zh-hans/joined-classes、/zh-hans/reading、/zh-hans/playlist、/zh-hans/favorites"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "runId": "2026-04-23_01-58-29",
+  "generatedAt": "2026-04-23T02:06:15.001Z",
+  "summary": {
+    "totalFlows": 0,
+    "closedFlows": 0,
+    "partialFlows": 0,
+    "blockedFlows": 0,
+    "sourceCoverage": 0,
+    "targetCoverage": 0
+  },
+  "flows": []
+}

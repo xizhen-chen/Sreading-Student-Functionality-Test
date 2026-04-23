@@ -1,0 +1,67 @@
+{
+  "runId": "2026-04-23_02-51-02",
+  "generatedAt": "2026-04-23T02:51:33.580Z",
+  "summary": {
+    "totalFlows": 1,
+    "closedFlows": 0,
+    "partialFlows": 1,
+    "blockedFlows": 0,
+    "sourceCoverage": 1,
+    "targetCoverage": 1
+  },
+  "flows": [
+    {
+      "id": "zh-hans-chinese-to-pinyin-chinese-to-pinyin-zh-hans-textbook",
+      "name": "chinese-to-pinyin -> 教材页",
+      "sourceRoute": "/zh-hans/chinese-to-pinyin",
+      "sourcePageName": "导航页: chinese-to-pinyin (/zh-hans/chinese-to-pinyin)",
+      "sourceDocFilename": "zh-hans-chinese-to-pinyin-zh-hans-chinese-to-pinyin.md",
+      "sourcePageOpenQuestions": 0,
+      "sourcePageConclusion": "AI 判定 /zh-hans/chinese-to-pinyin 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "targetRoute": "/zh-hans/textbook",
+      "targetRoutePattern": "/zh-hans/textbook",
+      "targetPageName": "教材页",
+      "targetDocFilename": null,
+      "targetPageOpenQuestions": null,
+      "targetPageConclusion": "",
+      "workflowName": "chinese-to-pinyin页面工作流",
+      "workflowPurpose": "验证 /zh-hans/chinese-to-pinyin 是否已展示当前页核心内容，并暴露可继续探索的入口或控件。",
+      "workflowSummary": "识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页",
+      "transition": {
+        "action": "验证后续入口或关键控件",
+        "expected": "至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+        "actual": "已到达 /zh-hans/textbook，并恢复当前页",
+        "status": "pass",
+        "requests": [
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/account",
+          "GET https://sr.sigmareading.com/services/sr-ms-core/api/textbooks/sku-grouped"
+        ],
+        "resultSamples": [
+          "学习",
+          "教材",
+          "阅读"
+        ]
+      },
+      "candidateTargets": [
+        "/zh-hans/reading",
+        "/zh-hans/playlist",
+        "/zh-hans/presentation/join",
+        "/zh-hans/word-express",
+        "/zh-hans/character-map-create",
+        "/zh-hans/pinyin-pathway",
+        "/zh-hans/copybook"
+      ],
+      "closureStatus": "partial",
+      "closureSummary": "已发现 chinese-to-pinyin -> 教材页 的跨页线索，但当前仍停留在部分闭环。",
+      "successCriteria": [
+        "至少识别 1 个后续入口或关键控件，必要时验证其可达性",
+        "起点页已形成页面级结论。",
+        "目标页已纳入本轮探针并形成页面级结论。"
+      ],
+      "remainingRisks": [
+        "目标页未纳入本轮页面级探针，无法确认转场后的页面级结论。",
+        "同一工作流还发现 7 个候选后续入口未单独复验：/zh-hans/reading、/zh-hans/playlist、/zh-hans/presentation/join、/zh-hans/word-express"
+      ]
+    }
+  ]
+}

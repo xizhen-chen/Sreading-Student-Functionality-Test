@@ -1,230 +1,266 @@
 # AUTONOMOUS_EXPLORATION
 
-SigmaReading 页面自治探索的唯一执行 skill。
+SigmaReading 自治探索的唯一执行 skill。
 
-以后所有自治探索都应优先遵循这个 skill，而不是直接把 Playwright 当成主脑来跑。
+这份 skill 现在不再把“页面没有开放问题”当作最终目标，而是把探索目标拆成 3 层：
+
+- L1：页面级首轮闭环
+- L2：业务流闭环
+- L3：状态空间闭环
+
+只有 3 层都完成，才算真正达到“探索完成”。
 
 ---
 
-## 核心原则
+## 核心判断
 
-### 1. AI 是主脑
+### 什么不是最终目标
+
+下面这些都不等于最终探索完成：
+
+- `page-details-index.md` 全部显示“无待确认问题”
+- 所有页面都有 `probeEvidence`
+- 所有页面都有专属 workflow
+- 控制器已经不再继续追问页面级 open questions
+
+这些只能说明：页面级首轮闭环已经基本完成。
+
+### 真正的最终目标是什么
+
+最终目标是：
+
+1. 知道网站有哪些页面与对象
+2. 知道关键业务任务如何跨页完成
+3. 知道关键状态空间是否已覆盖
+4. 知道还剩哪些高风险未知项
+
+---
+
+## 三层目标模型
+
+### L1：页面级首轮闭环
+
+L1 解决的问题：
+
+- 当前页面能否稳定进入
+- 当前页面显式暴露了哪些能力
+- 页面级 workflow 是否已形成
+- AI 是否还能指出页面级开放问题
+
+L1 的最小完成标准：
+
+1. 页面级 `probeEvidence` 存在
+2. 页面级 `aiAnalysis` 存在
+3. `workflowFailures === 0`
+4. `scriptAdjustments === 0`
+5. `openQuestions === 0`
+
+当前仓库的自动化主能力，主要已经落在这一层。
+
+### L2：业务流闭环
+
+L2 解决的问题：
+
+- 关键用户任务是否能跨页闭环
+- 页面之间的先后关系是否清楚
+- 哪些 workflow 只是页面级动作，哪些已经构成完整业务流
+
+典型业务流示例：
+
+- 首页入口 -> 阅读列表 -> 阅读详情
+- 首页入口 -> 书单列表 -> 书单详情
+- 作业列表 -> 作业详情
+- 个人中心 -> 设置/账号相关入口
+
+L2 的最小完成标准：
+
+1. 每条关键业务流都已命名
+2. 每条关键业务流都有起点页、关键转折页、终点态
+3. 每条关键业务流都能说明“如何判定成功”
+4. 业务流剩余风险不是页面级未知，而是明确的业务级未知
+
+### L3：状态空间闭环
+
+L3 解决的问题：
+
+- 正常态之外，还覆盖了哪些边界状态
+- 哪些状态仍是盲区
+- 哪些异常行为只是页面偶然现象，哪些是产品真实规则
+
+重点状态示例：
+
+- 空结果态
+- 筛选态
+- 排序态
+- 无权限态
+- 路由异常态
+- 弹层/确认态
+- 恢复态
+
+L3 的最小完成标准：
+
+1. 每个关键页面或业务流都有状态清单
+2. 已知状态中至少明确哪些已覆盖、哪些未覆盖
+3. 边界态不再被误当作失败或被忽略
+4. 剩余未知状态已被显式列为风险，而不是被“收敛”掩盖
+
+---
+
+## 角色分工
+
+### AI 是主脑
 
 AI 负责：
 
-- 判断当前页面有哪些候选功能
-- 为每个候选功能写出预期结果
-- 基于探针证据给出结论
-- 决定下一轮还需要补什么探针
+- 识别页面能力
+- 识别业务流
+- 区分状态空间
+- 写结论、开放问题与下一轮探针重点
 
-### 2. Playwright 只是探针
+### Playwright 只是探针
 
 Playwright 只负责：
 
 - 进入页面
-- 触发按钮、输入、排序、筛选等动作
-- 收集 DOM / 文本 / 网络 / 截图 / 工作流结果
+- 触发动作
+- 采样 DOM / 文本 / 网络 / 截图 / workflow 结果
 - 在有限范围内做自愈
 
 Playwright 不负责：
 
-- 定义页面功能边界
-- 直接输出最终分析结论
-- 用“抓到了多少按钮/链接”代替功能判断
+- 定义最终业务边界
+- 用元素数量代替结论
+- 把页面级成功误写成产品级完成
 
-### 3. 控制器只判断 AI 是否已经拿到足够证据
+### Controller 只负责推进闭环
 
-控制器关心的是：
+控制器负责：
 
-- 页面级 metadata 是否存在
-- `probeEvidence` 是否足够
-- `aiAnalysis.openQuestions` 是否还存在
-- `aiAnalysis.nextProbeSuggestions` 是否还要求下一轮补采
+- 调度探针
+- 检查页面级证据是否收敛
+- 决定是否继续下一轮
 
-而不是简单看：
-
-- 抓到了多少 DOM
-- 抓到了多少 API
-- 截了多少图
+控制器本身不能代表最终探索判断。
 
 ---
 
-## 标准闭环
+## 标准运行顺序
 
-每个页面都必须按下面 5 步运行：
+### 模式 A：整站首次摸底
 
-### 第 1 步：探针采样
+目标：建立 L1 基础地图。
 
-运行 Playwright 页面脚本，采样：
+命令：
 
-- 页面标题和 heading
-- 可点击入口
-- 按钮和输入字段
-- 工作流动作结果
-- 网络请求
-- 截图
-- correction log
+```bash
+$env:SR_USERNAME='你的账号'; $env:SR_PASSWORD='你的密码'; npm run explore
+```
 
-输出必须进入 `probeEvidence`。
+产出：
 
-### 第 2 步：AI 识别功能
+- 整站 page-level 证据包
+- 初始页面索引
+- 初始页面专属 workflow 草案
 
-AI 根据 `probeEvidence` 判断：
+### 模式 B：定向页面闭环
 
-- 当前页面显式暴露了哪些能力
-- 哪些能力只是候选入口
-- 哪些能力已经有足够证据进入验证阶段
+目标：把某些页面从“只是发现能力”推进到 L1 收敛。
 
-输出必须进入：
+命令：
 
-- `featureFindings`
-- `aiAnalysis.summary`
+```bash
+$env:SR_USERNAME='你的账号'; $env:SR_PASSWORD='你的密码'; npm run explore -- --iterative --routes=/zh-hans/reading
+```
 
-### 第 3 步：AI 形成结论
+或：
 
-AI 基于工作流结果和原始信号，总结：
+```bash
+$env:SR_USERNAME='你的账号'; $env:SR_PASSWORD='你的密码'; $env:TARGET_ROUTES='/zh-hans/reading'; npm run agent:iterate
+```
 
-- 哪些功能已验证
-- 哪些功能只是部分验证
-- 哪些页面仍不能下结论
+### 模式 C：定向修复后的整站刷新
 
-输出必须进入：
+目标：把 latest 文档恢复成整站完整视图，防止局部 run 覆盖全局判断。
 
-- `aiAnalysis.conclusion`
-- `aiAnalysis.openQuestions`
+命令：
 
-### 第 4 步：AI 决定下一轮探针
+```bash
+$env:SR_USERNAME='你的账号'; $env:SR_PASSWORD='你的密码'; npm run explore
+```
 
-如果还有问题未闭环，AI 必须指出下一轮探针重点：
+规则：
 
-- 要补哪个按钮、字段、弹层或详情页
-- 要优先采哪类空结果态、筛选态、排序态
-- 是探针不足，还是页面本身不稳定
-
-输出必须进入：
-
-- `aiAnalysis.nextProbeSuggestions`
-- `iterationLogs`
-
-### 第 5 步：控制器判断是否收敛
-
-页面只有满足下面条件，才算收敛：
-
-- 页面级 metadata 已生成
-- `workflowFailures === 0`
-- `scriptAdjustments === 0`
-- `openQuestions === 0`
-
-只要 AI 还有开放问题，这个页面就不能算收敛。
+- 任何局部页面闭环之后，如要更新仓库级 latest 结果，必须再跑一次整站刷新。
 
 ---
 
-## 实际执行入口
+## 当前仓库的真实成熟度
 
-### 单页探针运行
+当前仓库里：
 
-```bash
-npm run explore -- --iterative --routes=/zh-hans/reading
-```
+- 自动化能力已基本覆盖 L1
+- L2 仍需要把“页面 workflow”上升为“业务流 workflow”
+- L3 仍需要把边界态覆盖系统化，而不是零散修补
 
-适用场景：
+因此：
 
-- 专门补某个页面
-- 验证新的页面工作流
-- 先让某个页面形成完整证据包
-
-### 控制器单页运行
-
-```bash
-$env:TARGET_ROUTES='/zh-hans/reading'; $env:MODE='iterate'; $env:MAX_ITERATIONS='3'; node scripts/agent-controller.js
-```
-
-适用场景：
-
-- 检查某一页 AI 是否已经收敛
-- 验证 open questions 是否下降
-
-### 控制器多页运行
-
-```bash
-$env:TARGET_ROUTES='/zh-hans/home,/zh-hans/reading,/zh-hans/playlist'; $env:MODE='iterate'; $env:MAX_ITERATIONS='3'; node scripts/agent-controller.js
-```
-
-适用场景：
-
-- 检查多页面自治流程是否能稳定运行
-- 识别哪些页面还没有形成 AI-ready 证据
-
-### 带登录态运行
-
-```bash
-$env:SR_USERNAME='xizhen.chen+3@tonglec.org'; $env:SR_PASSWORD='123'; npm run explore -- --iterative --routes=/zh-hans/reading
-```
-
-如果目标页面需要登录，默认优先走登录态采样。
+- `page-details-index.md` 全部无待确认问题，只能判定 L1 基本完成
+- 不允许据此宣称“整个网站探索已经完成”
 
 ---
 
-## 产物要求
+## 分析时的读取顺序
 
-### 必须生成的原始证据层
+### 第 1 层：先看页面级证据
 
-- `runs/<run-id>/docs/iteration-metadata.json`
-- `runs/<run-id>/docs/api-endpoints.md`
-- `runs/<run-id>/docs/correction-log.md`
-- `runs/<run-id>/screenshots/*.png`
-
-其中 `iteration-metadata.json` 必须包含：
+优先读取：
 
 - `probeEvidence`
-- `aiAnalysis`
 - `featureFindings`
+- `aiAnalysis`
 - `iterationLogs`
 
-### 必须生成的 AI 总结层
+用来判断：页面是否达到 L1。
 
-- `runs/<run-id>/docs/sigmareading-features.md`
-- `runs/<run-id>/docs/page-details-index.md`
-- `runs/<run-id>/docs/pages/*.md`
-- `agent-execution-summary.json`
+### 第 2 层：再看业务流关系
 
-页面文档必须显式包含：
+优先读取：
 
-- `Playwright 探针概览`
-- `AI 分析结论`
-- `Playwright 原始探针证据`
-- `AI 驱动的迭代闭环`
+- 页面之间的入口关系
+- workflow 中的目标页与恢复路径
+- 深层页与上游入口的映射关系
+
+用来判断：是否已经达到 L2。
+
+### 第 3 层：最后看状态空间
+
+优先读取：
+
+- 排序/筛选/空结果/无权限/异常路由等边界态证据
+- AI 对这些状态的结论是否稳定
+
+用来判断：是否已经达到 L3。
 
 ---
 
-## 分析时优先读取哪些字段
+## 已知异常模式
 
-### 首先看 `probeEvidence`
+### 1. `/zh-hans/login` 稳定落到 `notfound`
 
-判断探针有没有采到足够原始信号：
+如果这在当前环境里表现稳定，应当被记录为路由解析结果，而不是无限期保留为开放问题。
 
-- `observedSignals`
-- `interactionSignals`
-- `workflowSignals`
-- `networkSignals`
-- `rawSamples`
+### 2. `/zh-hans/reading` 的筛选更像边界态验证
 
-### 再看 `aiAnalysis`
+如果页面稳定暴露 `筛选` / `reset` 这类边界控件，且结果列表保持可读，可视为有效的筛选能力证据。
 
-判断 AI 当前是否已经形成有效结论：
+### 3. 定向控制器运行可能漏掉顶层业务页
 
-- `summary`
-- `conclusion`
-- `openQuestions`
-- `nextProbeSuggestions`
+如果页面只靠 phase 3 链接发现，定向控制器运行时可能出现 `pages=0`。
 
-### 最后看 `iterationLogs`
+因此：
 
-判断闭环是否真正完成：
-
-- 是否只是发现功能
-- 是否真的完成验证
-- 是否还需要继续补脚本
+- 顶层业务页必须维护在已知路由回退里
+- 不要把 `pages=0` 直接解释成“页面不存在”
 
 ---
 
@@ -234,22 +270,20 @@ $env:SR_USERNAME='xizhen.chen+3@tonglec.org'; $env:SR_PASSWORD='123'; npm run ex
 
 优先判断：
 
-- 探针是否根本没成功进入页面
-- 登录态是否中断
-- 导航是否抖动导致中途丢上下文
+- 是否根本没有进入页面
+- 是否登录态中断
+- 是否导航抖动导致上下文丢失
+- 是否该页面没有进入已知路由回退
 
-不要直接先加更多结论逻辑。
+### 场景 2：页面 L1 已收敛，但你仍不认可“探索完成”
 
-### 场景 2：有 DOM 但 AI 仍无法判断
+这是正常情况。
 
-说明是证据不够，不是总结不够。
+应立即转问：
 
-优先补：
-
-- 更关键的操作步骤
-- 结果样本
-- 网络请求
-- 弹层选项
+- 这个页面属于哪条业务流
+- 这条业务流是否已闭环
+- 这条业务流覆盖了哪些状态、还缺哪些状态
 
 ### 场景 3：AI 结论还是太像脚本总结
 
@@ -257,33 +291,20 @@ $env:SR_USERNAME='xizhen.chen+3@tonglec.org'; $env:SR_PASSWORD='123'; npm run ex
 
 修正方式：
 
-- 减少“抓到多少按钮”这类伪结论
-- 增加“AI 还不能判断什么、为什么不能判断、下一轮该补什么”
+- 减少元素数量式结论
+- 增加业务流与状态层结论
+- 明确写出当前只完成 L1，还是已经进入 L2/L3
 
 ---
 
-## 收敛定义
-
-一个页面只有在 AI 视角下满足以下条件，才能判定为“完成”：
-
-1. 页面级 `probeEvidence` 存在
-2. 页面级 `aiAnalysis` 存在
-3. `aiAnalysis.openQuestions.length === 0`
-4. 关键工作流没有 `fail`
-5. 当前轮没有必须继续补的探针脚本调整
-
-如果只是页面能打开，或者脚本抓到了很多元素，但 AI 仍有开放问题，就不能结束。
-
----
-
-## 本 skill 的执行纪律
+## 执行纪律
 
 以后通过这个 skill 运行时，必须遵守：
 
-- 不要把 Playwright 的采样结果直接当最终分析
-- 不要把“API 数量 / DOM 数量 / 截图数量”当主要成果
-- 任何页面结论都应以 `aiAnalysis` 为准
-- 任何下一轮动作都应优先来自 `aiAnalysis.nextProbeSuggestions`
+- 不要把页面级收敛写成最终探索完成
+- 不要把 DOM 数量 / API 数量 / 截图数量当主要成果
+- 页面级结论必须写清楚自己处于 L1 / L2 / L3 的哪一层
+- 如果只做了定向页面闭环，不要覆盖整站 final 判断
 
 ---
 

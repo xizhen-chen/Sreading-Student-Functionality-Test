@@ -1,0 +1,1015 @@
+{
+  "runId": "2026-04-23_02-34-41",
+  "generatedAt": "2026-04-23T02:37:16.493Z",
+  "summary": {
+    "totalCandidates": 37,
+    "highPriority": 12,
+    "mediumPriority": 25,
+    "lowPriority": 0,
+    "needsTargetSampling": 12,
+    "needsTargetL1": 0,
+    "needsSourceVerification": 25,
+    "coveredElsewhere": 0
+  },
+  "candidates": [
+    {
+      "id": "zh-hans-exam-zh-hans-reading",
+      "sourceRoute": "/zh-hans/exam",
+      "sourcePageName": "导航页: exam (/zh-hans/exam)",
+      "sourceDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/reading",
+      "candidateRoutePattern": "/zh-hans/reading",
+      "candidatePageName": "reading",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 1,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "试卷页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "试卷页页面工作流"
+      ],
+      "evidence": [
+        "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/reading 纳入页面级探针，再判断 /zh-hans/exam 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-exam-zh-hans-studio",
+      "sourceRoute": "/zh-hans/exam",
+      "sourcePageName": "导航页: exam (/zh-hans/exam)",
+      "sourceDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/studio",
+      "candidateRoutePattern": "/zh-hans/studio",
+      "candidatePageName": "工作室",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "试卷页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "试卷页页面工作流"
+      ],
+      "evidence": [
+        "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/studio 纳入页面级探针，再判断 /zh-hans/exam 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-studio",
+      "sourceRoute": "/zh-hans/favorites",
+      "sourcePageName": "导航页: favorites (/zh-hans/favorites)",
+      "sourceDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/studio",
+      "candidateRoutePattern": "/zh-hans/studio",
+      "candidatePageName": "工作室",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "收藏夹 -> reading"
+      ],
+      "discoveredByWorkflowNames": [
+        "收藏夹页面工作流"
+      ],
+      "evidence": [
+        "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/studio 纳入页面级探针，再判断 /zh-hans/favorites 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-textbook",
+      "sourceRoute": "/zh-hans/favorites",
+      "sourcePageName": "导航页: favorites (/zh-hans/favorites)",
+      "sourceDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/textbook",
+      "candidateRoutePattern": "/zh-hans/textbook",
+      "candidatePageName": "教材页",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 5,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "收藏夹 -> reading"
+      ],
+      "discoveredByWorkflowNames": [
+        "收藏夹页面工作流"
+      ],
+      "evidence": [
+        "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/textbook 纳入页面级探针，再判断 /zh-hans/favorites 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-reading",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/reading",
+      "candidateRoutePattern": "/zh-hans/reading",
+      "candidatePageName": "reading",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 1,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/reading 纳入页面级探针，再判断 /zh-hans/home 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-studio",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/studio",
+      "candidateRoutePattern": "/zh-hans/studio",
+      "candidatePageName": "工作室",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/studio 纳入页面级探针，再判断 /zh-hans/home 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-reading",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/reading",
+      "candidateRoutePattern": "/zh-hans/reading",
+      "candidatePageName": "reading",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 1,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "作业页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "作业页页面工作流"
+      ],
+      "evidence": [
+        "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/reading 纳入页面级探针，再判断 /zh-hans/homework 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-studio",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/studio",
+      "candidateRoutePattern": "/zh-hans/studio",
+      "candidatePageName": "工作室",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "作业页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "作业页页面工作流"
+      ],
+      "evidence": [
+        "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/studio 纳入页面级探针，再判断 /zh-hans/homework 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-reading",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/reading",
+      "candidateRoutePattern": "/zh-hans/reading",
+      "candidatePageName": "reading",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 1,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "班级页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "班级页页面工作流"
+      ],
+      "evidence": [
+        "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/reading 纳入页面级探针，再判断 /zh-hans/joined-classes 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-studio",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/studio",
+      "candidateRoutePattern": "/zh-hans/studio",
+      "candidatePageName": "工作室",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "班级页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "班级页页面工作流"
+      ],
+      "evidence": [
+        "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/studio 纳入页面级探针，再判断 /zh-hans/joined-classes 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-reading",
+      "sourceRoute": "/zh-hans/playlist",
+      "sourcePageName": "导航页: playlist (/zh-hans/playlist)",
+      "sourceDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/reading",
+      "candidateRoutePattern": "/zh-hans/reading",
+      "candidatePageName": "reading",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 1,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "书单页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "书单页页面工作流"
+      ],
+      "evidence": [
+        "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/reading 纳入页面级探针，再判断 /zh-hans/playlist 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-studio",
+      "sourceRoute": "/zh-hans/playlist",
+      "sourcePageName": "导航页: playlist (/zh-hans/playlist)",
+      "sourceDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/studio",
+      "candidateRoutePattern": "/zh-hans/studio",
+      "candidatePageName": "工作室",
+      "candidateDocFilename": null,
+      "candidatePageOpenQuestions": null,
+      "candidatePageConclusion": "",
+      "candidateStatus": "needs-target-sampling",
+      "priority": "high",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "书单页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "书单页页面工作流"
+      ],
+      "evidence": [
+        "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "先把 /zh-hans/studio 纳入页面级探针，再判断 /zh-hans/playlist 是否需要补跨页验证。"
+    },
+    {
+      "id": "zh-hans-exam-zh-hans-favorites",
+      "sourceRoute": "/zh-hans/exam",
+      "sourcePageName": "导航页: exam (/zh-hans/exam)",
+      "sourceDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/favorites",
+      "candidateRoutePattern": "/zh-hans/favorites",
+      "candidatePageName": "导航页: favorites (/zh-hans/favorites)",
+      "candidateDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/favorites 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "试卷页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "试卷页页面工作流"
+      ],
+      "evidence": [
+        "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/exam 补做 /zh-hans/favorites 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-exam-zh-hans-homework",
+      "sourceRoute": "/zh-hans/exam",
+      "sourcePageName": "导航页: exam (/zh-hans/exam)",
+      "sourceDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/homework",
+      "candidateRoutePattern": "/zh-hans/homework",
+      "candidatePageName": "导航页: homework (/zh-hans/homework)",
+      "candidateDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "试卷页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "试卷页页面工作流"
+      ],
+      "evidence": [
+        "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/exam 补做 /zh-hans/homework 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-exam-zh-hans-joined-classes",
+      "sourceRoute": "/zh-hans/exam",
+      "sourcePageName": "导航页: exam (/zh-hans/exam)",
+      "sourceDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/joined-classes",
+      "candidateRoutePattern": "/zh-hans/joined-classes",
+      "candidatePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "candidateDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "试卷页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "试卷页页面工作流"
+      ],
+      "evidence": [
+        "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/exam 补做 /zh-hans/joined-classes 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-exam-zh-hans-playlist",
+      "sourceRoute": "/zh-hans/exam",
+      "sourcePageName": "导航页: exam (/zh-hans/exam)",
+      "sourceDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/playlist",
+      "candidateRoutePattern": "/zh-hans/playlist",
+      "candidatePageName": "导航页: playlist (/zh-hans/playlist)",
+      "candidateDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/playlist 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "试卷页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "试卷页页面工作流"
+      ],
+      "evidence": [
+        "试卷页页面工作流: 识别 7 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/exam 补做 /zh-hans/playlist 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-exam",
+      "sourceRoute": "/zh-hans/favorites",
+      "sourcePageName": "导航页: favorites (/zh-hans/favorites)",
+      "sourceDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/exam",
+      "candidateRoutePattern": "/zh-hans/exam",
+      "candidatePageName": "导航页: exam (/zh-hans/exam)",
+      "candidateDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/exam 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "收藏夹 -> reading"
+      ],
+      "discoveredByWorkflowNames": [
+        "收藏夹页面工作流"
+      ],
+      "evidence": [
+        "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/favorites 补做 /zh-hans/exam 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-homework",
+      "sourceRoute": "/zh-hans/favorites",
+      "sourcePageName": "导航页: favorites (/zh-hans/favorites)",
+      "sourceDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/homework",
+      "candidateRoutePattern": "/zh-hans/homework",
+      "candidatePageName": "导航页: homework (/zh-hans/homework)",
+      "candidateDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "收藏夹 -> reading"
+      ],
+      "discoveredByWorkflowNames": [
+        "收藏夹页面工作流"
+      ],
+      "evidence": [
+        "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/favorites 补做 /zh-hans/homework 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-joined-classes",
+      "sourceRoute": "/zh-hans/favorites",
+      "sourcePageName": "导航页: favorites (/zh-hans/favorites)",
+      "sourceDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/joined-classes",
+      "candidateRoutePattern": "/zh-hans/joined-classes",
+      "candidatePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "candidateDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "收藏夹 -> reading"
+      ],
+      "discoveredByWorkflowNames": [
+        "收藏夹页面工作流"
+      ],
+      "evidence": [
+        "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/favorites 补做 /zh-hans/joined-classes 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-favorites-zh-hans-playlist",
+      "sourceRoute": "/zh-hans/favorites",
+      "sourcePageName": "导航页: favorites (/zh-hans/favorites)",
+      "sourceDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/playlist",
+      "candidateRoutePattern": "/zh-hans/playlist",
+      "candidatePageName": "导航页: playlist (/zh-hans/playlist)",
+      "candidateDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/playlist 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "收藏夹 -> reading"
+      ],
+      "discoveredByWorkflowNames": [
+        "收藏夹页面工作流"
+      ],
+      "evidence": [
+        "收藏夹页面工作流: 识别 6 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/reading，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/favorites 补做 /zh-hans/playlist 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-exam",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/exam",
+      "candidateRoutePattern": "/zh-hans/exam",
+      "candidatePageName": "导航页: exam (/zh-hans/exam)",
+      "candidateDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/exam 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/home 补做 /zh-hans/exam 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-favorites",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/favorites",
+      "candidateRoutePattern": "/zh-hans/favorites",
+      "candidatePageName": "导航页: favorites (/zh-hans/favorites)",
+      "candidateDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/favorites 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/home 补做 /zh-hans/favorites 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-homework",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/homework",
+      "candidateRoutePattern": "/zh-hans/homework",
+      "candidatePageName": "导航页: homework (/zh-hans/homework)",
+      "candidateDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/home 补做 /zh-hans/homework 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-joined-classes",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/joined-classes",
+      "candidateRoutePattern": "/zh-hans/joined-classes",
+      "candidatePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "candidateDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/home 补做 /zh-hans/joined-classes 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-home-zh-hans-playlist",
+      "sourceRoute": "/zh-hans/home",
+      "sourcePageName": "主页（/zh-hans/home）",
+      "sourceDocFilename": "zh-hans-home-zh-hans-home.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/playlist",
+      "candidateRoutePattern": "/zh-hans/playlist",
+      "candidatePageName": "导航页: playlist (/zh-hans/playlist)",
+      "candidateDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/playlist 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "首页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "首页主入口工作流"
+      ],
+      "evidence": [
+        "首页主入口工作流: 识别 8 个首页主入口；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/home 补做 /zh-hans/playlist 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-exam",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/exam",
+      "candidateRoutePattern": "/zh-hans/exam",
+      "candidatePageName": "导航页: exam (/zh-hans/exam)",
+      "candidateDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/exam 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "作业页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "作业页页面工作流"
+      ],
+      "evidence": [
+        "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/homework 补做 /zh-hans/exam 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-favorites",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/favorites",
+      "candidateRoutePattern": "/zh-hans/favorites",
+      "candidatePageName": "导航页: favorites (/zh-hans/favorites)",
+      "candidateDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/favorites 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "作业页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "作业页页面工作流"
+      ],
+      "evidence": [
+        "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/homework 补做 /zh-hans/favorites 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-joined-classes",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/joined-classes",
+      "candidateRoutePattern": "/zh-hans/joined-classes",
+      "candidatePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "candidateDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "作业页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "作业页页面工作流"
+      ],
+      "evidence": [
+        "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/homework 补做 /zh-hans/joined-classes 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-homework-zh-hans-playlist",
+      "sourceRoute": "/zh-hans/homework",
+      "sourcePageName": "导航页: homework (/zh-hans/homework)",
+      "sourceDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/playlist",
+      "candidateRoutePattern": "/zh-hans/playlist",
+      "candidatePageName": "导航页: playlist (/zh-hans/playlist)",
+      "candidateDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/playlist 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "作业页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "作业页页面工作流"
+      ],
+      "evidence": [
+        "作业页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/homework 补做 /zh-hans/playlist 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-exam",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/exam",
+      "candidateRoutePattern": "/zh-hans/exam",
+      "candidatePageName": "导航页: exam (/zh-hans/exam)",
+      "candidateDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/exam 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "班级页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "班级页页面工作流"
+      ],
+      "evidence": [
+        "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/joined-classes 补做 /zh-hans/exam 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-favorites",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/favorites",
+      "candidateRoutePattern": "/zh-hans/favorites",
+      "candidatePageName": "导航页: favorites (/zh-hans/favorites)",
+      "candidateDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/favorites 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "班级页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "班级页页面工作流"
+      ],
+      "evidence": [
+        "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/joined-classes 补做 /zh-hans/favorites 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-homework",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/homework",
+      "candidateRoutePattern": "/zh-hans/homework",
+      "candidatePageName": "导航页: homework (/zh-hans/homework)",
+      "candidateDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "班级页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "班级页页面工作流"
+      ],
+      "evidence": [
+        "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/joined-classes 补做 /zh-hans/homework 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-joined-classes-zh-hans-playlist",
+      "sourceRoute": "/zh-hans/joined-classes",
+      "sourcePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "sourceDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/playlist",
+      "candidateRoutePattern": "/zh-hans/playlist",
+      "candidatePageName": "导航页: playlist (/zh-hans/playlist)",
+      "candidateDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/playlist 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "班级页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "班级页页面工作流"
+      ],
+      "evidence": [
+        "班级页页面工作流: 识别 8 条页面文本信号、12 个入口、5 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/joined-classes 补做 /zh-hans/playlist 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-exam",
+      "sourceRoute": "/zh-hans/playlist",
+      "sourcePageName": "导航页: playlist (/zh-hans/playlist)",
+      "sourceDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/exam",
+      "candidateRoutePattern": "/zh-hans/exam",
+      "candidatePageName": "导航页: exam (/zh-hans/exam)",
+      "candidateDocFilename": "zh-hans-exam-zh-hans-exam.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/exam 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "书单页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "书单页页面工作流"
+      ],
+      "evidence": [
+        "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/playlist 补做 /zh-hans/exam 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-favorites",
+      "sourceRoute": "/zh-hans/playlist",
+      "sourcePageName": "导航页: playlist (/zh-hans/playlist)",
+      "sourceDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/favorites",
+      "candidateRoutePattern": "/zh-hans/favorites",
+      "candidatePageName": "导航页: favorites (/zh-hans/favorites)",
+      "candidateDocFilename": "zh-hans-favorites-zh-hans-favorites.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/favorites 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "书单页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "书单页页面工作流"
+      ],
+      "evidence": [
+        "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/playlist 补做 /zh-hans/favorites 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-homework",
+      "sourceRoute": "/zh-hans/playlist",
+      "sourcePageName": "导航页: playlist (/zh-hans/playlist)",
+      "sourceDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/homework",
+      "candidateRoutePattern": "/zh-hans/homework",
+      "candidatePageName": "导航页: homework (/zh-hans/homework)",
+      "candidateDocFilename": "zh-hans-homework-zh-hans-homework.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/homework 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "书单页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "书单页页面工作流"
+      ],
+      "evidence": [
+        "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/playlist 补做 /zh-hans/homework 的定向跨页验证。"
+    },
+    {
+      "id": "zh-hans-playlist-zh-hans-joined-classes",
+      "sourceRoute": "/zh-hans/playlist",
+      "sourcePageName": "导航页: playlist (/zh-hans/playlist)",
+      "sourceDocFilename": "zh-hans-playlist-zh-hans-playlist.md",
+      "sourcePageOpenQuestions": 0,
+      "candidateRoute": "/zh-hans/joined-classes",
+      "candidateRoutePattern": "/zh-hans/joined-classes",
+      "candidatePageName": "导航页: joined-classes (/zh-hans/joined-classes)",
+      "candidateDocFilename": "zh-hans-joined-classes-zh-hans-joined-classes.md",
+      "candidatePageOpenQuestions": 0,
+      "candidatePageConclusion": "AI 判定 /zh-hans/joined-classes 的核心候选功能已完成首轮验证，可继续扩展边界场景。",
+      "candidateStatus": "needs-source-verification",
+      "priority": "medium",
+      "crossSourceFlowCount": 0,
+      "crossSourceClosedFlowCount": 0,
+      "discoveredByFlowNames": [
+        "书单页 -> 教材页"
+      ],
+      "discoveredByWorkflowNames": [
+        "书单页页面工作流"
+      ],
+      "evidence": [
+        "书单页页面工作流: 识别 8 条页面文本信号、12 个入口、8 个控件；已到达 /zh-hans/textbook，并恢复当前页"
+      ],
+      "recommendedNextAction": "优先从 /zh-hans/playlist 补做 /zh-hans/joined-classes 的定向跨页验证。"
+    }
+  ]
+}
